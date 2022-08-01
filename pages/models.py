@@ -136,30 +136,30 @@ class OurPeople(Page):
         ]))
     ], collapsed=True)
 
-    CCS_house_staff = StreamField([
-        ('student_staffer', blocks.StructBlock([
-            ('first_name', blocks.CharBlock()),
-            ('last_name', blocks.CharBlock()),
-            ('headshot', ImageChooserBlock(required=False)),
-            ('year', blocks.CharBlock()),
-            ('major', blocks.CharBlock()),
-        ]))
-    ], collapsed=True)
+    # CCS_house_staff = StreamField([
+    #     ('student_staffer', blocks.StructBlock([
+    #         ('first_name', blocks.CharBlock()),
+    #         ('last_name', blocks.CharBlock()),
+    #         ('headshot', ImageChooserBlock(required=False)),
+    #         ('year', blocks.CharBlock()),
+    #         ('major', blocks.CharBlock()),
+    #     ]))
+    # ], collapsed=True)
 
-    CCS_faculty_affiliates = StreamField([
-        ('faculaty_affiliate', blocks.StructBlock([
-            ('first_name', blocks.CharBlock()),
-            ('last_name', blocks.CharBlock()),
-            ('headshot', ImageChooserBlock(required=False)),
-        ]))
-    ], collapsed=True, blank=True)
+    # CCS_faculty_affiliates = StreamField([
+    #     ('faculaty_affiliate', blocks.StructBlock([
+    #         ('first_name', blocks.CharBlock()),
+    #         ('last_name', blocks.CharBlock()),
+    #         ('headshot', ImageChooserBlock(required=False)),
+    #     ]))
+    # ], collapsed=True, blank=True)
 
     # panels
 
     content_panels = Page.content_panels + [
         FieldPanel('CCS_staff'),
-        FieldPanel('CCS_house_staff'),
-        FieldPanel('CCS_faculty_affiliates'),
+        # FieldPanel('CCS_house_staff'),
+        # FieldPanel('CCS_faculty_affiliates'),
     ]
 
 class StaffMember(Page):
