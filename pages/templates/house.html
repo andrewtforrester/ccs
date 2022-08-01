@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% load static tailwind_tags %}
+
+{% block content %}
+    <div class="bg-red-500">
+        <h1 class="text-5xl font-sans">{{ page.body|richtext }}
+		</h1>
+    </div>
+{% endblock %}
