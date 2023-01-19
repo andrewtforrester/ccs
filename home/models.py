@@ -36,6 +36,14 @@ class HomePage(Page):
         related_name='+'
     )
 
+    banner_3_feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
 
     offerings = StreamField([
         ('offering', blocks.StructBlock([
@@ -50,6 +58,7 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('cover_image'),
         FieldPanel('banner_2_feature_image'),
+        FieldPanel('banner_3_feature_image'),
         FieldPanel('east_campus_map'),
         FieldPanel('offerings'),
         FieldPanel('houseSlides'),
