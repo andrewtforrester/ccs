@@ -7,11 +7,11 @@
 {% block content %}
     <section>
         {% image page.cover_image width-2500 as ci %}
-        <div class="w-full h-screen">
+        <div class="relative w-full h-screen">
             <div class="relative overflow-hidden w-full h-full bg-cover bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
-                <div class=" relative z-[20] flex w-full h-full items-end px-6 sm:px-10 pb-[7rem]">
-                    <div class="relative sm:pl-[5rem] sm:ml-[-5rem] py-6 pr-10">
-                        <h1 class="relative w-full sm:w-auto z-10 font-bold font-serif text-white text-2xl sm:text-3xl lg:text-6xl lg:leading-[4.2rem] italic pb-6"><span class="">A Home for Christian Life <br> and Learning </span></h1>
+                <div class="relative z-[20] w-full h-full px-6 sm:px-10 pb-[7rem]">
+                    <div class="relative sm:pl-[5rem] sm:ml-[-5rem] py-6 pr-10 mt-[10rem]">
+                        <h1 class="relative w-full sm:w-auto z-10 font-bold font-serif text-white text-2xl sm:text-3xl lg:text-6xl lg:leading-[4.2rem] italic pb-6"><span class="">A Home for Christian <br> Life and Learning </span></h1>
                         <button class="relative z-10">
                             <a href="">
                                 <div class="px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy">
@@ -19,10 +19,12 @@
                                 </div>  
                             </a>
                         </button>
-                        <div class="absolute inset-0 bg-navy opacity-[0.88] z-0 rounded-sm">
-                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="absolute z-0 opacity-[0.85] h-[60rem] w-[60rem] top-[-20rem] left-[-20rem] bg-navy rounded-full">
+
             </div>
         </div>
     </section>
@@ -64,7 +66,7 @@
     <section>
         <div class="bg-white ">
             <div class="relative sm:flex">
-                <div class="w-1/2 lg:w-[35%] p-6 md:p-10 overflow-hidden">
+                <div class="w-1/2 lg:w-[45%] p-6 md:p-10 overflow-hidden">
                     <div id="b3textcontainer" class="">
                         <h1 class="text-4xl lg:text-5xl text-navy font-bold font-serif italic pt-10 pb-20">We help Duke students and faculty:</h1>
 
@@ -110,8 +112,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="b3imagecontainer" class="w-1/2 lg:w-[65%] absolute top-0 right-0">
-                    {% image page.banner_3_feature_image width-4000 as b3i %}
+                <div id="b3imagecontainer" class="w-1/2 lg:w-[55%] absolute top-0 right-0">
+                    {% image page.banner_3_feature_image width-6000 as b3i %}
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ b3i.url }}');">
 
                     </div>

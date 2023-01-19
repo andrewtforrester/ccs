@@ -858,6 +858,22 @@ select {
   top: 0;
 }
 
+.top-\[-20rem\] {
+  top: -20rem;
+}
+
+.left-\[-20rem\] {
+  left: -20rem;
+}
+
+.top-\[-10rem\] {
+  top: -10rem;
+}
+
+.left-\[-10rem\] {
+  left: -10rem;
+}
+
 .z-\[20\] {
   z-index: 20;
 }
@@ -913,6 +929,14 @@ select {
 
 .mr-\[\.15rem\] {
   margin-right: .15rem;
+}
+
+.mt-\[4rem\] {
+  margin-top: 4rem;
+}
+
+.mt-\[10rem\] {
+  margin-top: 10rem;
 }
 
 .block {
@@ -983,6 +1007,14 @@ select {
   height: 100vh;
 }
 
+.h-\[40rem\] {
+  height: 40rem;
+}
+
+.h-\[60rem\] {
+  height: 60rem;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -1041,6 +1073,14 @@ select {
 
 .w-5\/12 {
   width: 41.666667%;
+}
+
+.w-\[50rem\] {
+  width: 50rem;
+}
+
+.w-\[60rem\] {
+  width: 60rem;
 }
 
 .border-collapse {
@@ -1201,6 +1241,10 @@ select {
   -webkit-user-select: all;
      -moz-user-select: all;
           user-select: all;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-end {
@@ -1405,6 +1449,10 @@ select {
   padding-bottom: 10rem;
 }
 
+.pt-20 {
+  padding-top: 5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1538,6 +1586,10 @@ select {
   opacity: 0.7;
 }
 
+.opacity-\[0\.9\] {
+  opacity: 0.9;
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1668,6 +1720,14 @@ select {
 
   .lg\:w-\[65\%\] {
     width: 65%;
+  }
+
+  .lg\:w-\[40\%\] {
+    width: 40%;
+  }
+
+  .lg\:w-\[60\%\] {
+    width: 60%;
   }
 
   .lg\:text-6xl {

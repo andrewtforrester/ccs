@@ -3,9 +3,9 @@
 		<div class="flex items-center justify-between">
 			<a href="/">
 				<div class="flex items-center">
-					<div class="bg-navy h-[2rem] w-[2rem] rounded-full mr-4">
+					<div class="bg-white h-[2rem] w-[2rem] rounded-full mr-4">
 					</div>
-					<div class="text-xl text-navy font-bold font-serif text-navy leading-6 italic hidden lg:block">
+					<div class="text-xl font-bold font-serif text-white leading-6 italic hidden lg:block">
 						Center for Christianity <br> and Scholarship
 					</div>
 				</div>
