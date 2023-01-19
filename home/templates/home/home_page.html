@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+
+{% block content %}
+    <section>
+        {% image page.cover_image width-2500 as ci %}
+        <div class="w-full h-screen">
+            <div class="relative overflow-hidden w-full h-full bg-cover bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
+                <div class=" relative z-[20] flex w-full h-full items-end px-6 sm:px-10 pb-[7rem]">
+                    <div class="relative pl-[5rem] ml-[-5rem] py-6 pr-10">
+                        <h1 class="relative z-10 font-bold font-serif text-white text-6xl w-full leading-[4.2rem] italic pb-6"><span class="">A Home for Christian Life <br> and Learning </span></h1>
+                        <button class="relative z-10">
+                            <a href="">
+                                <div class="px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy">
+                                    Lorem ipsum 
+                                </div>  
+                            </a>
+                        </button>
+                        <div class="absolute inset-0 bg-navy opacity-[0.88] z-0 rounded-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="w-full bg-navy p-6 sm:p-10">
+            <div class="py-10 flex">
+                <div class="w-1/2">
+                    {% image page.banner_2_feature_image width-2000 as b2i %}
+                    <div class="relative px-10">
+                        <img class="relative z-10" src="{{ b2i.url }}" alt="">
+                        <div class="absolute inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]">
+
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="w-1/2">
+                    <h1 class="text-5xl text-white font-bold font-serif italic pb-6">We believe that Christian intellectual exploration & imagination yield <span class="text-rose">abundant life.</span></h1>
+                    <p class="text-white text-lg pb-6">
+                        Cras quis felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.
+                    </p>
+                    <button>
+                        <a href="">
+                            <div class="px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy">
+                                About us
+                            </div>  
+                        </a>
+                    </button>
+                </div>
+                
+            </div>
+
+            
+        </div>
+    </section>
+
+    <section>
+        <div class="bg-white ">
+            <div class="flex">
+                <div class="w-[45%] p-6 sm:p-10">
+                    <h1 class="text-5xl text-navy font-bold font-serif italic pt-10 pb-20">We help Duke students and faculty:</h1>
+
+                    <div class="pb-20 px-2">
+                        <div class="text-4xl text-burgundy font-bold font-serif italic pb-10">
+                            Think Christianly
+                        </div>
+                        <p class="text-navy text-xl pb-6">Cras quis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.</p>
+                        <button>
+                            <a href="">
+                                <div class="px-4 py-1 border-2 border-burgundy text-burgundy text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-burgundy hover:text-white">
+                                    Cras quis vel
+                                </div>  
+                            </a>
+                        </button>
+                    </div>
+        
+                    <div class="pb-20 px-2">
+                        <div class="text-4xl text-burgundy font-bold font-serif italic pb-10">
+                            Build Community
+                        </div>
+                        <p class="text-navy text-xl  pb-6">Cras quis felis vel nulla  elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.</p>
+                        <button>
+                            <a href="">
+                                <div class="px-4 py-1 border-2 border-burgundy text-burgundy text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-burgundy hover:text-white">
+                                    Cras quis vel
+                                </div>  
+                            </a>
+                        </button>
+                    </div>
+                    <div class="pb-20 px-2">
+                        <div class="text-4xl text-burgundy font-bold font-serif italic pb-10">
+                            Engage the University
+                        </div>
+                        <p class="text-navy text-xl  pb-6">Cras quis felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.</p>
+                        <button>
+                            <a href="">
+                                <div class="px-4 py-1 border-2 border-burgundy text-burgundy text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-burgundy hover:text-white">
+                                    Cras quis vel
+                                </div>  
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="w-[55%] relative">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ b2i.url }}');">
+
+                    </div>
+                    <div class="absolute inset-0 z-10 bg-navy opacity-[0.6]">
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+                
+            
+        </div>
+    </section>
+
+    <section>
+        <div class="w-full bg-navy p-6 sm:p-10">
+
+            <div class="pb-10 relative flex">
+                <h1 class="text-6xl text-white font-bold font-serif italic whitespace-nowrap">What we offer</h1>
+                <img class="absolute left-[0%] top-[23%] w-[100%]" src="{% static 'stroke3.svg' %}" alt="">
+            </div>
+
+            <div class="p-6 sm:p-10">
+                
+                {% for block in page.offerings %}
+                    <div class="flex items-center justify-center pb-10">
+
+                        {% if forloop.counter0|divisibleby:"2" %}
+                            <div class="w-[25rem] px-4">
+                                {% image block.value.photo width-1000 as bph %}
+                                <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[25rem] h-[25rem] bg-cover bg-center rounded-full" style="background-image: url('{{ bph.url }}');"></div>
+                            </div>
+                        {% endif %}
+
+
+                        <div class="px-10 w-[40rem] {% if not forloop.counter0|divisibleby:"2" %}text-right{% endif %}">
+                            <h1 class="text-4xl text-white font-bold italic font-serif pb-6">{{ block.value.title }}</h1>
+                            <div class="text-white font-sans text-xl font-bold pb-6">{{ block.value.description }}</div>
+
+                            <button>
+                                <a href="{{ block.value.button_link }}">
+                                    <div class="px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy">
+                                        {{ block.value.button_text }}
+                                    </div>  
+                                </a>
+                            </button>
+                        </div>
+
+                        {% if not forloop.counter0|divisibleby:"2" %}
+                            <div class="w-[25rem]px-4">
+                                {% image block.value.photo width-1000 as bph %}
+                                <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[25rem] h-[25rem] bg-cover bg-center rounded-full" style="background-image: url('{{ bph.url }}');"></div>
+                            </div>
+                        {% endif %}
+
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        
+    </section>
+
+
+
+    <section>
+        <div class="bg-navy p-6 sm:p-10">
+            <h1 class="text-white font-serif text-6xl font-bold italic text-right pt-10 pb-10">...and much more.</h1>
+        </div>
+    </section>
+
+    <section>
+        <div class="w-full h-[50rem] bg-navy relative">
+            <div class="main-carousel w-full h-[50rem] px-2">
+                {% for block in page.houseSlides %}
+                    {% with l1=forloop.counter0|add:"-1" l2=forloop.counter0|add:"-2" l3=forloop.counter0|add:"-3" l4=forloop.counter0|add:"-4" %}
+                        {% image block.value width-2000 as bph %}
+                        <div class="carousel-cell w-1/3 xl:w-1/4 h-[50rem] p-2 rounded-lg mb-[5rem]" >
+                            <div class="w-full h-full rounded-lg bg-cover bg-center 
+                            {% if forloop.counter0|divisibleby:"5" %} 
+                                translate-y-[5rem] 
+                            {% elif l1|divisibleby:"5" %} 
+                                translate-y-[1rem] 
+                            {% elif l2|divisibleby:"5" %} 
+                                translate-y-[3.5rem] 
+                            {% elif l3|divisibleby:"5" %} 
+                                translate-y-[0rem] 
+                            {% elif l4|divisibleby:"5" %} 
+                                translate-y-[2.5rem] 
+                            {% endif %}" 
+                            style="background-image: url('{{ bph.url }}');">
+                            </div>
+                        </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+
+            <!-- <div class="absolute left-8 bottom-[-8rem] w-3/4 -ml-[5rem] pl-[5rem] py-5">
+                <div class="text-left relative py-5 pr-10 -mr-10 rounded-sm">
+                    <div class="relative z-10">
+                        <h2 class="text-white font-serif text-6xl font-bold italic pb-6">A home away from home.</h2>
+
+                        <p class="text-white font-sans text-xl font-bold mb-10">Fusce elit massa, vehicula nec nulla eu, congue fringilla est. Donec suscipit pretium sem, sed fringilla felis interdum in. Suspendisse vitae sodales eros.</p>
+    
+                        <button>
+                            <a href="">
+                                <div class="px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy">
+                                    Learn more
+                                </div>  
+                            </a>
+                        </button>
+                    </div>
+                    
+                    <div class="absolute inset-0 -ml-[5rem] pl-[5rem] bg-burgundy opacity-[0.80] z-0 py-5 rounded-sm"></div>
+                </div>
+                
+            </div> -->
+        </div>
+    </section>
+
+
+    <section class="pt-[10rem] bg-navy">
+        <div class="w-full relative">
+            {% image page.east_campus_map width-2500 as ecm %}
+            <a href="https://maps.google.com">
+                <img class="w-full" src="{{ ecm.url }}" alt="">
+            </a>
+
+            <div class="w-1/2 h-full opacity-[0.85] bg-burgundy absolute top-0 left-0">
+            </div>
+            <div class="w-1/2 h-full absolute top-0 left-0 p-6 sm:p-10 flex items-center">
+                <div>
+                    <h2 class="text-white font-serif text-6xl font-bold italic pb-6">A home away from home.</h2>
+
+                    <p class="text-white font-sans text-xl font-bold mb-10">Fusce elit massa, vehicula nec nulla eu, congue fringilla est. Donec suscipit pretium sem, sed fringilla felis interdum in. Suspendisse vitae sodales eros.</p>
+
+                    <button>
+                        <a href="">
+                            <div class="px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy">
+                                Learn more
+                            </div>  
+                        </a>
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-[4rem] h-[4rem] rounded-full bg-transparent border-4 border-white absolute left-[83.8%] top-[52.5%]"></div>
+            <h2 class="absolute left-[86.6%] top-[65%] translate-x-[-50%] font-serif text-lg font-bold italic text-navy bg-rose px-1">That's us! </h2>
+            
+            <h2 class="absolute left-[67%] top-[68%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Marketplace</h2>
+            <h2 class="absolute left-[60.7%] top-[28.5%]  font-serif text-lg font-bold italic text-navy bg-rose px-1">Baldwin</h2>
+        </div>
+    </section>
+
+    <section class="">
+        <div class="w-full bg-white p-6 sm:p-10">
+                <div class="flex">
+                    <div class="w-1/2">
+                    </div>
+                    <div class="w-1/2">
+                        <h2 class="text-navy font-serif text-4xl font-bold italic pb-10">See our upcoming events →</h2>
+
+                        <h2 class="text-navy font-serif text-4xl font-bold italic">Join our email list →</h2>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </section>
+    
+{% endblock content %}
+
+{% block extra_js %}
+    <script>
+        var elem = document.querySelector('.main-carousel');
+        var flkty = new Flickity( elem, {
+            // options
+            cellAlign: 'left',
+            contain: true,
+            autoPlay: 3000,
+            wrapAround: true,
+            lazyLoad: true,
+            draggable: false,
+            prevNextButtons: false,
+            pageDots: false,
+        });
+    </script>
+{% endblock %}

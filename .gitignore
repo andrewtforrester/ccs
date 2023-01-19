@@ -1,0 +1,5 @@
+ccs/settings/*
+.DS_Store
+db.sqlite3
+venv/
+venv/* 
