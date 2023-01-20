@@ -1,0 +1,9 @@
+git add -A
+echo Commit Message: 
+
+read msg
+git commit -m "$msg"
+
+git push
+
+ssh andrewforrester@139.144.53.66

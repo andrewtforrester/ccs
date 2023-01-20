@@ -23,7 +23,7 @@ module.exports = {
             navy: '#15182f',
             gray: '#d3d6d6',
             burgundy: '#51100d',
-            olive: '#00321e',
+            olive: '#556b2f',
             rose: '#d38c95',
         },
         extend: {

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <section class="px-6 sm:px-10 pb-6 sm:pb-10 pt-40">
+        <div class="max-w-screen-lg mx-auto">
+            <div class="pb-12">
+                <h1 class="text-navy title-1">{{ page.title }}</h1>
+            </div>
+
+            <div>
+                {% for staffmember in page.get_children.specific.all %}
+                    <div class="mb-20">
+                        <div class="flex items-center">
+                            {% image staffmember.photo width-2000 as smp %}
+                            <div class="w-[20rem] min-w-[20rem] mr-6">
+                                <img class="w-[20rem] h-[20rem] rounded-full" src="{{ smp.url }}" alt="">
+                            </div>
+
+                            <div>
+                                <div class="mb-6">
+                                    <h2 class="title-3">{{ staffmember.name|richtext }}</h2>
+                                    <div class="title-4">{{ staffmember.job_title|richtext }}</div>
+                                </div>
+                                
+                                <div class="body-text-1">{{ staffmember.description|richtext }}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

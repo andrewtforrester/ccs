@@ -6,6 +6,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+import datetime
 
 
 class HomePage(Page):
@@ -56,7 +57,12 @@ class HomePage(Page):
     ], use_json_field=True)
 
     def events(self):
-        events = EventInstance.objects.live().public().order_by('date')[:3]
+
+        y = str(datetime.date.today().year)
+        m = str(datetime.date.today().month)
+        d = str(datetime.date.today().day)
+
+        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')[:3]
         return events
 
     content_panels = Page.content_panels + [
@@ -180,6 +186,15 @@ class House(Page):
     pass
 
 class CurrentEvents(Page):
+
+    def events(self):
+
+        y = str(datetime.date.today().year)
+        m = str(datetime.date.today().month)
+        d = str(datetime.date.today().day)
+
+        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')
+        return events
 
     subpage_types = ['home.Event']
 

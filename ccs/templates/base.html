@@ -54,8 +54,13 @@
         <div id="app">
 
             <global-menu></global-menu>
+
+            {% if page.title == 'Home' %}
+                <global-header lighttop="No"></global-header>
+            {% else %}
+                <global-header lighttop="Yes"></global-header> 
+            {% endif %}
             
-            <global-header></global-header>
 
             {% block content %}
             {% endblock %}

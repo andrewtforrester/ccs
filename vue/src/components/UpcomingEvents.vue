@@ -1,10 +1,12 @@
 <template>
-	div
+	<div>
+		
+	</div>
 </template>
 
 <script>
 	export default {
-		name: 'UpcomingEvents',
+		name: 'GlobalHeader',
 		props: {
 
 		},

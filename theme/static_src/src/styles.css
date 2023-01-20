@@ -5,3 +5,38 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+@layer components {
+    .title-1 {
+        @apply font-bold font-serif text-2xl sm:text-3xl lg:text-6xl lg:leading-[4.2rem] italic;
+    }
+
+    .title-2 {
+        @apply text-4xl lg:text-6xl font-bold font-serif italic;
+    }
+
+    .title-3 {
+        @apply text-3xl lg:text-4xl font-bold font-serif italic;
+    }
+
+    .title-4 {
+        @apply text-xl lg:text-2xl font-semibold font-serif italic;
+    }
+
+    .body-text-1 {
+        @apply text-xl;
+    }
+
+    .whitebutton {
+        @apply px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy;
+    }
+
+    .burgundybutton {
+        @apply px-4 py-1 border-2 border-burgundy text-burgundy text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-burgundy hover:text-white;
+    }
+
+    .standard-space {
+        @apply px-6 sm:px-10 pb-6 sm:pb-10 pt-40;
+    }
+}
+
