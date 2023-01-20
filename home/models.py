@@ -9,8 +9,13 @@ from wagtail.images.blocks import ImageChooserBlock
 import datetime
 
 
-class HomePage(Page):
 
+
+
+# HOMEPAGE
+
+class HomePage(Page):
+    is_creatable = False
     # Helper Methods
 
     def events(self):
@@ -162,20 +167,21 @@ class HomePage(Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
-    
+    subpage_types = []
 
 # ABOUT
 
 class WhoWeAre(Page):
-    pass
-
-class OurStaffIndex(Page):
-
+    is_creatable = False
+    subpage_types = []
+    
+class LeadershipIndex(Page):
+    is_creatable = False
     subpage_types = [
-        'home.OurStaffEntry'
+        'home.LeadershipEntry'
     ]
 
-class OurStaffEntry(Page):
+class LeadershipEntry(Page):
     name = RichTextField(features=[])
     job_title = RichTextField(features=[])
 
@@ -205,21 +211,39 @@ class OurStaffEntry(Page):
 
     subpage_types = []
 
-class OurFaculty(Page):
-    pass
+class FacultyAffiliatesIndex(Page):
+    is_creatable = False
+    subpage_types = [
+        'home.FacultyAffiliatesEntry'
+    ]
 
-# STUDENTS
+class FacultyAffiliatesEntry(Page):
+    subpage_types = []
 
-class IncomingStudents(Page):
-    pass
+class House(Page):
+    is_creatable = False
+    subpage_types = []
 
-class CertificationPathway(Page):
-    pass
 
-class FellowsProgram(Page):
-    pass
+
+
+# EVENTS HEADER
+
+class CurrentEvents(Page):
+    is_creatable = False
+    def events(self):
+
+        y = str(datetime.date.today().year)
+        m = str(datetime.date.today().month)
+        d = str(datetime.date.today().day)
+
+        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')
+        return events
+
+    subpage_types = ['home.Event']
 
 class CoursesIndex(Page):
+    is_creatable = False
     subpage_types = ['home.CourseEntry']
 
 class CourseEntry(Page):
@@ -261,34 +285,137 @@ class CourseEntry(Page):
 
     subpage_types = ['home.EventInstance']
 
+class ReadingGroupsIndex(Page):
+    is_creatable = False
+    subpage_types = ['home.ReadingGroup']
 
-class MentorshipOpportunities(Page):
+class ReadingGroup(Page):
+
+    instructor = RichTextField()
+    registration_link = models.CharField(max_length=1023)
+    location = models.CharField(max_length=1023)
+    meeting_pattern = models.CharField(max_length=1023)
+    description = RichTextField()
+    poster = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('instructor'),
+        FieldPanel('registration_link'),
+        FieldPanel('location'),
+        FieldPanel('meeting_pattern'),
+        FieldPanel('description'),
+        FieldPanel('poster'),
+    ]
+
+    def abridged_description(self):
+        if len(self.description) > 300:
+            return self.description[:300] + "..."
+        else:
+            return self.description
+
+    subpage_types = ['home.EventInstance']
+
+class WeeklyWednesdayMealIndex(Page):
+    is_creatable = False
+    subpage_types = []
+
+class LectureIndex(Page):
+    is_creatable = False
+    subpage_types = [
+        'home.Lecture'
+    ]
+
+class Lecture(Page):
+    subpage_types = []
+
+class ConferenceIndex(Page):
+    is_creatable = False
+
+    subpage_types = [
+        'home.Conference'
+    ]
+
+class Conference(Page):
     pass
 
-class GradStudents(Page):
-    pass
+
+
+
+# UNDERGRADS
+
+class IncomingStudents(Page):
+    is_creatable = False
+    subpage_types = []
+
+class CertificationPathway(Page):
+    is_creatable = False
+    subpage_types = []
+
+class FellowsProgram(Page):
+    is_creatable = False
+    subpage_types = []
+
+
+
+
+# GRAD STUDENTS
+
+class GraduateChristianScholars(Page):
+    is_creatable = False
+    subpage_types = []
+
+class ChristianScholarshipWorkshop(Page):
+    is_creatable = False
+    subpage_types = []
+
+
+
 
 # FACULTY
 
+class TriangleRoundtable(Page):
+    is_creatable = False
+    subpage_types = []
+
+class FacultyReadingGroups(Page):
+    is_creatable = False
+    subpage_types = [
+        'home.FacultyReadingGroupEntry'
+    ]
+
+class FacultyReadingGroupEntry(Page):
+    subpage_types = []
+
+class ScholarshipWorkshop(Page):
+    is_creatable = False
+    subpage_types = []
+
+
+
 # FRIENDS
 
-# OTHER
+class ContinuingEducation(Page):
+    is_creatable = False
+    subpage_types = []
 
-class House(Page):
-    pass
+class LendAHand(Page):
+    is_creatable = False
+    subpage_types = []
 
-class CurrentEvents(Page):
+class Give(Page):
+    is_creatable = False
+    subpage_types = []
 
-    def events(self):
 
-        y = str(datetime.date.today().year)
-        m = str(datetime.date.today().month)
-        d = str(datetime.date.today().day)
 
-        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')
-        return events
 
-    subpage_types = ['home.Event']
+# HELPERS
 
 class Event(Page):
 
@@ -317,6 +444,3 @@ class EventInstance(Page):
     ]
 
     subpage_types = []
-
-class Give(Page):
-    pass

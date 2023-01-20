@@ -1058,6 +1058,14 @@ select {
   bottom: 65%;
 }
 
+.-left-1 {
+  left: -0.25rem;
+}
+
+.-right-1 {
+  right: -0.25rem;
+}
+
 .z-\[60\] {
   z-index: 60;
 }
