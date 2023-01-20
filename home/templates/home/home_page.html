@@ -5,14 +5,14 @@
 
 
 {% block content %}
-    <section>
+    <section>  
         {% image page.cover_image width-2500 as ci %}
         <div class="relative w-full h-screen">
             <div class="relative overflow-hidden w-full h-full bg-cover bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
-                <div class="relative z-[20] w-full h-full px-6 sm:px-10 pb-[7rem]">
-                    <div class="relative sm:pl-[5rem] sm:ml-[-5rem] py-6 pr-10 mt-[10rem]">
+                <div class="relative w-full h-full px-6 sm:px-10 pb-[7rem]">
+                    <div class="relative z-[60] sm:pl-[5rem] sm:ml-[-5rem] py-6 pr-10 mt-[10rem]">
                         <h1 class="relative w-full sm:w-auto z-10 font-bold font-serif text-white text-2xl sm:text-3xl lg:text-6xl lg:leading-[4.2rem] italic pb-6"><span class="">A Home for Christian <br> Life and Learning </span></h1>
-                        <button class="relative z-10">
+                        <button class="relative">
                             <a href="">
                                 <div class="px-4 py-1 border-2 border-white text-white text-lg rounded-full transition ease-in-out duration-200 transform hover:bg-white hover:text-navy">
                                     Lorem ipsum 
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="absolute z-0 opacity-[0.85] h-[60rem] w-[60rem] top-[-20rem] left-[-20rem] bg-navy rounded-full">
+            <div class="absolute z-[50] opacity-[0.85] h-[60rem] w-[60rem] top-[-20rem] left-[-20rem] bg-navy rounded-full">
 
             </div>
         </div>
@@ -263,22 +263,18 @@
             <h2 class="absolute left-[86.6%] top-[65%] translate-x-[-50%] font-serif text-lg font-bold italic text-navy bg-rose px-1">That's us! </h2>
             
             <h2 class="absolute left-[67%] top-[68%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Marketplace</h2>
-            <h2 class="absolute left-[60.7%] top-[28.5%]  font-serif text-lg font-bold italic text-navy bg-rose px-1">Baldwin</h2>
+            <h2 class="absolute left-[60.7%] top-[28.5%]  font-serif text-lg font-bold italic text-navy bg-rose px-1">Baldwin Auditorium</h2>
         </div>
     </section>
 
     <section class="">
         <div class="w-full bg-white p-6 sm:p-10">
-                <div class="flex">
-                    <div class="hidden sm:block w-1/2">
-                    </div>
-                    <div class="sm:w-1/2">
-                        <h2 class="text-navy font-serif text-4xl font-bold italic pb-10">See our upcoming events →</h2>
+                <div class="w-full lg:w-1/2 mx-auto">
+                    {% include 'home/_partials/events.html' %}
+                </div>
 
-                        <h2 class="text-navy font-serif text-4xl font-bold italic">Join our email list →</h2>
-                    </div>
-                </div>  
-            </div>
+                
+
         </div>
     </section>
     
@@ -314,7 +310,6 @@
 
             if ((h1 + 52 <= 0) & (h2 + 35 > 0)) {
                 elem.classList.remove("absolute");
-
                 elem.classList.add("fixed");
                 elem.classList.add("top-0");
                 elem.classList.add("translate-y-[-95px]");

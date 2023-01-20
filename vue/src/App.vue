@@ -1,12 +1,14 @@
 <script>
 	import GlobalMenu from './components/GlobalMenu.vue'
 	import GlobalHeader from './components/GlobalHeader.vue'
+	import NewsletterSignup from './components/NewsletterSignup.vue'
 
 	export default {
 		name: 'App',
 		components: {
 			GlobalMenu,
 			GlobalHeader,
+			NewsletterSignup,
 		}
 	}
 </script>

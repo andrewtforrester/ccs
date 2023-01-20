@@ -1,11 +1,11 @@
 <template>
-	<header class="p-6 sm:p-10 absolute left-0 right-0 top-0 z-[100]">
+	<header class="absolute z-[1000] top-0 left-0 right-0 px-6 sm:px-10 py-6">
 		<div class="flex items-center justify-between">
-			<a href="/">
+			<a class="relative" href="/">
 				<div class="flex items-center">
 					<div class="bg-white h-[2rem] w-[2rem] rounded-full mr-4">
 					</div>
-					<div class="text-xl font-bold font-serif text-white leading-6 italic hidden lg:block">
+					<div class=" text-xl font-bold font-serif text-white leading-6 italic hidden lg:block">
 						Center for Christianity <br> and Scholarship
 					</div>
 				</div>
@@ -14,28 +14,48 @@
 	
 			<menu>
 				<div class="flex items-center justify-bewtween">
-					<div class="ml-4 relative hidden sm:block">
-						<h1 class="text-lg font-bold peer">About</h1>
+					<div class="ml-4 relative hidden sm:block group">
+						<h1 class="text-lg font-bold hover:cursor-pointer">About</h1>
 	
-						<div class="absolute whitespace-nowrap hidden peer-hover:block">
-							<h2 class="text-sm">What We Do</h2>
-							<h2 class="text-sm">Our Staff</h2>
-							<h2 class="text-sm">Our Faculty</h2>
+						<div class="absolute overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
+							<a href="">
+								<h2 class="text-md hover:text-rose">Who We Are</h2>
+							</a>
+							<a href="">
+								<h2 class="text-md hover:text-rose">Our Staff</h2>
+							</a>
+							<a href="">
+								<h2 class="text-md hover:text-rose">Our Faculty</h2>
+							</a>
+						</div>
+					</div>
+
+					<div class="ml-4 relative hidden sm:block group">
+						<h1 class="text-lg font-bold hover:cursor-pointer">Students</h1>
+	
+						<div class="absolute overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
+							<a href="">
+								<h2 class="text-md hover:text-rose">Incoming Students</h2>
+							</a>
+							<a href="">
+								<h2 class="text-md hover:text-rose">Certification Pathway</h2>
+							</a>
+							<a href="">
+								<h2 class="text-md hover:text-rose">Fellows Program</h2>
+							</a>
+							<a href="">
+								<h2 class="text-md hover:text-rose">Courses</h2>
+							</a>
+							<a href="">
+								<h2 class="text-md hover:text-rose">Mentorship</h2>
+							</a>
+							<a href="">
+								<h2 class="text-md hover:text-rose">Grad Students</h2>
+							</a>
 						</div>
 					</div>
 					
-					<div class="ml-4 relative hidden sm:block">
-						<h1 class="text-lg font-bold peer">Students</h1>
-	
-						<div class="absolute whitespace-nowrap hidden peer-hover:block">
-							<h2 class="text-sm">Incoming Students</h2>
-							<h2 class="text-sm">Certification Pathway</h2>
-							<h2 class="text-sm">Fellows Program</h2>
-							<h2 class="text-sm">Short Courses</h2>
-							<h2 class="text-sm">Mentorship Opportunities</h2>
-							<h2 class="text-sm">Grad Students</h2>
-						</div>
-					</div>
+					
 					<div class="hidden sm:block">
 						<div class="ml-4 relative peer">
 							<h1 class="text-lg font-bold">Faculty</h1>
@@ -58,7 +78,7 @@
 					
 					<div class="ml-4 hidden sm:block">
 						<button>
-							<a href="">
+							<a href="/events">
 								<div class="font-bold text-lg bg-navy px-4 py-1 rounded-full border-2 border-navy text-gray transition ease-in-out duration-200 transform hover:bg-transparent hover:text-navy">
 									Events
 								</div>
@@ -67,9 +87,9 @@
 					</div>
 					<div class="ml-4 hidden md:block">
 						<button>
-							<a href="">
+							<a href="/give">
 								<div class="font-bold text-lg bg-navy px-4 py-1 rounded-full border-2 border-navy text-gray transition ease-in-out duration-200 transform hover:bg-transparent hover:text-navy">
-									Donate
+									Give
 								</div>
 							</a>
 						</button>
