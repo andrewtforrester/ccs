@@ -2,6 +2,7 @@
 {% load static %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
+{% load replace %}
 
 
 {% block content %}
@@ -11,12 +12,12 @@
             <div class="relative overflow-hidden w-full h-full bg-cover bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
                 <div class="relative w-full h-full px-6 sm:px-10 pb-[7rem]">
                     <div class="relative z-[60] sm:pl-[5rem] sm:ml-[-5rem] py-6 pr-10 mt-[10rem]">
-                        <h1 class="title-1 relative w-full sm:w-auto z-10 text-white pb-6"><span class="">A Home for Christian <br> Life and Learning </span></h1>
+                        <h1 class="title-1 relative w-7/12 z-10 text-white pb-6"><span class="">{{ page.banner_title_text }}</span></h1>
                         <button class="relative">
-                            <a href="">
+                            <a href="{{ page.banner_button_link }}">
                                 <div class="whitebutton">
-                                    Lorem ipsum 
-                                </div>  
+                                    {{ page.banner_button_text }} 
+                                </div>
                             </a>
                         </button>
                     </div>
@@ -30,7 +31,7 @@
         <div class="w-full bg-navy p-6 sm:p-10">
             <div class="py-10 flex">
                 <div class="w-1/2">
-                    {% image page.banner_2_feature_image width-2000 as b2i %}
+                    {% image page.we_believe_feature_image width-2000 as b2i %}
                     <div class="relative px-10">
                         <img class="relative z-10" src="{{ b2i.url }}" alt="">
                         <div class="absolute inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
@@ -38,14 +39,14 @@
                 </div>
 
                 <div class="w-1/2">
-                    <h1 class="text-5xl text-white font-bold font-serif italic pb-6">We believe that Christian intellectual exploration & imagination yield <span class="text-rose">abundant life.</span></h1>
-                    <p class="body-text-1 pb-6 text-white">
-                        Cras quis felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.
-                    </p>
+                    <h1 class="text-5xl text-white font-bold font-serif italic pb-6">{{ page.we_believe_title_text|replace:"abundant life.;<span class='text-rose'>abundant life.</span>"|richtext }}</h1>
+                    <div class="body-text-1 pb-6 text-white">
+                        {{ page.we_believe_description_text|richtext }}
+                    </div>
                     <button>
-                        <a href="">
+                        <a href="{{ page.we_believe_button_link }}">
                             <div class="whitebutton">
-                                About us
+                                {{ page.we_believe_button_text }}
                             </div>  
                         </a>
                     </button>
@@ -59,52 +60,27 @@
             <div class="relative sm:flex">
                 <div class="w-1/2 lg:w-[45%] p-6 md:p-10 overflow-hidden">
                     <div id="b3textcontainer" class="">
-                        <h1 class="title-2 text-navy pt-10 pb-20">We help Duke students and faculty:</h1>
+                        <h1 class="title-2 text-navy pt-10 pb-20">{{ page.what_we_do_header }}</h1>
 
-                        <div class="pb-40 px-2">
-                            <div class="title-3 text-burgundy pb-10">
-                                Think Christianly
+                        {% for item in page.what_we_do %}
+                            <div class="pb-40 px-2">
+                                <div class="title-3 text-burgundy pb-10">
+                                    {{ item.value.title }}
+                                </div>
+                                <div class="text-navy body-text-1 pb-6">{{ item.value.description|richtext }}</div>
+                                <button>
+                                    <a href="{{ item.value.button_link|richtext }}">
+                                        <div class="burgundybutton">
+                                            {{ item.value.button_text|richtext }}
+                                        </div>  
+                                    </a>
+                                </button>
                             </div>
-                            <p class="text-navy tbody-text-1 ext-lg lg pb-6">Cras quis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.</p>
-                            <button>
-                                <a href="">
-                                    <div class="burgundybutton">
-                                        Cras quis vel
-                                    </div>  
-                                </a>
-                            </button>
-                        </div>
-            
-                        <div class="pb-40 px-2">
-                            <div class="title-3 text-burgundy pb-10">
-                                Build Community
-                            </div>
-                            <p class="body-text-1 text-navy pb-6">Cras quis felis vel nulla  elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.</p>
-                            <button>
-                                <a href="">
-                                    <div class="burgundybutton">
-                                        Cras quis vel
-                                    </div>  
-                                </a>
-                            </button>
-                        </div>
-                        <div class="pb-40 px-2">
-                            <div class="title-3 text-burgundy pb-10">
-                                Engage the University
-                            </div>
-                            <p class="body-text-1 text-navy pb-6">Cras quis felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem ut lectus eleifend aliquet. Pellentesque vitae elit rutrum felis vel nulla ultricies elementum sed et justo. Vestibulum at dolor quis lorem mattis dapibus sed nec sapien. Etiam luctus ut lectus eleifend aliquet. Pellentesque vitae elit rutrum.</p>
-                            <button>
-                                <a href="">
-                                    <div class="burgundybutton">
-                                        Cras quis vel
-                                    </div>  
-                                </a>
-                            </button>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div id="b3imagecontainer" class="w-1/2 lg:w-[55%] absolute top-0 right-0">
-                    {% image page.banner_3_feature_image width-6000 as b3i %}
+                    {% image page.what_we_do_feature_image width-6000 as b3i %}
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ b3i.url }}');">
 
                     </div>
@@ -121,7 +97,7 @@
         <div class="w-full bg-navy p-6 sm:p-10">
 
             <div class="pb-10 relative flex">
-                <h1 class="title-2 text-white">What we offer</h1>
+                <h1 class="title-2 text-white">{{ page.what_we_offer_heading }}</h1>
                 <img class="absolute left-[0%] top-[23%] w-[100%]" src="{% static 'stroke3.svg' %}" alt="">
             </div>
 
@@ -167,7 +143,7 @@
 
     <section>
         <div class="bg-navy p-6 sm:p-10">
-            <h1 class="text-white title-2 text-right pt-10 pb-10">...and much more.</h1>
+            <h1 class="text-white title-2 text-right pt-10 pb-10">{{ page.slides_header_text }}</h1>
         </div>
     </section>
 
@@ -211,14 +187,14 @@
             </div>
             <div class="w-5/12 h-full absolute top-0 left-0 p-6 sm:p-10 flex items-center">
                 <div>
-                    <h2 class="text-white title-2 pb-6">A home away from home.</h2>
+                    <h2 class="text-white title-2 pb-6">{{ page.map_title_text }}</h2>
 
-                    <p class="text-white body-text-1 pb-6">Fusce elit massa, vehicula nec nulla eu, congue fringilla est. Donec suscipit pretium sem, sed fringilla felis interdum in. Suspendisse vitae sodales eros.</p>
+                    <p class="text-white body-text-1 pb-6">{{ page.map_description_text }}</p>
 
                     <button>
-                        <a href="">
+                        <a href="{{ page.map_button_link }}">
                             <div class="whitebutton">
-                                Visit us
+                                {{ page.map_button_text }}
                             </div>  
                         </a>
                     </button>

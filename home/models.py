@@ -3,13 +3,31 @@ from django import forms
 
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, TabbedInterface, ObjectList
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 import datetime
 
 
 class HomePage(Page):
+
+    # Helper Methods
+
+    def events(self):
+
+        y = str(datetime.date.today().year)
+        m = str(datetime.date.today().month)
+        d = str(datetime.date.today().day)
+
+        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')[:3]
+        return events
+
+    # BANNER
+
+    banner_title_text = models.CharField(max_length=255)
+    banner_button_text = models.CharField(max_length=255)
+    banner_button_link = models.CharField(max_length=255)
+    
     cover_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -17,7 +35,16 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    east_campus_map = models.ForeignKey(
+    
+
+    # WHAT WE BELIEVE
+
+    we_believe_title_text = models.CharField(max_length=255)
+    we_believe_description_text = RichTextField()
+    we_believe_button_text = models.CharField(max_length=255)
+    we_believe_button_link = models.CharField(max_length=255)
+
+    we_believe_feature_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
@@ -25,11 +52,11 @@ class HomePage(Page):
         related_name='+'
     )
 
-    houseSlides = StreamField([
-        ('photo', ImageChooserBlock(required=True)),
-    ], use_json_field=True, blank=True, null=True)
+    # WHAT WE DO
 
-    banner_2_feature_image = models.ForeignKey(
+    what_we_do_header = models.CharField(max_length=255)
+
+    what_we_do_feature_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
@@ -37,14 +64,19 @@ class HomePage(Page):
         related_name='+'
     )
 
-    banner_3_feature_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    what_we_do = StreamField([
+        ('item', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('description', blocks.RichTextBlock()),
+            ('button_text', blocks.CharBlock()),
+            ('button_link', blocks.CharBlock()),
+        ])),
+    ], use_json_field=True)
 
+
+    # WHAT WE OFFER
+
+    what_we_offer_heading = models.CharField(max_length=255)
 
     offerings = StreamField([
         ('offering', blocks.StructBlock([
@@ -56,23 +88,81 @@ class HomePage(Page):
         ])),
     ], use_json_field=True)
 
-    def events(self):
+    # SLIDESHOW
 
-        y = str(datetime.date.today().year)
-        m = str(datetime.date.today().month)
-        d = str(datetime.date.today().day)
+    slides_header_text = models.CharField(max_length=255)
 
-        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')[:3]
-        return events
+    houseSlides = StreamField([
+        ('photo', ImageChooserBlock(required=True)),
+    ], use_json_field=True, blank=True, null=True)
+   
+    # MAP
+    
+    east_campus_map = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
-    content_panels = Page.content_panels + [
+    map_title_text = models.CharField(max_length=255)
+    map_description_text = RichTextField()
+    map_button_text = models.CharField(max_length=255)
+    map_button_link = models.CharField(max_length=255)
+
+
+    bnr = [
+        FieldPanel('banner_title_text'),
+        FieldPanel('banner_button_text'),
+        FieldPanel('banner_button_link'),
         FieldPanel('cover_image'),
-        FieldPanel('banner_2_feature_image'),
-        FieldPanel('banner_3_feature_image'),
-        FieldPanel('east_campus_map'),
+    ]
+
+    wwb = [
+        FieldPanel('we_believe_feature_image'),
+        FieldPanel('we_believe_title_text'),
+        FieldPanel('we_believe_description_text'),
+        FieldPanel('we_believe_button_text'),
+        FieldPanel('we_believe_button_link'),
+    ]
+
+    wwd = [
+        FieldPanel('what_we_do_header'),
+        FieldPanel('what_we_do_feature_image'),
+        FieldPanel('what_we_do'),
+    ]
+
+    off = [
+        FieldPanel('what_we_offer_heading'),
         FieldPanel('offerings'),
+    ]
+
+    slideshow = [
+        FieldPanel('slides_header_text'),
         FieldPanel('houseSlides'),
     ]
+
+    map_tab = [
+        FieldPanel('map_title_text'),
+        FieldPanel('map_description_text'),
+        FieldPanel('map_button_text'),
+        FieldPanel('map_button_link'),
+        FieldPanel('east_campus_map'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(bnr, heading='Homepage Banner'),
+        ObjectList(wwb, heading='What We Believe'),
+        ObjectList(wwd, heading='What We Do'),
+        ObjectList(off, heading='What We Offer'),
+        ObjectList(slideshow, heading='Slideshow'),
+        ObjectList(map_tab, heading='East Campus Map'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
+
+    
 
 # ABOUT
 
@@ -140,9 +230,10 @@ class CourseEntry(Page):
     ]
 
     type = RichTextField(features=[], choices=course_type_choices, blank=True, null=True)
-    instructor = RichTextField(features=[])
-    registration_link = RichTextField(features=[])
-    location = RichTextField(features=[])
+    instructor = RichTextField()
+    registration_link = models.CharField(max_length=1023)
+    location = models.CharField(max_length=1023)
+    meeting_pattern = models.CharField(max_length=1023)
     description = RichTextField()
     poster = models.ForeignKey(
         'wagtailimages.Image',
@@ -157,6 +248,7 @@ class CourseEntry(Page):
         FieldPanel('instructor'),
         FieldPanel('registration_link'),
         FieldPanel('location'),
+        FieldPanel('meeting_pattern'),
         FieldPanel('description'),
         FieldPanel('poster'),
     ]
