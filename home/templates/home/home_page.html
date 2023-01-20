@@ -12,7 +12,7 @@
             <div class="relative overflow-hidden w-full h-full bg-cover bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
                 <div class="relative w-full h-full px-6 sm:px-10 pb-[7rem]">
                     <div class="relative z-[60] sm:pl-[5rem] sm:ml-[-5rem] py-6 pr-10 mt-[10rem]">
-                        <h1 class="title-1 relative w-7/12 z-10 text-white pb-6"><span class="">{{ page.banner_title_text }}</span></h1>
+                        <h1 class="title-1 relative w-7/12 z-10 text-white pb-6"><span class="">{{ page.banner_title_text|replace:"Christian;Christian<br>"|richtext }}</span></h1>
                         <button class="relative">
                             <a href="{{ page.banner_button_link }}">
                                 <div class="whitebutton">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="absolute z-[50] opacity-[0.85] h-[60rem] w-[60rem] top-[-20rem] left-[-20rem] bg-navy rounded-full"></div>
+            <div class="absolute z-[50] opacity-[0.85] h-[75vw] w-[75vw] top-[-25rem] left-[-20rem] bg-navy rounded-full"></div>
         </div>
     </section>
 
@@ -189,7 +189,7 @@
                 <div>
                     <h2 class="text-white title-2 pb-6">{{ page.map_title_text }}</h2>
 
-                    <p class="text-white body-text-1 pb-6">{{ page.map_description_text }}</p>
+                    <div class="text-white body-text-1 pb-6">{{ page.map_description_text|richtext }}</div>
 
                     <button>
                         <a href="{{ page.map_button_link }}">

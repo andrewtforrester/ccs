@@ -1018,6 +1018,14 @@ select {
   top: 50%;
 }
 
+.top-\[-30rem\] {
+  top: -30rem;
+}
+
+.top-\[-25rem\] {
+  top: -25rem;
+}
+
 .z-\[60\] {
   z-index: 60;
 }
@@ -1200,6 +1208,26 @@ select {
   height: .3rem;
 }
 
+.h-\[50\%\] {
+  height: 50%;
+}
+
+.h-\[60\%\] {
+  height: 60%;
+}
+
+.h-\[60vw\] {
+  height: 60vw;
+}
+
+.h-\[70vw\] {
+  height: 70vw;
+}
+
+.h-\[75vw\] {
+  height: 75vw;
+}
+
 .max-h-\[50rem\] {
   max-height: 50rem;
 }
@@ -1280,6 +1308,34 @@ select {
   width: 24.5rem;
 }
 
+.w-\[50\%\] {
+  width: 50%;
+}
+
+.w-\[60\%\] {
+  width: 60%;
+}
+
+.w-\[60vw\] {
+  width: 60vw;
+}
+
+.w-\[70vw\] {
+  width: 70vw;
+}
+
+.w-\[75vw\] {
+  width: 75vw;
+}
+
+.w-\[15rem\] {
+  width: 15rem;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
 .min-w-\[10rem\] {
   min-width: 10rem;
 }
@@ -1298,6 +1354,10 @@ select {
 
 .max-w-screen-lg {
   max-width: 1024px;
+}
+
+.max-w-\[25rem\] {
+  max-width: 25rem;
 }
 
 .border-collapse {
