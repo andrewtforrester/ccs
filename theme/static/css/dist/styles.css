@@ -1018,12 +1018,44 @@ select {
   top: 50%;
 }
 
-.top-\[-30rem\] {
-  top: -30rem;
+.top-10 {
+  top: 2.5rem;
 }
 
-.top-\[-25rem\] {
-  top: -25rem;
+.left-\[-5px\] {
+  left: -5px;
+}
+
+.right-\[5px\] {
+  right: 5px;
+}
+
+.right-\[-5px\] {
+  right: -5px;
+}
+
+.bottom-\[40rem\] {
+  bottom: 40rem;
+}
+
+.bottom-\[30rem\] {
+  bottom: 30rem;
+}
+
+.bottom-\[35rem\] {
+  bottom: 35rem;
+}
+
+.bottom-\[50\%\] {
+  bottom: 50%;
+}
+
+.bottom-\[60\%\] {
+  bottom: 60%;
+}
+
+.bottom-\[65\%\] {
+  bottom: 65%;
 }
 
 .z-\[60\] {
@@ -1060,6 +1092,26 @@ select {
   margin-bottom: 1rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
+.mr-6 {
+  margin-right: 1.5rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -1088,28 +1140,8 @@ select {
   margin-bottom: 5rem;
 }
 
-.mb-20 {
-  margin-bottom: 5rem;
-}
-
-.mr-6 {
-  margin-right: 1.5rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
 .mr-4 {
   margin-right: 1rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
 }
 
 .ml-4 {
@@ -1126,6 +1158,10 @@ select {
 
 .mr-1 {
   margin-right: 0.25rem;
+}
+
+.mt-\[8rem\] {
+  margin-top: 8rem;
 }
 
 .block {
@@ -1162,10 +1198,6 @@ select {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[0rem\] {
-  height: 0rem;
 }
 
 .h-0 {
@@ -1208,36 +1240,16 @@ select {
   height: .3rem;
 }
 
-.h-\[50\%\] {
-  height: 50%;
-}
-
-.h-\[60\%\] {
-  height: 60%;
-}
-
-.h-\[60vw\] {
-  height: 60vw;
-}
-
-.h-\[70vw\] {
-  height: 70vw;
-}
-
-.h-\[75vw\] {
-  height: 75vw;
-}
-
-.max-h-\[50rem\] {
-  max-height: 50rem;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
 
-.min-h-\[50rem\] {
-  min-height: 50rem;
+.min-h-\[30rem\] {
+  min-height: 30rem;
+}
+
+.min-h-\[60rem\] {
+  min-height: 60rem;
 }
 
 .w-full {
@@ -1246,6 +1258,10 @@ select {
 
 .w-1\/2 {
   width: 50%;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .w-\[1rem\] {
@@ -1308,32 +1324,8 @@ select {
   width: 24.5rem;
 }
 
-.w-\[50\%\] {
-  width: 50%;
-}
-
-.w-\[60\%\] {
-  width: 60%;
-}
-
-.w-\[60vw\] {
-  width: 60vw;
-}
-
-.w-\[70vw\] {
-  width: 70vw;
-}
-
-.w-\[75vw\] {
-  width: 75vw;
-}
-
-.w-\[15rem\] {
-  width: 15rem;
-}
-
-.w-3\/4 {
-  width: 75%;
+.w-10\/12 {
+  width: 83.333333%;
 }
 
 .min-w-\[10rem\] {
@@ -1354,10 +1346,6 @@ select {
 
 .max-w-screen-lg {
   max-width: 1024px;
-}
-
-.max-w-\[25rem\] {
-  max-width: 25rem;
 }
 
 .border-collapse {
@@ -1608,13 +1596,12 @@ select {
   padding-bottom: 0.25rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .pb-10 {
   padding-bottom: 2.5rem;
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem;
 }
 
 .pb-12 {
@@ -1631,10 +1618,6 @@ select {
 
 .pt-\[1\.75rem\] {
   padding-top: 1.75rem;
-}
-
-.pb-6 {
-  padding-bottom: 1.5rem;
 }
 
 .pb-\[7rem\] {
@@ -1699,19 +1682,14 @@ select {
   line-height: 2.25rem;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-2xl {
@@ -1791,6 +1769,10 @@ select {
   opacity: 0.8;
 }
 
+.opacity-\[0\.75\] {
+  opacity: 0.75;
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1815,10 +1797,6 @@ select {
 
 .duration-200 {
   transition-duration: 200ms;
-}
-
-.duration-500 {
-  transition-duration: 500ms;
 }
 
 .ease-in-out {
@@ -1852,6 +1830,11 @@ select {
   color: rgb(21 24 47 / var(--tw-text-opacity));
 }
 
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(250 248 244 / var(--tw-text-opacity));
+}
+
 .group:hover .group-hover\:h-auto {
   height: auto;
 }
@@ -1876,6 +1859,10 @@ select {
 
   .sm\:hidden {
     display: none;
+  }
+
+  .sm\:w-10\/12 {
+    width: 83.333333%;
   }
 
   .sm\:p-10 {
@@ -1925,6 +1912,10 @@ select {
 
   .lg\:w-1\/2 {
     width: 50%;
+  }
+
+  .lg\:w-2\/3 {
+    width: 66.666667%;
   }
 }
 
