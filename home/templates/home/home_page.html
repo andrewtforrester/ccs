@@ -6,13 +6,13 @@
 
 
 {% block content %}
-    <section>  
+    <section class="w-full">  
         {% image page.cover_image width-2500 as ci %}
-        <div class="relative w-full h-screen min-h-[60rem]">
+        <div class="relative w-full h-screen min-h-[60rem] overflow-hidden">
             <div class="overflow-hidden w-full h-full bg-cover bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
                 <div class="w-full h-full px-6 sm:px-10 pb-[7rem]">
-                    <div class="relative z-[60] py-6 pr-10 mt-[8rem]">
-                        <h1 class="relative z-10 pb-6 text-white title-1"><span class="">{{ page.banner_title_text|replace:"Christian;Christian<br>"|richtext }}</span></h1>
+                    <div class="relative z-[60] py-6 pr-10 mt-[2rem] sm:mt-[8rem]">
+                        <h1 class="relative z-10 pb-6 text-white title-1"><span class="">{{ page.banner_title_text|replace:"Christian;Christian<br class='hidden lg:block'>"|richtext }}</span></h1>
                         <button class="">
                             <a href="{{ page.banner_button_link }}">
                                 <div class="whitebutton">
@@ -23,16 +23,16 @@
                     </div>
                 </div>
             </div>
-            <div class="absolute -left-1 -right-1 bottom-[60%] opacity-[0.85]">
-                <img src="{% static 'blue_background.svg' %}" alt="">
+            <div class="absolute left-0 right-0 scale-x-105 bottom-[55%] xl:bottom-[45%] opacity-[0.85]">
+                <img class="w-full" src="{% static 'blue_background.svg' %}" alt="">
             </div>
         </div>
     </section>
 
     <section>
         <div class="w-full p-6 bg-navy sm:p-10">
-            <div class="flex py-10">
-                <div class="w-1/2">
+            <div class="sm:flex py-10">
+                <div class="w-full sm:w-1/2 mb-16 sm:mb-0">
                     {% image page.we_believe_feature_image width-2000 as b2i %}
                     <div class="relative px-10">
                         <img class="relative z-10" src="{{ b2i.url }}" alt="">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="w-1/2">
+                <div class="w-full sm:w-1/2">
                     <h1 class="pb-6 font-serif text-5xl italic font-bold text-white">{{ page.we_believe_title_text|replace:"abundant life.;<span class='text-rose'>abundant life.</span>"|richtext }}</h1>
                     <div class="pb-6 text-white body-text-1">
                         {{ page.we_believe_description_text|richtext }}
@@ -60,7 +60,7 @@
     <section>
         <div class="bg-white">
             <div class="relative sm:flex">
-                <div class="w-1/2 lg:w-[45%] p-6 md:p-10 overflow-hidden">
+                <div class="w-full sm:w-1/2 lg:w-[45%] p-6 md:p-10 overflow-hidden">
                     <div id="b3textcontainer" class="">
                         <h1 class="pt-10 pb-20 title-2 text-navy">{{ page.what_we_do_header }}</h1>
 
@@ -81,7 +81,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div id="b3imagecontainer" class="w-1/2 lg:w-[55%] absolute top-0 right-0">
+                <div id="b3imagecontainer" class="hidden sm:block w-1/2 lg:w-[55%] absolute top-0 right-0">
                     {% image page.what_we_do_feature_image width-6000 as b3i %}
                     <div class="absolute inset-0 bg-center bg-cover" style="background-image: url('{{ b3i.url }}');">
 
@@ -105,17 +105,27 @@
 
             <div class="p-6 sm:p-10">
                 {% for block in page.offerings %}
-                    <div class="flex items-center justify-center pb-10">
+                    <div class="sm:flex items-center justify-center pb-10">
 
-                        {% if forloop.counter0|divisibleby:"2" %}
-                            <div class="w-[25rem] px-4">
+                        <div class="hidden sm:block">
+                            {% if forloop.counter0|divisibleby:"2" %}
+                                <div class="w-[15rem] lg:w-[25rem] px-4">
+                                    {% image block.value.photo width-1000 as bph %}
+                                    <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[15rem] h-[15rem] lg:w-[25rem] lg:h-[25rem] bg-cover bg-center rounded-full" style="background-image: url('{{ bph.url }}');"></div>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="sm:hidden">
+                            <div class="flex justify-center">
                                 {% image block.value.photo width-1000 as bph %}
                                 <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[25rem] h-[25rem] bg-cover bg-center rounded-full" style="background-image: url('{{ bph.url }}');"></div>
                             </div>
-                        {% endif %}
+                        </div>
+                                
 
 
-                        <div class="px-10 w-[40rem] {% if not forloop.counter0|divisibleby:"2" %}text-right{% endif %}">
+                        <div class="pt-16 pb-10 sm:py-0 sm:px-10 sm:max-w-[40rem] {% if not forloop.counter0|divisibleby:"2" %}sm:text-right{% endif %}">
                             <h1 class="pb-6 text-white title-3">{{ block.value.title }}</h1>
                             <div class="pb-6 text-white body-text-1">{{ block.value.description }}</div>
 
@@ -128,12 +138,15 @@
                             </button>
                         </div>
 
-                        {% if not forloop.counter0|divisibleby:"2" %}
-                            <div class="w-[25rem]px-4">
+                        <div class="hidden sm:block">
+                            {% if not forloop.counter0|divisibleby:"2" %}
+                            <div class="w-[15rem] lg:w-[25rem] px-4">
                                 {% image block.value.photo width-1000 as bph %}
-                                <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[25rem] h-[25rem] bg-cover bg-center rounded-full" style="background-image: url('{{ bph.url }}');"></div>
+                                <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[15rem] h-[15rem] lg:w-[25rem] lg:h-[25rem] bg-cover bg-center rounded-full" style="background-image: url('{{ bph.url }}');"></div>
                             </div>
-                        {% endif %}
+                            {% endif %}
+                        </div>
+                        
                     </div>
                 {% endfor %}
             </div>
@@ -153,18 +166,18 @@
                 {% for block in page.houseSlides %}
                     {% with l1=forloop.counter0|add:"-1" l2=forloop.counter0|add:"-2" l3=forloop.counter0|add:"-3" l4=forloop.counter0|add:"-4" %}
                         {% image block.value width-2000 as bph %}
-                        <div class="carousel-cell w-1/3 xl:w-1/4 h-[50rem] p-2 rounded-lg mb-[5rem]" >
+                        <div class="carousel-cell w-full sm:w-1/3 xl:w-1/4 h-[50rem] p-2 rounded-lg mb-[5rem]" >
                             <div class="w-full h-full rounded-lg bg-cover bg-center 
                             {% if forloop.counter0|divisibleby:"5" %} 
-                                translate-y-[5rem] 
+                                sm:translate-y-[5rem] 
                             {% elif l1|divisibleby:"5" %} 
-                                translate-y-[1rem] 
+                                sm:translate-y-[1rem] 
                             {% elif l2|divisibleby:"5" %} 
-                                translate-y-[3.5rem] 
+                                sm:translate-y-[3.5rem] 
                             {% elif l3|divisibleby:"5" %} 
-                                translate-y-[0rem] 
+                                sm:translate-y-[0rem] 
                             {% elif l4|divisibleby:"5" %} 
-                                translate-y-[2.5rem] 
+                                sm:translate-y-[2.5rem] 
                             {% endif %}" 
                             style="background-image: url('{{ bph.url }}');">
                             </div>
@@ -179,13 +192,13 @@
     <section class="pt-[10rem] bg-navy">
         <div class="relative w-full">
             {% image page.east_campus_map width-2500 as ecm %}
-            <a href="https://maps.google.com">
+            <a href="">
                 <img class="w-full" src="{{ ecm.url }}" alt="">
             </a>
 
-            <div class="w-1/2 h-full opacity-[0.85] bg-burgundy absolute top-0 left-0">
+            <div class="w-full sm:w-1/2 h-full opacity-[0.85] bg-burgundy absolute top-0 left-0">
             </div>
-            <div class="absolute top-0 left-0 flex items-center w-5/12 h-full p-6 sm:p-10">
+            <div class="absolute top-0 left-0 flex items-center sm:w-1/2 lg:w-5/12 h-full p-6 sm:p-10">
                 <div>
                     <h2 class="pb-6 text-white title-2">{{ page.map_title_text }}</h2>
 
@@ -201,17 +214,17 @@
                 </div>
             </div>
 
-            <div class="w-[4rem] h-[4rem] rounded-full bg-transparent border-4 border-white absolute left-[83.8%] top-[52.5%]"></div>
-            <h2 class="absolute left-[86.6%] top-[65%] translate-x-[-50%] font-serif text-lg font-bold italic text-navy bg-rose px-1">That's us!</h2>
+            <div class="hidden sm:block w-[5vw] h-[5vw] rounded-full bg-transparent border-4 border-white absolute left-[83.8%] top-[52.5%]"></div>
+            <h2 class="hidden sm:block absolute left-[86.6%] top-[65%] translate-x-[-50%] font-serif text-lg font-bold italic text-navy bg-rose px-1">That's us!</h2>
             
-            <h2 class="absolute left-[67%] top-[68%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Marketplace</h2>
-            <h2 class="absolute left-[60.7%] top-[28.5%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Baldwin Auditorium</h2>
+            <h2 class="hidden sm:block absolute left-[67%] top-[68%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Marketplace</h2>
+            <h2 class="hidden sm:block absolute left-[60.7%] top-[28.5%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Baldwin Auditorium</h2>
         </div>
     </section>
 
     <section class="">
         <div class="w-full p-6 bg-white sm:p-10">
-            <div class="w-full mx-auto sm:w-10/12 lg:w-2/3">
+            <div class="w-full mx-auto sm:w-10/12 lg:w-2/3 max-w-screen-md">
                 {% include 'home/_partials/events.html' %}
             </div>
         </div>

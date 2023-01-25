@@ -9,7 +9,7 @@
 @layer components {
 
     .title-1 {
-        @apply font-bold font-serif text-2xl sm:text-3xl lg:text-6xl lg:leading-[4.2rem] italic;
+        @apply font-bold font-serif text-4xl sm:text-5xl lg:text-6xl lg:leading-[4.2rem] italic;
     }
 
     .title-2 {
