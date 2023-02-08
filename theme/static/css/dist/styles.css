@@ -1375,12 +1375,20 @@ select {
   width: 50%;
 }
 
+.w-\[10rem\] {
+  width: 10rem;
+}
+
 .min-w-\[10rem\] {
   min-width: 10rem;
 }
 
 .min-w-\[20rem\] {
   min-width: 20rem;
+}
+
+.min-w-\[15rem\] {
+  min-width: 15rem;
 }
 
 .max-w-screen-lg {
@@ -1731,6 +1739,10 @@ select {
 
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.pb-32 {
+  padding-bottom: 8rem;
 }
 
 .text-center {

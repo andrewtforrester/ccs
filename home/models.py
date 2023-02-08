@@ -182,7 +182,7 @@ class LeadershipIndex(Page):
 
 class LeadershipEntry(Page):
     name = RichTextField(features=[])
-    job_title = RichTextField(features=[])
+    job_title = RichTextField(features=[], blank=True, null=True)
 
     staff_type_choices = [
         ('staff','Staff'),
@@ -217,6 +217,29 @@ class FacultyAffiliatesIndex(Page):
     ]
 
 class FacultyAffiliatesEntry(Page):
+
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    website = models.CharField(max_length=1023)
+    department = models.CharField(max_length=255)
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('first_name'),
+        FieldPanel('last_name'),
+        FieldPanel('website'),
+        FieldPanel('department'),
+        FieldPanel('photo'),
+    ]
+
+
+
     subpage_types = []
 
 class House(Page):

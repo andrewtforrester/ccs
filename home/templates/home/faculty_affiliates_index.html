@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10">
+        <div class="max-w-screen-lg mx-auto">
+            <div class="pb-12">
+                <h1 class="text-navy title-1">{{ page.title }}</h1>
+            </div>
+
+            <div>
+                {% for item in page.get_children.specific.all %}
+                    <div class="pb-6">
+                        <a href="{{ item.website }}">
+                            <h2 class="title-4">{{ item.first_name }} {{ item.last_name }}</h2>
+
+                        </a>
+                        <h2 class="paragraph-1">{{ item.department }}</h2>
+                    </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+{% endblock %}
