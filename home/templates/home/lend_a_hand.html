@@ -5,10 +5,31 @@
 
 {% block content %}
     <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10">
-        <div class="max-w-screen-lg mx-auto">
-            <div class="pb-12">
+        <div class="max-w-screen-sm mx-auto">
+            <div class="pb-20">
                 <h1 class="text-navy title-1">{{ page.title }}</h1>
             </div>
+        </div>
+
+        <div>
+            {% for item in page.body %}
+                {% if item.block_type == 'heading' %}
+                    <div class="max-w-screen-sm pb-4 mx-auto title-3 text-navy">
+                        {{ item.value }}
+                    </div>
+                {% elif item.block_type == 'paragraph' %}
+                    <div class="max-w-screen-sm pb-10 mx-auto body-text-1 text-navy">
+                        {{ item.value }}
+                    </div>
+                {% elif item.block_type == 'image' %}
+                    <div class="max-w-[58rem] mx-auto">
+                        {% image item.value width-2000 as bimg %}
+                        <div class="w-full mt-6 mb-10 h-[20rem] sm:h-[30rem] lg:h-[40rem] xl:h-[45rem] bg-cover bg-center" style="background-image: url('{{ bimg.url }}');">
+
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

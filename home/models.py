@@ -167,7 +167,6 @@ class HomePage(Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
-    subpage_types = []
 
 # ABOUT
 
@@ -405,6 +404,24 @@ class ContinuingEducation(Page):
     subpage_types = []
 
 class LendAHand(Page):
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_tab = [
+        FieldPanel('title'),
+        FieldPanel('body'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_tab, heading='Content'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
+
     is_creatable = False
     subpage_types = []
 

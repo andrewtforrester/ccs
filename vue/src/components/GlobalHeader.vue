@@ -1,5 +1,5 @@
 <template>
-	<header class="absolute z-[1000] top-0 left-0 right-0 px-6 sm:px-10 py-6">
+	<header :class="{ 'text-white': lighttop=='Yes', 'text-white': lighttop=='No' }" class="absolute z-[1000] top-0 left-0 right-0 px-6 sm:px-10 py-6">
 		<div class="flex items-center justify-between">
 			<a class="relative" href="/">
 				<div class="flex items-center">
@@ -14,13 +14,13 @@
 			<menu>
 				<div class="flex items-center justify-bewtween">
 					<div class="relative hidden ml-4 sm:block group">
-						<h1 class="text-lg font-bold text-white hover:cursor-pointer">About</h1>
+						<h1 class="text-lg font-bold hover:cursor-pointer">About</h1>
 	
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
 							<a href="/about">
 								<h2 class="text-md hover:text-rose">Who We Are</h2>
 							</a>
-							<a href="/faculty-affiliates">
+							<a href="/house">
 								<h2 class="text-md hover:text-rose">House</h2>
 							</a>
 							<a href="/leadership">
@@ -33,7 +33,7 @@
 					</div>
 
 					<div class="relative hidden ml-4 sm:block group">
-						<h1 class="text-lg font-bold text-white hover:cursor-pointer">Events</h1>
+						<h1 class="text-lg font-bold hover:cursor-pointer">Events</h1>
 
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
 							<a href="/calendar">
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="relative hidden ml-4 sm:block group">
-						<h1 class="text-lg font-bold text-white hover:cursor-pointer">Undergrads</h1>
+						<h1 class="text-lg font-bold hover:cursor-pointer">Undergrads</h1>
 	
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
 							<a href="/incoming-students">
@@ -74,21 +74,21 @@
 					</div>
 
 					<div class="relative hidden ml-4 sm:block group">
-						<h1 class="text-lg font-bold text-white hover:cursor-pointer whitespace-nowrap">Grad Students</h1>
+						<h1 class="text-lg font-bold hover:cursor-pointer whitespace-nowrap">Grad Students</h1>
 	
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
 							<a href="/graduate-christian-scholars">
-								<h2 class="text-md hover:text-rose">Graduate Christian Scholars</h2>
+								<h2 class="text-md hover:text-rose">Christian Scholars</h2>
 							</a>
 							<a href="/christian-scholarship-workshop">
-								<h2 class="text-md hover:text-rose">Christian Scholarship Workshop</h2>
+								<h2 class="text-md hover:text-rose">Scholarship Workshop</h2>
 							</a>
 						</div>
 					</div>
 					
 					
 					<div class="relative hidden ml-4 sm:block group">
-						<h1 class="text-lg font-bold text-white hover:cursor-pointer">Faculty</h1>
+						<h1 class="text-lg font-bold hover:cursor-pointer">Faculty</h1>
 
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
 							<a href="/triangle-roundtable">
@@ -104,7 +104,7 @@
 					</div>
 
 					<div class="relative hidden ml-4 sm:block group">
-						<h1 class="text-lg font-bold text-white hover:cursor-pointer">Friends</h1>
+						<h1 class="text-lg font-bold hover:cursor-pointer">Friends</h1>
 
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
 							<a href="/continuing-education">
@@ -124,7 +124,8 @@
 					<div class="hidden ml-4 md:block">
 						<button>
 							<a href="/give">
-								<div class="px-4 py-1 text-lg font-bold transition duration-200 ease-in-out transform border-2 rounded-full bg-navy border-navy text-gray hover:bg-transparent hover:text-white">
+								<div class="px-4 py-1 text-lg font-bold transition duration-200 ease-in-out transform border-2 rounded-full"
+								:class="{ 'border-blue text-navy hover:bg-navy hover:border-navy hover:text-white': lighttop=='Yes', 'border-white text-white hover:bg-white hover:text-navy': lighttop=='No' }">
 									Give
 								</div>
 							</a>
