@@ -389,10 +389,32 @@ class FellowsProgram(Page):
 # GRAD STUDENTS
 
 class GraduateChristianScholars(Page):
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
     is_creatable = False
     subpage_types = []
 
 class ChristianScholarshipWorkshop(Page):
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+    
     is_creatable = False
     subpage_types = []
 
@@ -402,10 +424,32 @@ class ChristianScholarshipWorkshop(Page):
 # FACULTY
 
 class TriangleRoundtable(Page):
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
     is_creatable = False
     subpage_types = []
 
 class FacultyReadingGroups(Page):
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+    
     is_creatable = False
     subpage_types = [
         'home.FacultyReadingGroupEntry'
@@ -415,6 +459,17 @@ class FacultyReadingGroupEntry(Page):
     subpage_types = []
 
 class ScholarshipWorkshop(Page):
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
     is_creatable = False
     subpage_types = []
 
@@ -423,6 +478,17 @@ class ScholarshipWorkshop(Page):
 # FRIENDS
 
 class ContinuingEducation(Page):
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
     is_creatable = False
     subpage_types = []
 
@@ -449,6 +515,7 @@ class LendAHand(Page):
     subpage_types = []
 
 class Give(Page):
+    
     is_creatable = False
     subpage_types = []
 

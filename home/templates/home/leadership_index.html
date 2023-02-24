@@ -66,6 +66,34 @@
                 {% endfor %}
             </div>
 
+            <div>
+                <h1 class="pb-20 title-2 text-navy">Our Faculty Advisory Council</h1>
+
+                {% for staffmember in page.get_children.specific.all %}
+                    {% if staffmember.type == 'advisoryCouncil' %}
+                        <div class="mb-20">
+                            <div class="flex items-center">
+                                {% image staffmember.photo width-2000 as smp %}
+                                <div class="w-[15rem] min-w-[15rem] mr-6">
+                                    <div class="w-[15rem] h-[15rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="mb-6">
+                                        <h2 class="title-3">{{ staffmember.name|richtext }}</h2>
+                                        <div class="title-4">{{ staffmember.job_title|richtext }}</div>
+                                    </div>
+                                    
+                                    <div class="body-text-1">{{ staffmember.description|richtext }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
 
         </div>
     </section>
