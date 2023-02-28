@@ -6,6 +6,11 @@
     display: none;
 }
 
+p {
+    margin-bottom: 1rem;
+}
+
+
 @layer components {
 
     .title-1 {

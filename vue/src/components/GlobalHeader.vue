@@ -57,7 +57,7 @@
 						</div>
 					</div>
 
-					<div class="relative hidden ml-4 sm:block group">
+					<!-- <div class="relative hidden ml-4 sm:block group">
 						<h1 class="text-lg font-bold hover:cursor-pointer">Undergrads</h1>
 	
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
@@ -71,9 +71,9 @@
 								<h2 class="text-md hover:text-rose">Fellows Program</h2>
 							</a>
 						</div>
-					</div>
+					</div> -->
 
-					<div class="relative hidden ml-4 sm:block group">
+					<!-- <div class="relative hidden ml-4 sm:block group">
 						<h1 class="text-lg font-bold hover:cursor-pointer whitespace-nowrap">Grad Students</h1>
 	
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
@@ -84,10 +84,10 @@
 								<h2 class="text-md hover:text-rose">Scholarship Workshop</h2>
 							</a>
 						</div>
-					</div>
+					</div> -->
 					
 					
-					<div class="relative hidden ml-4 sm:block group">
+					<!-- <div class="relative hidden ml-4 sm:block group">
 						<h1 class="text-lg font-bold hover:cursor-pointer">Faculty</h1>
 
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
@@ -101,15 +101,15 @@
 								<h2 class="text-md hover:text-rose">Scholarship Workshop</h2>
 							</a>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="relative hidden ml-4 sm:block group">
-						<h1 class="text-lg font-bold hover:cursor-pointer">Friends</h1>
+						<h1 class="text-lg font-bold hover:cursor-pointer">Support</h1>
 
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
-							<a href="/continuing-education">
+							<!-- <a href="/continuing-education">
 								<h2 class="text-md hover:text-rose">Continuing Eduation</h2>
-							</a>
+							</a>--> 
 							<a href="/lend-a-hand">
 								<h2 class="text-md hover:text-rose">Lend a Hand</h2>
 							</a>

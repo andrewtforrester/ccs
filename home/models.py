@@ -8,10 +8,6 @@ from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 import datetime
 
-
-
-
-
 # HOMEPAGE
 
 class HomePage(Page):
@@ -171,6 +167,38 @@ class HomePage(Page):
 # ABOUT
 
 class WhoWeAre(Page):
+
+    mission_header = models.CharField(max_length=255)
+    mission_text = RichTextField()
+    mission_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    values_header = models.CharField(max_length=255)
+    values_text = RichTextField()
+    values_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('mission_header'),
+        FieldPanel('mission_text'),
+        FieldPanel('mission_image'),
+
+        FieldPanel('values_header'),
+        FieldPanel('values_text'),
+        FieldPanel('values_image'),
+    ]
+
+
     is_creatable = False
     subpage_types = []
     
@@ -265,17 +293,29 @@ class CurrentEvents(Page):
     subpage_types = ['home.Event']
 
 class CoursesIndex(Page):
+
+    header_text = models.CharField(max_length=255)
+    descriptive_text = RichTextField()
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        FieldPanel('descriptive_text'),
+        FieldPanel('feature_image'),
+    ]
+
     is_creatable = False
     subpage_types = ['home.CourseEntry']
 
 class CourseEntry(Page):
 
-    course_type_choices = [
-        ('readingGroup','Reading Group'),
-        ('shortCourse','Short Course'),
-    ]
-
-    type = RichTextField(features=[], choices=course_type_choices, blank=True, null=True)
+    semester = models.CharField(max_length=127)
     instructor = RichTextField()
     registration_link = models.CharField(max_length=1023)
     location = models.CharField(max_length=1023)
@@ -290,7 +330,7 @@ class CourseEntry(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('type', widget=forms.Select),
+        FieldPanel('semester'),
         FieldPanel('instructor'),
         FieldPanel('registration_link'),
         FieldPanel('location'),
@@ -308,11 +348,29 @@ class CourseEntry(Page):
     subpage_types = ['home.EventInstance']
 
 class ReadingGroupsIndex(Page):
+
+    header_text = models.CharField(max_length=255)
+    descriptive_text = RichTextField()
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        FieldPanel('descriptive_text'),
+        FieldPanel('feature_image'),
+    ]
+
     is_creatable = False
     subpage_types = ['home.ReadingGroup']
 
 class ReadingGroup(Page):
 
+    semester = models.CharField(max_length=127)
     instructor = RichTextField()
     registration_link = models.CharField(max_length=1023)
     location = models.CharField(max_length=1023)
@@ -327,6 +385,7 @@ class ReadingGroup(Page):
     )
 
     content_panels = Page.content_panels + [
+        FieldPanel('semester'),
         FieldPanel('instructor'),
         FieldPanel('registration_link'),
         FieldPanel('location'),
@@ -344,6 +403,23 @@ class ReadingGroup(Page):
     subpage_types = ['home.EventInstance']
 
 class WeeklyWednesdayMealIndex(Page):
+
+    header_text = models.CharField(max_length=255)
+    descriptive_text = RichTextField()
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        FieldPanel('descriptive_text'),
+        FieldPanel('feature_image'),
+    ]
+
     is_creatable = False
     subpage_types = []
 

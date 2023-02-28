@@ -5,9 +5,67 @@
 
 {% block content %}
     <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10">
-        <div class="max-w-screen-lg mx-auto">
+        <div class="max-w-screen-2xl mx-auto">
             <div class="pb-12">
                 <h1 class="text-navy title-1">{{ page.title }}</h1>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="w-full p-6 sm:p-10">
+            <div class="sm:flex py-10">
+                <div class="w-full sm:w-1/2 mb-16 sm:mb-0">
+                    {% image page.mission_image width-2000 as b2i %}
+                    <div class="relative px-10">
+                        <img class="relative z-10" src="{{ b2i.url }}" alt="">
+                        <div class="absolute inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
+                    </div>
+                </div>
+
+                <div class="w-full sm:w-1/2">
+                    <h1 class="pb-6 font-serif text-5xl italic font-bold text-navy">{{ page.mission_header }}</h1>
+                    <div class="pb-6 text-navy body-text-1">
+                        {{ page.mission_text|richtext }}
+                    </div>
+                    <button>
+                        <a href="{{ page.we_believe_button_link }}">
+                            <div class="whitebutton">
+                                {{ page.we_believe_button_text }}
+                            </div>  
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="w-full p-6 sm:p-10">
+            <div class="sm:flex py-10">
+                <div class="w-full sm:w-1/2">
+                    <h1 class="pb-6 font-serif text-5xl italic font-bold text-navy">{{ page.values_header }}</h1>
+                    <div class="pb-6 text-navy body-text-1">
+                        {{ page.values_text|richtext }}
+                    </div>
+                    <button>
+                        <a href="{{ page.we_believe_button_link }}">
+                            <div class="whitebutton">
+                                {{ page.we_believe_button_text }}
+                            </div>  
+                        </a>
+                    </button>
+                </div>
+
+                <div class="w-full sm:w-1/2 mb-16 sm:mb-0">
+                    {% image page.mission_image width-2000 as b2i %}
+                    <div class="relative px-10">
+                        <img class="relative z-10" src="{{ b2i.url }}" alt="">
+                        <div class="absolute inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
+                    </div>
+                </div>
+
+               
             </div>
         </div>
     </section>

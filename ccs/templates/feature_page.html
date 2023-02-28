@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+    {% block extra_top_content %}
+    {% endblock %}
+
+    <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="pb-20">
+                <h1 class="text-navy title-1">{% block header_content %}{{ page.title }}{% endblock %}</h1>
+            </div>
+        </div>
+
+
+        <div class="flex">
+
+            <div class="w-1/2 pr-4">
+                <div class="title-2 pb-6">
+                    {{ page.header_text }}
+                </div>
+                <div class="body-text-1">
+                    {{ page.descriptive_text|richtext }}
+                </div>
+            </div>
+
+            <div class="w-1/2">
+                {% image page.feature_image width-2000 as fi %}
+
+                <img src="{{ fi.url }}" alt="">
+            </div>
+        </div>
+        
+    </section>
+
+    {% block extra_bottom_content %}
+    {% endblock %}
+    
+{% endblock %}
