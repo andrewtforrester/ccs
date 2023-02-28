@@ -188,6 +188,14 @@ class WhoWeAre(Page):
         related_name='+'
     )
 
+    beliefs = StreamField([
+        ('belief', blocks.StructBlock([
+            ('text', blocks.RichTextBlock()),
+        ])),
+    ], use_json_field=True)
+
+
+
     content_panels = Page.content_panels + [
         FieldPanel('mission_header'),
         FieldPanel('mission_text'),
@@ -196,6 +204,7 @@ class WhoWeAre(Page):
         FieldPanel('values_header'),
         FieldPanel('values_text'),
         FieldPanel('values_image'),
+        FieldPanel('beliefs'),
     ]
 
 
@@ -446,6 +455,24 @@ class Conference(Page):
 
 
 # UNDERGRADS
+
+class FormationGroup(Page):
+    header_text = models.CharField(max_length=255)
+    descriptive_text = RichTextField()
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        FieldPanel('descriptive_text'),
+        FieldPanel('feature_image'),
+    ]
+
 
 class IncomingStudents(Page):
     is_creatable = False

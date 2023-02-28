@@ -11,7 +11,7 @@
 
     <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10">
         <div class="max-w-screen-2xl mx-auto">
-            <div class="pb-20">
+            <div class="pb-32">
                 <h1 class="text-navy title-1">{% block header_content %}{{ page.title }}{% endblock %}</h1>
             </div>
         </div>
@@ -28,11 +28,14 @@
                 </div>
             </div>
 
-            <div class="w-1/2">
+            <div class="w-full sm:w-1/2 mb-16 sm:mb-0">
                 {% image page.feature_image width-2000 as fi %}
-
-                <img src="{{ fi.url }}" alt="">
+                <div class="relative px-10">
+                    <img class="relative z-10" src="{{ fi.url }}" alt="">
+                    <div class="absolute inset-x-10 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
+                </div>
             </div>
+
         </div>
         
     </section>

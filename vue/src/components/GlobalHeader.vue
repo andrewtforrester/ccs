@@ -1,11 +1,11 @@
 <template>
-	<header :class="{ 'text-white': lighttop=='Yes', 'text-white': lighttop=='No' }" class="absolute z-[1000] top-0 left-0 right-0 px-6 sm:px-10 py-6">
+	<header :class="{ 'text-navy': lighttop=='Yes', 'text-white': lighttop=='No' }" class="absolute z-[1000] top-0 left-0 right-0 px-6 sm:px-10 py-6">
 		<div class="flex items-center justify-between">
 			<a class="relative" href="/">
 				<div class="flex items-center">
 					<div :class="{ 'bg-navy': this.lighttop=='Yes', 'bg-white': this.lighttop=='No' }" class="h-[2rem] w-[2rem] rounded-full mr-4">
 					</div>
-					<div :class="{ 'text-white': lighttop=='Yes', 'text-white': lighttop=='No' }" class="hidden font-serif text-xl italic font-bold leading-6 lg:block">
+					<div :class="{ 'text-navy': lighttop=='Yes', 'text-white': lighttop=='No' }" class="hidden font-serif text-xl italic font-bold leading-6 lg:block">
 						Center for Christianity <br> and Scholarship
 					</div>
 				</div>
