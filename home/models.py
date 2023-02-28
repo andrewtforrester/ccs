@@ -551,3 +551,19 @@ class EventInstance(Page):
     ]
 
     subpage_types = []
+
+class ConstructionPage(Page):
+
+
+    body = StreamField([
+        ('heading', blocks.CharBlock()),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
+    is_creatable = False
+    subpage_types = []

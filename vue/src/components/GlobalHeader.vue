@@ -61,7 +61,7 @@
 						<h1 class="text-lg font-bold hover:cursor-pointer">Undergrads</h1>
 	
 						<div class="absolute top-10 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white">
-							<a href="/incoming-students">
+							<a href="/construction">
 								<h2 class="text-md hover:text-rose">Incoming Students</h2>
 							</a>
 							<a href="/certification-pathway">
