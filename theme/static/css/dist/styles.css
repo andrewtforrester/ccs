@@ -1714,6 +1714,11 @@ select {
   text-decoration-line: underline;
 }
 
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .opacity-\[0\.85\] {
   opacity: 0.85;
 }
