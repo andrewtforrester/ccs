@@ -1132,6 +1132,10 @@ select {
   margin-right: .15rem;
 }
 
+.mt-40 {
+  margin-top: 10rem;
+}
+
 .block {
   display: block;
 }
@@ -1538,6 +1542,11 @@ select {
   padding-bottom: 0.25rem;
 }
 
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
 .pt-40 {
   padding-top: 10rem;
 }
@@ -1899,6 +1908,10 @@ p {
 
   .sm\:pb-10 {
     padding-bottom: 2.5rem;
+  }
+
+  .sm\:pt-10 {
+    padding-top: 2.5rem;
   }
 
   .sm\:text-right {
