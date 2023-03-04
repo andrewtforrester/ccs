@@ -4,24 +4,80 @@
 {% block content %}
 <div class="px-6 py-40 sm:px-10">
 	<div class="sm:flex">
-		<div class="sm:w-1/2">
-			<h1 class="title-1">Give</h1>
+		<div class="sm:w-1/2 sm:pr-20">
+			<h1 class="pb-10 title-1">Give</h1>
 
 			<p class="body-text-1">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
 			<p class="body-text-1">– Carter Duncan, ’17</p>
 		</div>
 		<div class="sm:w-1/2">
-			<form id="payment-form">
+
+
+			<form class="" id="payment-form">
 				{% csrf_token %}
+
+				
+				<div id="initial-container" class="overflow-hidden flex flex-col justify h-[20rem] transition-all ease-in-out duration-500 transform">
+					
+					<div class="font-bold title-4">
+						Make a One-Time Donation
+					</div>
+					
+					
+					<div class="flex justify-center w-full py-10">
+						<div id="donate1">
+							<div class="navybutton w-[5rem] mx-2 text-center">
+								$10
+							</div>
+						</div>
+						<div id="donate2">
+							<div class="navybutton w-[5rem] mx-2 text-center">
+								$25
+							</div>
+						</div>
+						<div id="donate3">
+							<div class="navybutton w-[5rem] mx-2 text-center">
+								$50
+							</div>
+						</div>
+					</div>
+	
+					<input id="price-box" class="w-full mb-4 border-2 rounded-md border-navy" type="text" placeholder="Other Amount">
+	
+					<div class="text-center checkoutbuttonpre" id="amount-selector-submit-button">
+						<div class="hidden spinner" id="spinner"></div>
+						<span id="button-text" class="text-lg font-bold text-white">Donate</span>
+					  </div>
+				</div>
+				
+
+
+
+
+				<div id="price-label-container" class="justify-end hidden font-serif text-xl italic font-bold">
+					
+					<div>
+						One Time Donation: $<span id="donation-amount-container"></span>
+					</div>
+				</div>
+
+
+
+
+
+
 				<div id="link-authentication-element"></div>
-				<div class="" id="payment-element"></div>
-				<button class="checkoutbutton" id="submit">
+				<div class="transition-all duration-500 ease-in-out transform" id="payment-element"></div>
+				<button class="hidden checkoutbutton" id="submit">
 					  <div class="hidden spinner" id="spinner"></div>
-					<span id="button-text" class="text-lg font-bold text-white">Donate</span>
+					<span id="button-text" class="text-lg font-bold text-white">Confirm</span>
 		
 				</button>
 				<div id="payment-message" class="hidden"></div>
 			  </form>
+
+
+			  
 		</div>
 	</div>
   	
@@ -38,17 +94,58 @@
 
 		let elements;
 
-		initialize();
-		checkStatus();
+		
 
-		document.querySelector("#payment-form").addEventListener("submit", handleSubmit);
+		document.querySelector("#submit").addEventListener("click", handleSubmit);
+		document.querySelector("#amount-selector-submit-button").addEventListener("click", runDonationProcess);
+		
+		document.querySelector("#donate1").addEventListener("click", preset1);
+		document.querySelector("#donate2").addEventListener("click", preset2);
+		document.querySelector("#donate3").addEventListener("click", preset3);
+
+		async function preset1() {
+			document.querySelector("#price-box").value = 10;
+		}
+		async function preset2() {
+			document.querySelector("#price-box").value = 25;
+		}
+		async function preset3() {
+			document.querySelector("#price-box").value = 50;
+		}
+
+		async function runDonationProcess() {
+
+			document.querySelector("#initial-container").classList.remove('h-[20rem]');
+			document.querySelector("#initial-container").classList.add('h-0');
+
+
+			document.querySelector("#donation-amount-container").innerHTML = String(document.querySelector("#price-box").value);
+
+			setTimeout(function() {
+				document.querySelector("#submit").classList.remove("hidden");
+
+				document.querySelector("#price-label-container").classList.remove('hidden');
+				document.querySelector("#price-label-container").classList.add('flex');
+
+				initialize();
+				checkStatus();
+			}, 500);
+
+			
+		}
+		
 
 		let emailAddress = '';
 
 		// Fetches a payment intent and captures the client secret
 
+		
+
 		async function initialize() {
-			const response = await fetch("/create-payment-intent", {
+			
+			const d = document.querySelector("#price-box").value;
+
+			const response = await fetch("/create-payment-intent/"+String(d) + "/", {
 				method: "POST",
 				headers: { 
 					"Content-Type": "application/json",
@@ -164,6 +261,11 @@
 			}
 
 		}
+	
+	
+	
+	
+	
 	</script>
 
 {% endblock %}
@@ -184,6 +286,31 @@
 			0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
 			border-radius: 7px;
 			padding: 40px;
+		}
+
+		.formappear {
+			width: 30vw;
+			min-width: 500px;
+			align-self: center;
+			box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+			0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+			border-radius: 7px;
+			padding: 40px;
+		}
+
+		.checkoutbuttonpre {
+			background: #15182f;
+			color: #ffffff;
+			border-radius: 4px;
+			border: 0;
+			padding: 12px 16px;
+			font-size: 16px;
+			font-weight: 600;
+			cursor: pointer;
+			display: block;
+			transition: all 0.2s ease;
+			box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+			width: 100%;
 		}
 
 		.checkoutbutton {
@@ -230,6 +357,11 @@
 		.spinner:after {
 			border-radius: 50%;
 		}
+
+		.hidden {
+			display: none;
+		}
+
 		.spinner {
 			color: #ffffff;
 			font-size: 22px;

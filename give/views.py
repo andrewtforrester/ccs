@@ -3,17 +3,17 @@ import stripe
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.conf import settings
-import stripe
+import json
 
 stripe.api_key = str(settings.STRIPE_PRIVATE_KEY)
 
 
 # Serves the stripe element on the giving homepage a client secret
 @csrf_exempt
-def CreateCheckoutSessionView(request):
+def CreateCheckoutSessionView(request,dollars):
     if request.method == "POST":
         intent = stripe.PaymentIntent.create(
-            amount=1000,
+            amount=int(dollars)*100,
             currency='usd',
             automatic_payment_methods={
                 'enabled': True,

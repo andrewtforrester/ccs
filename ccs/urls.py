@@ -12,7 +12,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 urlpatterns = [
-    path("create-payment-intent", CreateCheckoutSessionView),
+    path("create-payment-intent/<dollars>/", CreateCheckoutSessionView),
     path("give/", include('give.urls')),
 
     path("django-admin/", admin.site.urls),

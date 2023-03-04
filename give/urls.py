@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
 
     # Stripe Payment Intent
-    path('create-payment-intent/', views.CreateCheckoutSessionView, name='donations-checkout-session'),
+    path('create-payment-intent/<dollars>', views.CreateCheckoutSessionView, name='donations-checkout-session'),
     
     # Giving Pages
     path('', views.DonationsHome, name='donations-home'),
