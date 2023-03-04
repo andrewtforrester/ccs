@@ -1,20 +1,14 @@
 from django.shortcuts import render
 import stripe
-from django.views.generic.base import TemplateView
 from django.views.decorators.csrf import csrf_exempt
-from django.views import View
-from django.utils.decorators import method_decorator
-from django.http import JsonResponse, HttpResponse
-
-import json
-import os
+from django.http import JsonResponse
+from django.conf import settings
 import stripe
 
-stripe.api_key = 'sk_test_51MhNQdKiI0BX1zB1T4eiZhXVjeUVu8scBLl8G6FbHBvtZXqpzX78vm78qN6PwVGhpzDhBO8V4ObdMmdtenhsn2N700cmzF8VZH'
+stripe.api_key = str(settings.STRIPE_PRIVATE_KEY)
 
 
-# @method_decorator(csrf_exempt, name='dispatch')
-
+# Serves the stripe element on the giving homepage a client secret
 @csrf_exempt
 def CreateCheckoutSessionView(request):
     if request.method == "POST":
@@ -30,20 +24,22 @@ def CreateCheckoutSessionView(request):
             'clientSecret': str(intent['client_secret'])
         })
 
-
-
-
+# Redirect page in case of successful donation
 def Success(request):
     context = {}
     return render(request, 'give/success.html', context)
 
+# Redirect page in case of failed donation
 def Failure(request):
     context = {}
     return render(request, 'give/failure.html', context)
 
-class DonationsHome(TemplateView):
-    template_name = 'give/index.html'
-
+# Donation Homepage
+def DonationsHome(request):
+    context = {
+        'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY,
+    }
+    return render(request, 'give/index.html', context)
 
 
 

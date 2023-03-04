@@ -1132,10 +1132,6 @@ select {
   margin-right: .15rem;
 }
 
-.mt-40 {
-  margin-top: 10rem;
-}
-
 .block {
   display: block;
 }
@@ -1408,16 +1404,16 @@ select {
   border-radius: 0.375rem;
 }
 
+.border {
+  border-width: 1px;
+}
+
 .border-2 {
   border-width: 2px;
 }
 
 .border-\[\.1rem\] {
   border-width: .1rem;
-}
-
-.border {
-  border-width: 1px;
 }
 
 .border-4 {
@@ -1512,6 +1508,11 @@ select {
   padding-right: 2.5rem;
 }
 
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -1540,11 +1541,6 @@ select {
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-}
-
-.py-40 {
-  padding-top: 10rem;
-  padding-bottom: 10rem;
 }
 
 .pt-40 {
@@ -1908,10 +1904,6 @@ p {
 
   .sm\:pb-10 {
     padding-bottom: 2.5rem;
-  }
-
-  .sm\:pt-10 {
-    padding-top: 2.5rem;
   }
 
   .sm\:text-right {

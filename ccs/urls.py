@@ -3,7 +3,7 @@ from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls.static import static
 
-from donations.views import *
+from give.views import *
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
@@ -14,8 +14,6 @@ from search import views as search_views
 urlpatterns = [
     path("create-payment-intent", CreateCheckoutSessionView),
     path("give/", include('give.urls')),
-
-    path("donations/", include('donations.urls')),
 
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
