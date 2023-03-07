@@ -1506,6 +1506,10 @@ select {
   height: 90rem;
 }
 
+.h-\[50\%\] {
+  height: 50%;
+}
+
 .max-h-\[90rem\] {
   max-height: 90rem;
 }
@@ -2419,6 +2423,10 @@ select {
   opacity: 0;
 }
 
+.opacity-\[\.9\] {
+  opacity: .9;
+}
+
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -2695,6 +2703,10 @@ p {
 
   .sm\:h-auto {
     height: auto;
+  }
+
+  .sm\:h-\[50\%\] {
+    height: 50%;
   }
 
   .sm\:min-h-\[60rem\] {
