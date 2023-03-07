@@ -4,8 +4,3 @@ db.sqlite3
 venv/
 venv/* 
 
-vuefiles/static/src/vue/dist/*
-vuefiles/static/src/vue/dist
-
-vue/node_modules/.cache/babel-loader
-vue/node_modules/.cache/babel-loader/*
