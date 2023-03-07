@@ -15,7 +15,7 @@
 
         <section>
             <div class="w-full p-6 sm:p-10">
-                <div class="sm:flex py-10">
+                <div class="sm:flex py-10 sm:pt-10 sm:pb-20">
                     <div class="w-full sm:w-1/2 mb-16 sm:mb-0">
                         {% image page.mission_image width-2000 as b2i %}
                         <div class="relative px-10">
@@ -52,14 +52,12 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div id="b3imagecontainer" class="hidden sm:block w-1/2 lg:w-[55%] absolute top-0 right-0">
+                <div id="b3imagecontainer" class="hidden sm:block absolute top-0 right-0 bottom-0 w-1/2 lg:w-[55%] overflow-hidden">
                     {% image page.values_image width-6000 as b3i %}
-                    <div class="absolute inset-0 bg-center bg-cover" style="background-image: url('{{ b3i.url }}');">
+                    <div id="b3imagesubcontainer" class="absolute top-0 right-0 w-full h-[100vh] bg-right bg-cover" style="background-image: url('{{ b3i.url }}');">
 
                     </div>
-                    <div class="absolute inset-0 z-10 bg-navy opacity-[0.5]">
-
-                    </div>
+                    <div class="top-0 right-0 bottom-0 w-1/2 lg:w-[55%] z-[100] bg-navy opacity-[0.5]"></div>
                 </div>
 
             </div>
@@ -85,40 +83,30 @@
     </script>
 
     <script>
-        var h0 = window.innerHeight;
-
-        var elem = document.getElementById('b3imagecontainer');
+        var elem = document.getElementById('b3imagesubcontainer');
         var textelem = document.getElementById('b3textcontainer');
 
-        elem.style.height = String(h0 + 100) + "px";
+        document.addEventListener('scroll',calculatePostions)
+        document.addEventListener('resize',calculatePostions)
 
-        window.onscroll = function() {
-            var h1 = textelem.getBoundingClientRect().top;
-            var h2 = textelem.getBoundingClientRect().bottom - h0;
+        function calculatePostions() {
 
-            if ((h1 + 52 <= 0) & (h2 + 35 > 0)) {
-                elem.classList.remove("absolute");
-                elem.classList.add("fixed");
-                elem.classList.add("top-0");
-                elem.classList.add("translate-y-[-95px]");
-            }
+            const p = textelem.getBoundingClientRect();
 
-            if (h2 + 35 <= 0) {
-                elem.classList.add("absolute");
-                elem.classList.remove("fixed");
-                elem.classList.remove("top-0");
-                elem.classList.add("bottom-0");
-                elem.classList.remove("translate-y-[-95px]");
+            var h0 = window.innerHeight;
+            var h1 = p.top - 39;
+            var h2 = p.bottom - h0 + 39;
 
-            }
-
-            if (h1 + 52 > 0) {
-                elem.classList.add("absolute");
-                elem.classList.remove("fixed");
-                elem.classList.remove("bottom-0");
-                elem.classList.add("top-0");
-                elem.classList.remove("translate-y-[-95px]");
-
+            // middle
+            if ((h1 <= 0) & (h2 > 0)) {
+                elem.classList.remove("absolute","w-full","bottom-0");
+                elem.classList.add("fixed","w-1/2","lg:w-[55%]","top-0");
+            } else if (h2 <= 0) {
+                elem.classList.add("absolute","w-full","bottom-0");
+                elem.classList.remove("fixed","w-1/2","lg:w-[55%]","top-0");
+            } else if (h1 > 0) {
+                elem.classList.add("absolute","w-full");
+                elem.classList.remove("fixed","w-1/2","lg:w-[55%]");
             }
         }
     </script>

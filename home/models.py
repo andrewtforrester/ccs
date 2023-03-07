@@ -238,7 +238,7 @@ class LeadershipEntry(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('name'),
+        FieldPanel('name'), 
         FieldPanel('job_title'),
         FieldPanel('type', widget=forms.Select),
         FieldPanel('description'),
@@ -313,6 +313,26 @@ class CoursesIndex(Page):
         related_name='+'
     )
 
+    def active_courses(self):
+        return CourseEntry.objects.live().filter(type='active').specific()
+    
+    def archived_courses(self):
+        result = []
+        temp = []
+        i = 1
+
+        for course in CourseEntry.objects.live().filter(type='archived').specific():
+            temp = temp + [course]
+            if len(temp) == 5:
+                result = result + [(temp,i)]
+                temp = []
+                i = i + 1
+
+        if not temp == []:
+            result = result + [(temp,i)]
+
+        return result
+
     content_panels = Page.content_panels + [
         FieldPanel('header_text'),
         FieldPanel('descriptive_text'),
@@ -325,11 +345,11 @@ class CoursesIndex(Page):
 class CourseEntry(Page):
 
     semester = models.CharField(max_length=127)
-    instructor = RichTextField()
-    registration_link = models.CharField(max_length=1023)
-    location = models.CharField(max_length=1023)
-    meeting_pattern = models.CharField(max_length=1023)
-    description = RichTextField()
+    instructor = models.CharField(max_length=127, blank=True)
+    registration_link = models.CharField(max_length=1023, blank=True)
+    location = models.CharField(max_length=1023, blank=True)
+    meeting_pattern = models.CharField(max_length=1023, blank=True)
+    description = RichTextField(blank=True)
     poster = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -337,6 +357,13 @@ class CourseEntry(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    status = [
+        ('active','Active'),
+        ('archived','Archived'),
+    ]
+
+    type = RichTextField(features=[], choices=status)
 
     content_panels = Page.content_panels + [
         FieldPanel('semester'),
@@ -346,6 +373,7 @@ class CourseEntry(Page):
         FieldPanel('meeting_pattern'),
         FieldPanel('description'),
         FieldPanel('poster'),
+        FieldPanel('type',widget=forms.Select),
     ]
 
     def abridged_description(self):
@@ -374,17 +402,36 @@ class ReadingGroupsIndex(Page):
         FieldPanel('feature_image'),
     ]
 
+    def active_reading_groups(self):
+        return ReadingGroup.objects.live().filter(type='active').specific()
+    
+    def archived_reading_groups(self):
+        result = []
+        temp = []
+        i = 1
+
+        for course in ReadingGroup.objects.live().filter(type='archived').specific():
+            temp = temp + [course]
+            if len(temp) == 5:
+                result = result + [(temp,i)]
+                temp = []
+                i = i + 1
+
+        if not temp == []:
+            result = result + [(temp,i)]
+        return result
+    
     is_creatable = False
     subpage_types = ['home.ReadingGroup']
 
 class ReadingGroup(Page):
 
-    semester = models.CharField(max_length=127)
-    instructor = RichTextField()
-    registration_link = models.CharField(max_length=1023)
-    location = models.CharField(max_length=1023)
-    meeting_pattern = models.CharField(max_length=1023)
-    description = RichTextField()
+    semester = models.CharField(max_length=1023, blank=True)
+    instructor = models.CharField(max_length=1023, blank=True)
+    registration_link = models.CharField(max_length=1023, blank=True)
+    location = models.CharField(max_length=1023, blank=True)
+    meeting_pattern = models.CharField(max_length=1023, blank=True)
+    description = RichTextField(blank=True)
     poster = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -392,6 +439,13 @@ class ReadingGroup(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    status = [
+        ('active','Active'),
+        ('archived','Archived'),
+    ]
+
+    type = RichTextField(features=[], choices=status)
 
     content_panels = Page.content_panels + [
         FieldPanel('semester'),
@@ -401,6 +455,7 @@ class ReadingGroup(Page):
         FieldPanel('meeting_pattern'),
         FieldPanel('description'),
         FieldPanel('poster'),
+        FieldPanel('type', widget=forms.Select),
     ]
 
     def abridged_description(self):

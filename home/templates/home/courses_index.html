@@ -1,32 +1,89 @@
-{% extends "feature_page.html" %}
+{% extends "groups_feature_page.html" %}
 
 {% load static %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block extra_bottom_content %}
-    <section class="p-6 sm:px-10 sm:pb-10">
-   
-        <div class="w-full">
-            <div class="title-1 pb-16">
-                Our Spring 2023 Courses
-            </div>
-            {% for course in page.get_children.specific.live %}
-                <div class="title-3 pb-4">
+{% block current_offerings_header %}Our Spring 2023 Courses{% endblock %}
+
+{% block active_offerings_loop %}
+    {% for course in page.active_courses %}
+        <div class="carousel-cell w-full">
+            <div class="sm:px-20 py-16">
+                <div class="pb-8">
+                <div class="title-3 pb-3">
                     {{ course.title }}
                 </div>
+                {% if course.location|length %}
+                    <div class="text-navy text-md font-semibold">
+                        {{ course.location }} 
+                    </div>
+                {% endif %}
+
+
+                {% if course.meeting_pattern|length %}
+                    <div class="text-navy text-md font-semibold">
+                        {{ course.meeting_pattern }} 
+                    </div>
+                {% endif %}
+
+                {% if course.instructor|length %}
+                    <div class="text-navy text-md font-semibold">
+                        Lead by {{ course.instructor }}
+                    </div>
+                {% endif %}
+                </div>
+                
                 <div class="body-text-1 pb-4">
                     {{ course.description|richtext }}
                 </div>
-                <button class="pb-10">
-                    <a href="{{ course.url }}">
-                        <div class="navybutton">
-                            Learn more
-                        </div>
-                    </a>
-                </button>
+                <div class="flex">
+                    <button class="pr-4">
+                        <a href="{{ course.url }}">
+                            <div class="navybutton">
+                                Learn more
+                            </div>
+                        </a>
+                    </button>
+                    {% if course.registration_link|length %}
+                        <button class="">
+                            <a href="{{ course.registration_link }}">
+                                <div class="navybutton">
+                                    Register
+                                </div>
+                            </a>
+                        </button>
+                    {% endif %}
+                </div>
                 
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block archive_loop %}
+    {% for course_collection in page.archived_courses %}
+        <div class="hidden archive-pages" id="archive-page-{{ course_collection.1 }}">
+            {% for course in course_collection.0 %}
+                <div class="pb-10">
+                    <div class="title-3 text-navy pb-2">
+                        {{ course.title }}
+                    </div>
+
+                    <div class="title-4 text-navy pb-3">
+                        {{ course.semester }}
+                    </div>
+
+                    <div class="body-text-1">
+                        {{ course.description|richtext }}
+                    </div>
+                </div>
             {% endfor %}
         </div>
-    </section>
+    {% endfor %}
 {% endblock %}
+
+
+
+
+{% block archive_header %}Short Course Archive{% endblock %}

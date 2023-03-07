@@ -2,47 +2,55 @@
 {% load static %}
 
 {% block content %}
-<div class="px-6 py-40 sm:px-10">
+<div id="giving-page-container" class="px-6 py-40 sm:px-10">
 	<div class="sm:flex">
-		<div class="sm:w-1/2 sm:pr-20">
+		<div class="sm:pr-10">
 			<h1 class="pb-10 title-1">Give</h1>
 
 			<p class="body-text-1">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
 			<p class="body-text-1">– Carter Duncan, ’17</p>
 		</div>
-		<div class="sm:w-1/2">
+		<div class="flex justify-end">
 
 
-			<form class="" id="payment-form">
+			<form class="bg-[#ffffff]" id="payment-form">
 				{% csrf_token %}
 
 				
-				<div id="initial-container" class="overflow-hidden flex flex-col justify h-[20rem] transition-all ease-in-out duration-500 transform">
+				<div id="initial-container" class="overflow-hidden flex flex-col justify h-[18rem] transition-all ease-in-out duration-500 transform">
 					
 					<div class="font-bold title-4">
 						Make a One-Time Donation
 					</div>
 					
 					
-					<div class="flex justify-center w-full py-10">
+					<div class="flex justify-start w-full py-8">
 						<div id="donate1">
-							<div class="navybutton w-[5rem] mx-2 text-center">
+							<div class="navybutton rounded-lg w-[5rem] mr-2 text-center">
 								$10
 							</div>
 						</div>
 						<div id="donate2">
-							<div class="navybutton w-[5rem] mx-2 text-center">
+							<div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
 								$25
 							</div>
 						</div>
 						<div id="donate3">
-							<div class="navybutton w-[5rem] mx-2 text-center">
+							<div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
 								$50
 							</div>
 						</div>
 					</div>
 	
-					<input id="price-box" class="w-full mb-4 border-2 rounded-md border-navy" type="text" placeholder="Other Amount">
+					<div class="relative mb-4 h-[3rem] flex mb-8">
+						<div class="text-xl whitespace-nowrap flex items-center">
+							Other Amount: $
+						</div>
+						<div class="ml-[-0.7rem] border-b-2 border-navy w-full">
+							<input id="price-box" class="px-0 ml-[0.8rem] bg-transparent text-xl border-navy" type="text">
+
+						</div>
+					</div>
 	
 					<div class="text-center checkoutbuttonpre" id="amount-selector-submit-button">
 						<div class="hidden spinner" id="spinner"></div>
@@ -54,9 +62,13 @@
 
 
 
-				<div id="price-label-container" class="justify-end hidden font-serif text-xl italic font-bold">
+				<div id="price-label-container" class="justify-between hidden font-serif text-xl sm:text-2xl pb-10 italic font-bold">
 					
 					<div>
+						← Back
+					</div>
+
+					<div class="mr-1">
 						One Time Donation: $<span id="donation-amount-container"></span>
 					</div>
 				</div>
@@ -104,18 +116,24 @@
 		document.querySelector("#donate3").addEventListener("click", preset3);
 
 		async function preset1() {
-			document.querySelector("#price-box").value = 10;
+			document.querySelector("#price-box").value = '10';
 		}
 		async function preset2() {
-			document.querySelector("#price-box").value = 25;
+			document.querySelector("#price-box").value = '25';
 		}
 		async function preset3() {
-			document.querySelector("#price-box").value = 50;
+			document.querySelector("#price-box").value = '50';
 		}
 
 		async function runDonationProcess() {
 
-			document.querySelector("#initial-container").classList.remove('h-[20rem]');
+			// data validation
+
+			if (document.querySelector("#price-box").value.substring(1)) {
+
+			}
+
+			document.querySelector("#initial-container").classList.remove('h-[18rem]');
 			document.querySelector("#initial-container").classList.add('h-0');
 
 
@@ -358,7 +376,7 @@
 			border-radius: 50%;
 		}
 
-		.hidden {
+		#giving-page-container .hidden {
 			display: none;
 		}
 

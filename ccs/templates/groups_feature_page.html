@@ -1,0 +1,111 @@
+{% extends 'feature_page.html' %}
+
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block extra_bottom_content %}
+    <section class="px-6 sm:px-10 py-6 sm:py-16 bg-rose sm:bg-navy">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="w-full">
+                <div class="title-2 pb-16 text-navy sm:text-white">
+                    {% block current_offerings_header %}{% endblock %}
+                </div>
+
+                <section>
+                    <div class="w-full relative">
+                        <div class="rounded-lg bg-rose px-2 relative max-w-[70rem] mx-auto">
+                            <div class="main-carousel w-full bg-transparent text-navy rounded-lg">
+                                {% block active_offerings_loop %}{% endblock %}
+                                
+                            </div>
+
+                            <div id="" class="hidden sm:block absolute top-0 bottom-0 left-0 w-20 bg-rose rounded-lg"></div>
+                            <div class="hidden sm:block absolute top-0 bottom-0 right-0 w-20 bg-rose rounded-lg"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="p-6 sm:p-10">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="title-2 pb-16 text-navy">
+                {% block archive_header %}{% endblock %}
+                
+            </div>
+
+            <div class="max-w-screen-md mx-auto">
+                {% block archive_loop %}{% endblock %}
+                    
+
+                <div id="load-more-button" class="flex justify-center py-5">
+                    <button class="navybutton">
+                        Load more
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var elem = document.querySelector('.main-carousel');
+        var flkty = new Flickity( elem, {
+            // options
+            cellAlign: 'left',
+            contain: true,
+            wrapAround: true,
+            lazyLoad: true,
+            draggable: true,
+            prevNextButtons: true,
+            pageDots: false,
+            adaptiveHeight: true,
+        });
+    </script>
+
+    <script>
+
+        document.querySelector('#archive-page-1').classList.remove("hidden");
+        document.querySelector('#load-more-button').addEventListener('click',loadMore);
+
+        var currentLoad = 2;
+        const totalLoad = document.getElementsByClassName('archive-pages').length;
+
+        if (totalLoad == 0 || totalLoad == 1) {
+            document.querySelector('#load-more-button').classList.add('hidden');
+        }
+
+        console.log(totalLoad);
+
+        function loadMore() {
+                
+            document.querySelector('#archive-page-' + String(currentLoad)).classList.remove("hidden");
+            currentLoad = currentLoad + 1;
+
+            if (currentLoad == totalLoad + 1) {
+                document.querySelector('#load-more-button').classList.add('hidden');
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .flickity-button {
+            z-index: 50;
+        }
+
+        .flickity-viewport {
+            transition: height 0.3s;
+          }
+
+        .body-text-1 a {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}

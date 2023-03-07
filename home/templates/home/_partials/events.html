@@ -6,22 +6,18 @@
 <h2 class="text-navy title-2 pb-16 pt-4">Upcoming Events</h2>
 
 {% for event in page.events %}
-    <div class="pb-10">
-        <div class="flex justify-between mb-2 relative">
+    <div class="pb-4 sm:pb-10">
+        <div class="sm:flex justify-between mb-2 relative">
             <a href="{{ event.get_parent.specific.url }}">
-                <h2 class="font-bold font-serif text-2xl italic text-navy">{{ event.get_parent.specific.title }} →</h2>
+                <h2 class="font-bold font-serif text-xl sm:text-2xl italic text-navy">{{ event.get_parent.specific.title }} →</h2>
             </a>
-            <h2 class="font-bold font-serif text-2xl italic text-navy opacity-[0.8]">{{ event.date|date:'D, M d' }} at {{ event.time }}</h2>
+            <h2 class="font-bold font-serif text-xl sm:text-2xl italic text-navy opacity-[0.8] mb-2 sm:mb-0">{{ event.date|date:'D, M d' }} at {{ event.time }}</h2>
 
-            <div class="hidden lg:block absolute left-[-.7rem] top-[50%] translate-y-[-50%] translate-x-[-100%] mr-4 text-xs font-bold border-2 {% if event.get_parent.specific.type == 'readingGroup' %} border-rose text-rose {% elif event.get_parent.specific.type == 'shortCourse' %} border-olive text-olive {% else %} border-navy text-navy {% endif %} inline rounded-full px-2 py-1">{% if event.get_parent.specific.type %}{{ event.get_parent.specific.get_type_display }}{% else %}Events{% endif %}</div>
 
-        </div>
-        <div class="lg:hidden mb-4">
-            <div class="text-xs font-bold border-2 {% if event.get_parent.specific.type == 'readingGroup' %} border-rose text-rose {% elif event.get_parent.specific.type == 'shortCourse' %} border-olive text-olive {% else %} border-navy text-navy {% endif %} inline rounded-full px-2 py-1">{% if event.get_parent.specific.type %}{{ event.get_parent.specific.get_type_display }}{% else %}Events{% endif %}</div>
         </div>
         <div class="text-md pb-4">{{ event.get_parent.specific.abridged_description|richtext }}</div> 
     </div>
 {% endfor %}
 <a href="/events">
-    <h2 class="text-navy font-serif text-2xl font-bold italic pb-10">See all events →</h2>
+    <h2 class="text-center sm:text-left text-navy font-serif text-2xl font-bold italic pb-10">See all events →</h2>
 </a>

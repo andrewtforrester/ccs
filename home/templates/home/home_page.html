@@ -8,11 +8,11 @@
 {% block content %}
     <section class="w-full">  
         {% image page.cover_image width-2500 as ci %}
-        <div class="relative w-full h-screen min-h-[60rem] overflow-hidden">
-            <div class="overflow-hidden w-full h-full bg-cover bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
+        <div class="relative w-full h-screen sm:min-h-[60rem] overflow-hidden">
+            <div class="overflow-hidden w-full h-full bg-cover bg-center sm:bg-top mt-[5rem]" style="background-image: url('{{ ci.url }}');">
                 <div class="w-full h-full px-6 sm:px-10 pb-[7rem]">
                     <div class="relative z-[60] py-6 pr-10 mt-[2rem] sm:mt-[8rem]">
-                        <h1 class="relative z-10 pb-6 text-white title-1"><span class="">{{ page.banner_title_text|replace:"Christian;Christian<br class='hidden lg:block'>"|richtext }}</span></h1>
+                        <h1 class="relative z-10 pb-6 text-white title-1"><span class="">{{ page.banner_title_text|replace:"Christian;Christian<br class='hidden sm:block'>"|richtext }}</span></h1>
                         <button class="">
                             <a href="{{ page.banner_button_link }}">
                                 <div class="whitebutton">
@@ -23,8 +23,8 @@
                     </div>
                 </div>
             </div>
-            <div class="absolute left-0 right-0 scale-x-105 bottom-[55%] xl:bottom-[45%] opacity-[0.85]">
-                <img class="w-full" src="{% static 'blue_background.svg' %}" alt="">
+            <div class="bg-navy z-[50] absolute top-0 left-0 right-0 h-[50%] sm:h-[50%] opacity-[.9]">
+
             </div>
         </div>
     </section>
@@ -34,14 +34,14 @@
             <div class="sm:flex py-10">
                 <div class="w-full sm:w-1/2 mb-16 sm:mb-0">
                     {% image page.we_believe_feature_image width-2000 as b2i %}
-                    <div class="relative px-10">
-                        <img class="relative z-10" src="{{ b2i.url }}" alt="">
-                        <div class="absolute inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
+                    <div class="relative px-4 sm:px-10">
+                        <img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative z-10" src="{{ b2i.url }}" alt="">
+                        <div class="absolute inset-x-4 sm:inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
                     </div>
                 </div>
 
                 <div class="w-full sm:w-1/2">
-                    <h1 class="pb-6 font-serif text-5xl italic font-bold text-white">{{ page.we_believe_title_text|replace:"abundant life.;<span class='text-rose'>abundant life.</span>"|richtext }}</h1>
+                    <h1 class="pb-6 font-serif title-3 font-bold text-white">{{ page.we_believe_title_text|replace:"abundant life.;<span class='text-rose'>abundant life.</span>"|richtext }}</h1>
                     <div class="pb-6 text-white body-text-1">
                         {{ page.we_believe_description_text|richtext }}
                     </div>
@@ -65,11 +65,11 @@
                         <h1 class="pt-10 pb-20 title-2 text-navy">{{ page.what_we_do_header }}</h1>
 
                         {% for item in page.what_we_do %}
-                            <div class="px-2 pb-40">
+                            <div class="px-2 pb-20 sm:pb-40">
                                 <div class="pb-10 title-3 text-burgundy">
                                     {{ item.value.title }}
                                 </div>
-                                <div class="pb-6 text-navy body-text-1">{{ item.value.description|richtext }}</div>
+                                <div class="pb-4 sm:pb-6 text-navy body-text-1">{{ item.value.description|richtext }}</div>
                                 <button>
                                     <a href="{{ item.value.button_link|richtext }}">
                                         <div class="burgundybutton">
@@ -81,14 +81,12 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div id="b3imagecontainer" class="hidden sm:block w-1/2 lg:w-[55%] absolute top-0 right-0">
+                <div id="b3imagecontainer" class="hidden sm:block absolute top-0 right-0 bottom-0 w-1/2 lg:w-[55%] overflow-hidden">
                     {% image page.what_we_do_feature_image width-6000 as b3i %}
-                    <div class="absolute inset-0 bg-center bg-cover" style="background-image: url('{{ b3i.url }}');">
+                    <div id="b3imagesubcontainer" class="absolute top-0 right-0 w-full h-[100vh] bg-center bg-cover" style="background-image: url('{{ b3i.url }}');">
 
                     </div>
-                    <div class="absolute inset-0 z-10 bg-navy opacity-[0.5]">
-
-                    </div>
+                    <div class="top-0 right-0 bottom-0 w-1/2 lg:w-[55%] z-[100] bg-navy opacity-[0.5]"></div>
                 </div>
 
             </div>
@@ -102,7 +100,7 @@
                 <h1 class="text-white title-2">{{ page.what_we_offer_heading }}</h1>
             </div>
 
-            <div class="p-6 sm:p-10">
+            <div class="">
                 {% for block in page.offerings %}
                     <div class="sm:flex items-center justify-center pb-10">
 
@@ -118,7 +116,7 @@
                         <div class="sm:hidden">
                             <div class="flex justify-center">
                                 {% image block.value.photo width-1000 as bph %}
-                                <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[25rem] h-[25rem] bg-cover bg-center rounded-full" style="background-image: url('{{ bph.url }}');"></div>
+                                <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-full h-[25rem] bg-cover bg-center sm:rounded-full" style="background-image: url('{{ bph.url }}');"></div>
                             </div>
                         </div>
                                 
@@ -160,13 +158,13 @@
     </section>
 
     <section>
-        <div class="w-full h-[50rem] bg-navy relative">
-            <div class="main-carousel w-full h-[50rem] px-2">
+        <div class="w-full h-[35rem] sm:h-[50rem] bg-navy relative">
+            <div class="main-carousel w-full h-[35rem] sm:h-[50rem] px-2">
                 {% for block in page.houseSlides %}
                     {% with l1=forloop.counter0|add:"-1" l2=forloop.counter0|add:"-2" l3=forloop.counter0|add:"-3" l4=forloop.counter0|add:"-4" %}
                         {% image block.value width-2000 as bph %}
-                        <div class="carousel-cell w-full sm:w-1/3 xl:w-1/4 h-[50rem] p-2 rounded-lg mb-[5rem]" >
-                            <div class="w-full h-full rounded-lg bg-cover bg-center 
+                        <div class="carousel-cell w-full sm:w-1/3 xl:w-1/4 h-[35rem] sm:h-[50rem] p-2 sm:rounded-lg mb-[5rem]" >
+                            <div class="w-full h-full sm:rounded-lg bg-cover bg-center 
                             {% if forloop.counter0|divisibleby:"5" %} 
                                 sm:translate-y-[5rem] 
                             {% elif l1|divisibleby:"5" %} 
@@ -189,11 +187,13 @@
 
 
     <section class="pt-[10rem] bg-navy">
-        <div class="relative w-full">
+        <div class="relative w-full h-[30rem] sm:h-auto">
             {% image page.east_campus_map width-2500 as ecm %}
-            <a href="">
-                <img class="w-full" src="{{ ecm.url }}" alt="">
-            </a>
+            <img class="hidden sm:block w-full" src="{{ ecm.url }}" alt="">
+
+            <div>
+                
+            </div>
 
             <div class="w-full sm:w-1/2 h-full opacity-[0.85] bg-burgundy absolute top-0 left-0">
             </div>
@@ -248,40 +248,30 @@
     </script>
 
     <script>
-        var h0 = window.innerHeight;
-
-        var elem = document.getElementById('b3imagecontainer');
+        var elem = document.getElementById('b3imagesubcontainer');
         var textelem = document.getElementById('b3textcontainer');
 
-        elem.style.height = String(h0 + 100) + "px";
+        document.addEventListener('scroll',calculatePostions)
+        document.addEventListener('resize',calculatePostions)
 
-        window.onscroll = function() {
-            var h1 = textelem.getBoundingClientRect().top;
-            var h2 = textelem.getBoundingClientRect().bottom - h0;
+        function calculatePostions() {
 
-            if ((h1 + 52 <= 0) & (h2 + 35 > 0)) {
-                elem.classList.remove("absolute");
-                elem.classList.add("fixed");
-                elem.classList.add("top-0");
-                elem.classList.add("translate-y-[-95px]");
-            }
+            const p = textelem.getBoundingClientRect();
 
-            if (h2 + 35 <= 0) {
-                elem.classList.add("absolute");
-                elem.classList.remove("fixed");
-                elem.classList.remove("top-0");
-                elem.classList.add("bottom-0");
-                elem.classList.remove("translate-y-[-95px]");
+            var h0 = window.innerHeight;
+            var h1 = p.top - 39;
+            var h2 = p.bottom - h0 + 39;
 
-            }
-
-            if (h1 + 52 > 0) {
-                elem.classList.add("absolute");
-                elem.classList.remove("fixed");
-                elem.classList.remove("bottom-0");
-                elem.classList.add("top-0");
-                elem.classList.remove("translate-y-[-95px]");
-
+            // middle
+            if ((h1 <= 0) & (h2 > 0)) {
+                elem.classList.remove("absolute","w-full","bottom-0");
+                elem.classList.add("fixed","w-1/2","lg:w-[55%]","top-0");
+            } else if (h2 <= 0) {
+                elem.classList.add("absolute","w-full","bottom-0");
+                elem.classList.remove("fixed","w-1/2","lg:w-[55%]","top-0");
+            } else if (h1 > 0) {
+                elem.classList.add("absolute","w-full");
+                elem.classList.remove("fixed","w-1/2","lg:w-[55%]");
             }
         }
     </script>
