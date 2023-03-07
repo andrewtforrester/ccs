@@ -14,6 +14,7 @@ module.exports = {
         '../../ccs/templates/*.html',
         '../../ccs/templates/_partials/*.html',
         '../../vue/src/**/*',
+        '../../static/**/*',
     ],
     theme: {
         colors: {
