@@ -17,45 +17,53 @@
 				{% csrf_token %}
 
 				
-				<div id="initial-container" class="overflow-hidden flex flex-col justify h-[18rem] transition-all ease-in-out duration-500 transform">
+				<div id="initial-container" class="overflow-hidden flex flex-col justify-between h-[20rem] transition-all ease-in-out duration-500 transform">
 					
 					<div class="font-bold title-4">
 						Make a One-Time Donation
 					</div>
 					
-					
-					<div class="flex justify-start w-full py-8">
-						<div id="donate1">
-							<div class="navybutton rounded-lg w-[5rem] mr-2 text-center">
-								$10
+					<div>
+						<div class="flex justify-start w-full pb-4">
+							<div id="donate1">
+								<div class="navybutton rounded-lg w-[5rem] mr-2 text-center">
+									$10
+								</div>
+							</div>
+							<div id="donate2">
+								<div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
+									$25
+								</div>
+							</div>
+							<div id="donate3">
+								<div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
+									$50
+								</div>
 							</div>
 						</div>
-						<div id="donate2">
-							<div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
-								$25
+		
+						<div class="relative h-[3rem] flex">
+							<div class="text-xl whitespace-nowrap flex items-center">
+								Other Amount: $
 							</div>
-						</div>
-						<div id="donate3">
-							<div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
-								$50
-							</div>
-						</div>
-					</div>
+							<div id="priceInput" class="ml-[-0.7rem] border-b-2 border-navy w-full">
+								<input id="price-box" class="px-0 ml-[0.8rem] bg-transparent text-xl border-navy" type="text">
 	
-					<div class="relative mb-4 h-[3rem] flex mb-8">
-						<div class="text-xl whitespace-nowrap flex items-center">
-							Other Amount: $
+							</div>
 						</div>
-						<div class="ml-[-0.7rem] border-b-2 border-navy w-full">
-							<input id="price-box" class="px-0 ml-[0.8rem] bg-transparent text-xl border-navy" type="text">
 
+						<div id="errorContainer" class="text-lg text-burgundy pt-4 overflow-hidden hidden">
+							Please enter a valid dollar amount.
 						</div>
 					</div>
+					
+
+					
 	
 					<div class="text-center checkoutbuttonpre" id="amount-selector-submit-button">
 						<div class="hidden spinner" id="spinner"></div>
 						<span id="button-text" class="text-lg font-bold text-white">Donate</span>
-					  </div>
+					</div>
 				</div>
 				
 
@@ -100,191 +108,13 @@
 {% block extra_js %}
   	<script src="https://js.stripe.com/v3/"></script>
 
-  	<script>
-    	let csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+	<script>
+		let csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 		const stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
-
-		let elements;
-
-		
-
-		document.querySelector("#submit").addEventListener("click", handleSubmit);
-		document.querySelector("#amount-selector-submit-button").addEventListener("click", runDonationProcess);
-		
-		document.querySelector("#donate1").addEventListener("click", preset1);
-		document.querySelector("#donate2").addEventListener("click", preset2);
-		document.querySelector("#donate3").addEventListener("click", preset3);
-
-		async function preset1() {
-			document.querySelector("#price-box").value = '10';
-		}
-		async function preset2() {
-			document.querySelector("#price-box").value = '25';
-		}
-		async function preset3() {
-			document.querySelector("#price-box").value = '50';
-		}
-
-		async function runDonationProcess() {
-
-			// data validation
-
-			if (document.querySelector("#price-box").value.substring(1)) {
-
-			}
-
-			document.querySelector("#initial-container").classList.remove('h-[18rem]');
-			document.querySelector("#initial-container").classList.add('h-0');
-
-
-			document.querySelector("#donation-amount-container").innerHTML = String(document.querySelector("#price-box").value);
-
-			setTimeout(function() {
-				document.querySelector("#submit").classList.remove("hidden");
-
-				document.querySelector("#price-label-container").classList.remove('hidden');
-				document.querySelector("#price-label-container").classList.add('flex');
-
-				initialize();
-				checkStatus();
-			}, 500);
-
-			
-		}
-		
-
-		let emailAddress = '';
-
-		// Fetches a payment intent and captures the client secret
-
-		
-
-		async function initialize() {
-			
-			const d = document.querySelector("#price-box").value;
-
-			const response = await fetch("/create-payment-intent/"+String(d) + "/", {
-				method: "POST",
-				headers: { 
-					"Content-Type": "application/json",
-					"X-CSRFToken": csrftoken,
-				},
-			});
-
-		
-			const  { clientSecret } = await response.json();
-		
-			const appearance = {
-				theme: 'stripe',
-			};
-
-			elements = stripe.elements({ appearance, clientSecret });
-
-
-			const linkAuthenticationElement = elements.create("linkAuthentication");
-			linkAuthenticationElement.mount("#link-authentication-element");
-
-			linkAuthenticationElement.on('change', (event) => {
-				emailAddress = event.value.email;
-			});
-
-			const paymentElementOptions = {
-				layout: "tabs",
-			};
-
-			const paymentElement = elements.create("payment", paymentElementOptions);
-			paymentElement.mount("#payment-element");
-
-		}
-
-		async function handleSubmit(e) {
-			e.preventDefault();
-			setLoading(true);
-
-			const { error } = await stripe.confirmPayment({
-				elements,
-				confirmParams: {
-				return_url: "http://localhost:8000/give/success",
-				receipt_email: emailAddress,
-				},
-			});
-
-			if (error.type === "card_error" || error.type === "validation_error") {
-				showMessage(error.message);
-			} else {
-				showMessage("An unexpected error occurred.");
-			}
-
-			setLoading(false);
-
-		}
-
-		// Fetches the payment intent status after payment submission
-
-		async function checkStatus() {
-			const clientSecret = new URLSearchParams(window.location.search).get(
-				"payment_intent_client_secret"
-			);
-
-			if (!clientSecret) {
-				return;
-			}
-
-			const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-
-			switch (paymentIntent.status) {
-				case "succeeded":
-				showMessage("Payment succeeded!");
-				break;
-				case "processing":
-				showMessage("Your payment is processing.");
-				break;
-				case "requires_payment_method":
-				showMessage("Your payment was not successful, please try again.");
-				break;
-				default:
-				showMessage("Something went wrong.");
-				break;
-			}
-
-		}
-
-		// ------- UI helpers -------
-
-		function showMessage(messageText) {
-			const messageContainer = document.querySelector("#payment-message");
-
-			messageContainer.classList.remove("hidden");
-			messageContainer.textContent = messageText;
-
-			setTimeout(function () {
-				messageContainer.classList.add("hidden");
-				messageText.textContent = "";
-			}, 4000);
-
-		}
-
-		// Show a spinner on payment submission
-		function setLoading(isLoading) {
-
-			if (isLoading) {
-				// Disable the button and show a spinner
-				document.querySelector("#submit").disabled = true;
-				document.querySelector("#spinner").classList.remove("hidden");
-				document.querySelector("#button-text").classList.add("hidden");
-			} else {
-				document.querySelector("#submit").disabled = false;
-				document.querySelector("#spinner").classList.add("hidden");
-				document.querySelector("#button-text").classList.remove("hidden");
-			}
-
-		}
-	
-	
-	
-	
-	
 	</script>
+
+	<script src="{% static 'checkout.js' %}"></script>
+
 
 {% endblock %}
 
