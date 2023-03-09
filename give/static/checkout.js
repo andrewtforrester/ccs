@@ -4,6 +4,7 @@ let emailAddress = '';
 // Handle Page Styles
 
 document.querySelector("#submit").addEventListener("click", handleSubmit);
+document.querySelector("#backbuttoncontainer").addEventListener("click", goBackToPriceSelect);
 document.querySelector("#amount-selector-submit-button").addEventListener("click", runDonationProcess);
 
 document.querySelector("#donate1").addEventListener("click", preset1);
@@ -41,6 +42,10 @@ function priceValidation(priceString) {
             return price;
         }
     }
+}
+
+function goBackToPriceSelect() {
+    return
 }
 
 // runs validation, changes styles on page elements, then runs the
@@ -109,6 +114,7 @@ async function initialize(validatedPrice) {
 
     const paymentElement = elements.create("payment", paymentElementOptions);
     paymentElement.mount("#payment-element");
+
 
 }
 
