@@ -1,0 +1,82 @@
+<form class="bg-[#ffffff]" id="payment-form">
+    {% csrf_token %}
+
+    
+    <div id="initial-container" class="overflow-hidden flex flex-col justify-between h-[20rem] transition-all ease-in-out duration-500 transform">
+        
+        <div class="font-bold title-4">
+            Make a One-Time Donation
+        </div>
+        
+        <div>
+            <div class="flex justify-start w-full pb-4">
+                <div id="donate1">
+                    <div class="navybutton rounded-lg w-[5rem] mr-2 text-center">
+                        $10
+                    </div>
+                </div>
+                <div id="donate2">
+                    <div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
+                        $25
+                    </div>
+                </div>
+                <div id="donate3">
+                    <div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
+                        $50
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative h-[3rem] flex">
+                <div class="text-xl whitespace-nowrap flex items-center">
+                    Other Amount: $
+                </div>
+                <div id="priceInput" class="ml-[-0.7rem] border-b-2 border-navy w-full">
+                    <input id="price-box" class="px-0 ml-[0.8rem] bg-transparent text-xl border-navy" type="text">
+
+                </div>
+            </div>
+
+            <div id="errorContainer" class="text-lg text-burgundy pt-4 overflow-hidden hidden">
+                Please enter a valid dollar amount.
+            </div>
+        </div>
+        
+
+        
+
+        <div class="text-center checkoutbuttonpre" id="amount-selector-submit-button">
+            <div class="hidden spinner" id="spinner"></div>
+            <span id="button-text" class="text-lg font-bold text-white">Donate</span>
+        </div>
+    </div>
+    
+
+
+
+
+    <div id="price-label-container" class="justify-between hidden font-serif text-xl sm:text-2xl pb-10 italic font-bold">
+        
+        <div>
+            ← Back
+        </div>
+
+        <div class="mr-1">
+            One Time Donation: $<span id="donation-amount-container"></span>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div id="link-authentication-element"></div>
+    <div class="transition-all duration-500 ease-in-out transform" id="payment-element"></div>
+    <button class="hidden checkoutbutton" id="submit">
+          <div class="hidden spinner" id="spinner"></div>
+        <span id="button-text" class="text-lg font-bold text-white">Confirm</span>
+
+    </button>
+    <div id="payment-message" class="hidden"></div>
+  </form>
