@@ -12,13 +12,13 @@ document.querySelector("#donate2").addEventListener("click", preset2);
 document.querySelector("#donate3").addEventListener("click", preset3);
 
 async function preset1() {
-    document.querySelector("#price-box").value = '10';
-}
-async function preset2() {
     document.querySelector("#price-box").value = '25';
 }
-async function preset3() {
+async function preset2() {
     document.querySelector("#price-box").value = '50';
+}
+async function preset3() {
+    document.querySelector("#price-box").value = '100';
 }
 
 // returns the string 'invalid' if the user entered the price incorrectly, and
@@ -45,7 +45,17 @@ function priceValidation(priceString) {
 }
 
 function goBackToPriceSelect() {
-    return
+
+    document.querySelector("#payment-box-container").classList.add('h-0');
+
+    setTimeout(function() {
+        document.querySelector("#initial-container").classList.add('h-[20rem]');
+        document.querySelector("#initial-container").classList.remove('h-0');
+    }, 100);
+
+    
+
+    
 }
 
 // runs validation, changes styles on page elements, then runs the
@@ -82,6 +92,8 @@ async function runDonationProcess() {
 
 // Fetches a payment intent and captures the client secret
 async function initialize(validatedPrice) {
+
+
     
     const response = await fetch("/create-payment-intent/"+String(validatedPrice) + "/", {
         method: "POST",
@@ -99,6 +111,9 @@ async function initialize(validatedPrice) {
     };
 
     elements = stripe.elements({ appearance, clientSecret });
+
+    document.querySelector("#payment-box-container").classList.remove('h-0');
+
 
 
     const linkAuthenticationElement = elements.create("linkAuthentication");

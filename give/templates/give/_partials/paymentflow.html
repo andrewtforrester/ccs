@@ -12,17 +12,17 @@
             <div class="flex justify-start w-full pb-4">
                 <div id="donate1">
                     <div class="navybutton rounded-lg w-[5rem] mr-2 text-center">
-                        $10
+                        $25
                     </div>
                 </div>
                 <div id="donate2">
                     <div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
-                        $25
+                        $50
                     </div>
                 </div>
                 <div id="donate3">
                     <div class="navybutton rounded-lg w-[5rem] mx-2 text-center">
-                        $50
+                        $100
                     </div>
                 </div>
             </div>
@@ -55,28 +55,32 @@
 
 
 
-    <div id="price-label-container" class="justify-between hidden font-serif text-xl sm:text-2xl pb-10 italic font-bold">
+
+    <div id="payment-box-container" class="overflow-hidden">
+        <div id="price-label-container" class="justify-between hidden font-serif text-xl sm:text-2xl pb-10 italic font-bold">
         
-        <div class="hover:cursor-pointer" id="backbuttoncontainer">
-            ← Back
+            <div class="hover:cursor-pointer" id="backbuttoncontainer">
+                ← Back
+            </div>
+    
+            <div class="mr-1">
+                One Time Donation: $<span id="donation-amount-container"></span>
+            </div>
         </div>
-
-        <div class="mr-1">
-            One Time Donation: $<span id="donation-amount-container"></span>
-        </div>
+    
+    
+    
+    
+    
+    
+        <div id="link-authentication-element"></div>
+        <div class="transition-all duration-500 ease-in-out transform" id="payment-element"></div>
+        <button class="hidden checkoutbutton" id="submit">
+              <div class="hidden spinner" id="spinner"></div>
+            <span id="button-text" class="text-lg font-bold text-white">Confirm</span>
+    
+        </button>
+        <div id="payment-message" class="hidden"></div>
     </div>
-
-
-
-
-
-
-    <div id="link-authentication-element"></div>
-    <div class="transition-all duration-500 ease-in-out transform" id="payment-element"></div>
-    <button class="hidden checkoutbutton" id="submit">
-          <div class="hidden spinner" id="spinner"></div>
-        <span id="button-text" class="text-lg font-bold text-white">Confirm</span>
-
-    </button>
-    <div id="payment-message" class="hidden"></div>
+    
   </form>

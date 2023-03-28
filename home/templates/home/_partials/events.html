@@ -6,18 +6,17 @@
 <h2 class="text-navy title-2 pb-16 pt-4">Upcoming Events</h2>
 
 {% for event in page.events %}
-    <div class="pb-4 sm:pb-10">
+    <div class="">
         <div class="sm:flex justify-between mb-2 relative">
-            <a href="{{ event.get_parent.specific.url }}">
-                <h2 class="font-bold font-serif text-xl sm:text-2xl italic text-navy">{{ event.get_parent.specific.title }} →</h2>
+            
+                <h2 class="font-bold font-serif text-xl sm:text-2xl italic text-navy">{{ event.get_parent.specific.title }}</h2>
             </a>
             <h2 class="font-bold font-serif text-xl sm:text-2xl italic text-navy opacity-[0.8] mb-2 sm:mb-0">{{ event.date|date:'D, M d' }} at {{ event.time }}</h2>
-
-
         </div>
-        <div class="text-md pb-4">{{ event.get_parent.specific.abridged_description|richtext }}</div> 
+        <div class="text-lg pt-4 pb-1">{{ event.get_parent.specific.abridged_description|richtext }}</div> 
+        <a href="{{ event.get_parent.specific.url }}">
+            <div class="text-lg font-bold">Learn more →</div>
+        </a>
+        <hr class="my-4 sm:my-10 border-[.07rem] border-navy">
     </div>
 {% endfor %}
-<a href="/events">
-    <h2 class="text-center sm:text-left text-navy font-serif text-2xl font-bold italic pb-10">See all events →</h2>
-</a>
