@@ -4,7 +4,7 @@ module.exports = {
     publicPath: '/static/src/vue/dist/',
     outputDir: path.resolve(__dirname, '../static/src/vue/dist/'),
     filenameHashing: false, 
-    runtimeCompiler: true, 
+    runtimeCompiler: false, 
     devServer: {
       devMiddleware: {
         writeToDisk: true, 
