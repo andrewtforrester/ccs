@@ -3,82 +3,95 @@
 
 {% block content %}
 <div id="giving-page-container" class="px-6 pt-40 sm:px-10 bg-white">
-	<h1 class="pb-10 title-1">Give</h1>
+	<div class="max-w-screen-2xl mx-auto">
+		<h1 class="pb-10 title-1">Give</h1>
 
-	<div class="sm:flex items-start pb-20">
-		<div class="sm:pr-10 ">
-			<p class="text-xl pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit nisl arcu. In at elementum leo. Nulla congue laoreet eros, ac sodales arcu pulvinar vel. Maecenas commodo vel purus nec elementum. Sed consequat semper nisl et pulvinar. Vestibulum lobortis sodales libero at hendrerit. Donec venenatis mollis nisi, eget ornare mauris gravida vel. Fusce sodales enim ac euismod aliquam. Duis lectus velit, aliquam facilisis libero id, ornare congue mauris. Curabitur aliquam ligula vel justo rhoncus ornare. Proin quis blandit orci. Donec arcu augue, maximus sed gravida et, porttitor in velit. Vivamus lorem est, sodales nec faucibus ac, consectetur tincidunt lectus.</p>
-			
-			
-		</div>
-		<div class="flex justify-end">
-			{% include "give/_partials/paymentflow.html" %}
+		<div class="lg:flex items-start pb-20">
+			<div class="sm:pr-10 ">
+				<p class="text-xl pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit nisl arcu. In at elementum leo. Nulla congue laoreet eros, ac sodales arcu pulvinar vel. Maecenas commodo vel purus nec elementum. Sed consequat semper nisl et pulvinar. Vestibulum lobortis sodales libero at hendrerit. Donec venenatis mollis nisi, eget ornare mauris gravida vel. Fusce sodales enim ac euismod aliquam. Duis lectus velit, aliquam facilisis libero id, ornare congue mauris. Curabitur aliquam ligula vel justo rhoncus ornare. Proin quis blandit orci. Donec arcu augue, maximus sed gravida et, porttitor in velit. Vivamus lorem est, sodales nec faucibus ac, consectetur tincidunt lectus.</p>
+				
+				
+			</div>
+			<div class="flex justify-center lg:justify-end pt-10 lg:pt-0">
+				{% include "give/_partials/paymentflow.html" %}
+			</div>
 		</div>
 	</div>
+	
 
 </div>
 <div class="p-6 sm:px-10 sm:py-20 bg-navy">
-	<h2 class="title-3 text-white pb-10">Help us make an impact at Duke</h2>
+	<div class="max-w-screen-2xl mx-auto">
+		<h2 class="title-3 text-white pb-10">Help us make an impact at Duke</h2>
 
-	<div class="rounded-lg bg-rose px-2 relative max-w-[60rem] mx-auto">
-		<div class="main-carousel w-full bg-transparent text-navy rounded-lg">
-			<div class="carousel-cell w-full px-20 py-10">
-				<p class="text-2xl pb-4">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
-				<p class="text-2xl font-bold">Carter Duncan, ’17</p>
+		<div class="rounded-lg bg-rose px-2 relative max-w-[60rem] mx-auto">
+			<div class="main-carousel w-full bg-transparent text-navy rounded-lg">
+				<div class="carousel-cell w-full px-20 py-10">
+					<p class="text-2xl pb-4">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
+					<p class="text-2xl font-bold">Carter Duncan, ’17</p>
+				</div>
+	
+				<div class="carousel-cell w-full px-20 py-10">
+					<p class="text-2xl pb-4">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
+					<p class="text-2xl font-bold">Carter Duncan, ’17</p>
+				</div>
 			</div>
-
-			<div class="carousel-cell w-full px-20 py-10">
-				<p class="text-2xl pb-4">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
-				<p class="text-2xl font-bold">Carter Duncan, ’17</p>
-			</div>
+	
 		</div>
-
 	</div>
+	
 </div>
 
 
 <div class="p-6 sm:p-10 bg-cover bg-center relative" style="background-image: url('{% static "os.jpg" %}');">
-	<div class="absolute inset-0 z-10 bg-navy opacity-[0.6]"></div>
+	<div class="max-w-screen-2xl mx-auto">
+		<div class="absolute inset-0 z-10 bg-navy opacity-[0.6]"></div>
 
-	<div class="relative z-20 pb-20">
-		<h2 class="title-3 pb-6 text-white">More giving Options</h2>
+		<div class="relative z-20 pb-10 lg:pb-20">
+			<h2 class="title-3 pb-6 text-white">More giving Options</h2>
+	
+		</div>
+		<div class="lg:flex justify-center pb-16">
+			<div class="lg:w-[25rem] mt-6 lg:pt-0 bg-white border-4 border-rose rounded-sm relative z-[20] px-6 py-10 lg:mx-2">
+				<h4 class="font-bold font-serif text-2xl italic lg:pt-6 pb-6">Make a recurring gift</h4>
+				<p class="text-lg lg:text-xk">The Center for Christianity and Scholarship is a 501(c)(3) non-profit organization and is dependent upon financial support from individuals like you. The Center gained its tax-exempt status as a 501(c)(3) organization on March 7, 2013.  All donations received by the Center are tax deductible.</p>
+	
+				<div class="flex justify-center py-4">
+					<a href="">
+						<div class="navybutton">
+							Set up a recurring gift
+						</div>
+					</a>
+				</div>
+			</div>
+	
+			<div class="lg:w-[25rem] mt-6 lg:pt-0 bg-white border-4 border-rose rounded-sm relative z-[20] px-6 py-10 lg:mx-2">
+				<h4 class="font-bold font-serif text-2xl italic lg:pt-6 pb-6">Give through Duke</h4>
+				<p class="text-lg lg:text-xk">If you would like to have your gift to CCS count towards your lifetime giving at Duke and help CCS avoid the small fees charged by our online platform, please click here. You may elect to give a one-time gift or a recurring monthly, quarterly, or annual gift. Enter “Center for Christianity and Scholarship” in the “Search for an area” box and follow the prompts on the form.</p>
+	
+				<div class="flex justify-center py-4">
+					<a href="">
+						<div class="navybutton">
+							Give through Duke
+						</div>
+					</a>
+				</div>
+			</div>
+	
+			<div class="lg:w-[25rem] mt-6 lg:pt-0 bg-white border-4 border-rose rounded-sm relative z-[20] px-6 py-10 lg:mx-2">
+				<h4 class="font-bold font-serif text-2xl italic lg:pt-6 pb-6">Send a check</h4>
+				<p class="text-lg lg:text-xk">Donations can be made by check to:</p>
 
-	</div>
-	<div class="flex justify-center pb-16">
-		<div class="w-[25rem] bg-white border-4 border-rose rounded-sm relative z-[20] px-6 py-10 mx-4">
-			<h4 class="title-4 pb-6">Make a recurring gift</h4>
-			<p class="text-lg">The Center for Christianity and Scholarship is a 501(c)(3) non-profit organization and is dependent upon financial support from individuals like you. The Center gained its tax-exempt status as a 501(c)(3) organization on March 7, 2013.  All donations received by the Center are tax deductible.</p>
-
-			<div class="flex justify-center py-4">
-				<a href="">
-					<div class="navybutton">
-						Set up a recurring gift
-					</div>
-				</a>
+				<p class="text-lg lg:text-xk">
+					Center for Christianity and Scholarship <br>
+					608 N Buchanan Blvd <br>
+					Durham, NC 27701
+				</p>
+					
 			</div>
 		</div>
-
-		<div class="w-[25rem] bg-white border-4 border-rose rounded-sm relative z-[20] px-6 py-10 mx-4">
-			<h4 class="title-4 pb-6">Give through Duke</h4>
-			<p class="text-lg">If you would like to have your gift to CCS count towards your lifetime giving at Duke and help CCS avoid the small fees charged by our online platform, please click here. You may elect to give a one-time gift or a recurring monthly, quarterly, or annual gift. Enter “Center for Christianity and Scholarship” in the “Search for an area” box and follow the prompts on the form.</p>
-
-			<div class="flex justify-center py-4">
-				<a href="">
-					<div class="navybutton">
-						Give through Duke
-					</div>
-				</a>
-			</div>
-		</div>
-
-		<div class="w-[25rem] bg-white border-4 border-rose rounded-sm relative z-[20] px-6 py-10 mx-4">
-			<h4 class="title-4 pb-6">Send a check</h4>
-			<p class="text-lg">Donations can be made by check to:
-				Center for Christianity and Scholarship
-				608 N Buchanan Blvd
-				Durham, NC 27701</p>
-		</div>
 	</div>
+	
 
 </div>
   

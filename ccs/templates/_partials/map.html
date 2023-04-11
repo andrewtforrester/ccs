@@ -1,0 +1,35 @@
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+
+<section class="bg-navy">
+    <div class="relative w-full h-[30rem] md:h-auto">
+        {% image page.east_campus_map width-2500 as ecm %}
+        <img class="hidden md:block w-full" src="{{ ecm.url }}" alt="">
+
+        <div class="w-full md:w-1/2 h-full opacity-[0.85] bg-burgundy absolute top-0 left-0">
+        </div>
+        <div class="absolute top-0 left-0 flex items-center md:w-1/2 lg:w-5/12 h-full p-6 md:p-10">
+            <div class="max-w-[40rem] mx-auto">
+                <h2 class="pb-2 lg:pb-6 text-white title-2">{{ page.map_title_text }}</h2>
+
+                <div class="pb-2 lg:pb-6 text-white body-text-1">{{ page.map_description_text|richtext }}</div>
+
+                <button>
+                    <a href="{{ page.map_button_link }}">
+                        <div class="whitebutton">
+                            {{ page.map_button_text }}
+                        </div>  
+                    </a>
+                </button>
+            </div>
+        </div>
+
+        <div class="hidden md:block w-[5vw] h-[5vw] rounded-full bg-transparent border-4 border-white absolute left-[83.8%] top-[52.5%]"></div>
+        <h2 class="hidden md:block absolute left-[86.6%] top-[65%] translate-x-[-50%] font-serif text-lg font-bold italic text-navy bg-rose px-1">That's us!</h2>
+        
+        <h2 class="hidden md:block absolute left-[67%] top-[68%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Marketplace</h2>
+        <h2 class="hidden md:block absolute left-[60.7%] top-[28.5%] font-serif text-lg font-bold italic text-navy bg-rose px-1">Baldwin Auditorium</h2>
+    </div>
+</section>

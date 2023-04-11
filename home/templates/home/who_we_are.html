@@ -14,17 +14,19 @@
         </section>
 
         <section>
-            <div class="w-full p-6 sm:p-10">
-                <div class="sm:flex py-10 sm:pt-10 sm:pb-20">
-                    <div class="w-full sm:w-1/2 mb-16 sm:mb-0">
+            <div class="w-full p-6 md:p-10 max-w-screen-2xl mx-auto">
+                <div class="md:flex py-10 md:pt-10 md:pb-20">
+                    <div class="w-full md:w-1/2 mb-16 md:mb-0">
                         {% image page.mission_image width-2000 as b2i %}
                         <div class="relative px-10">
-                            <img class="relative z-10" src="{{ b2i.url }}" alt="">
+                            <div class="relative z-10 bg-center bg-cover h-[40rem] lg:h-[50rem] w-full" style="background-image: url('{{ b2i.url }}');">
+
+                            </div>
                             <div class="absolute inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
                         </div>
                     </div>
 
-                    <div class="w-full sm:w-1/2">
+                    <div class="w-full md:w-1/2">
                         <h1 class="pb-6 font-serif text-5xl italic font-bold text-white">{{ page.mission_header }}</h1>
                         <div class="pb-6 text-white body-text-1">
                             {{ page.mission_text|richtext }}

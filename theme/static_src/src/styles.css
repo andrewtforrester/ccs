@@ -34,7 +34,7 @@ p {
     }
 
     .body-text-1 {
-        @apply text-lg sm:text-xl;
+        @apply text-xl;
     }
 
     .whitebutton {

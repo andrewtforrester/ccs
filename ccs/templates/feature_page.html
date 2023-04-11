@@ -23,7 +23,9 @@
                 <div class="sm:hidden w-full sm:w-[55%] md:w-[60%] mb-16 sm:mb-0">
                     {% image page.feature_image width-2000 as fi %}
                     <div class="relative px-2">
-                        <img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative z-10" src="{{ fi.url }}" alt="">
+                        <div class="relative z-10 bg-right bg-cover h-[40rem] lg:h-[50rem] w-full" style="background-image: url('{{ fi.url }}');">
+
+                        </div>
                         <div class="absolute inset-x-2 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
                     </div>
                 </div>
@@ -40,7 +42,9 @@
                 <div class="hidden sm:block w-full sm:w-[55%] md:w-[60%] mb-16 sm:mb-0">
                     {% image page.feature_image width-2000 as fi %}
                     <div class="relative px-10">
-                        <img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative z-10" src="{{ fi.url }}" alt="">
+                        <div class="relative z-10 bg-right bg-cover h-[40rem] lg:h-[50rem] w-full" style="background-image: url('{{ fi.url }}');">
+
+                        </div>
                         <div class="absolute inset-x-10 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
                     </div>
                 </div>

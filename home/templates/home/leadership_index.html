@@ -7,7 +7,11 @@
     <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10 bg-navy">
         <div class="max-w-screen-md mx-auto">
             <div class="pb-32">
-                <h1 class="text-white title-1">{{ page.title }}</h1>
+                <h1 class="text-white title-1 pb-10">{{ page.title }}</h1>
+
+                <div class="text-xl text-white">
+                    {{ page.leadership_description|richtext }}
+                </div>
             </div>
 
             <div id="leaders" class="pb-20">
@@ -15,27 +19,20 @@
 
                 {% for staffmember in page.get_children.specific.all %}
                     {% if staffmember.type == 'staff' %}
-                        <div class="mb-20 text-white">
-                            <div class="flex items-center">
+                        <div class="mb-24 text-white">
+                            <div class="sm:flex text-center sm:text-left items-center">
                                 {% image staffmember.photo width-2000 as smp %}
-                                <div class="w-[20rem] min-w-[20rem] mr-6">
-                                    <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
-
+                                <div class="flex justify-center sm:block">
+                                    <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
+                                        <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+    
+                                        </div>
                                     </div>
                                 </div>
+                                
 
                                     
                                 <leader-modals name="{{ staffmember.name|striptags }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
-
-
-
-
-
-
-
-
-
-
 
 
                             </div>
@@ -49,18 +46,21 @@
     <section class="p-6 sm:p-10 bg-white">
         <div class="max-w-screen-md mx-auto">
             <h1 class="pb-20 title-2 text-navy">Our Board of Directors</h1>
-
             {% for staffmember in page.get_children.specific.all %}
                 {% if staffmember.type == 'boardOfDirectors' %}
-                    <div class="mb-20">
-                        <div class="flex items-center">
+                    <div class="mb-24 text-navy">
+                        <div class="sm:flex text-center sm:text-left items-center">
                             {% image staffmember.photo width-2000 as smp %}
-                            <div class="w-[20rem] min-w-[20rem] mr-6">
-                                <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+                            <div class="flex justify-center sm:block">
+                                <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
+                                    <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
 
+                                    </div>
                                 </div>
                             </div>
+                            
 
+                                
                             <leader-modals name="{{ staffmember.name|striptags }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
 
 
@@ -68,6 +68,7 @@
                     </div>
                 {% endif %}
             {% endfor %}
+            
         </div>
     </section>
 
@@ -75,18 +76,24 @@
         <div class="max-w-screen-md mx-auto">
             <h1 class="pb-20 title-2 text-navy">Our Faculty Advisory Council</h1>
 
+
             {% for staffmember in page.get_children.specific.all %}
                 {% if staffmember.type == 'advisoryCouncil' %}
-                    <div class="mb-20">
-                        <div class="flex items-center">
+                    <div class="mb-24 text-navy">
+                        <div class="sm:flex text-center sm:text-left items-center">
                             {% image staffmember.photo width-2000 as smp %}
-                            <div class="w-[20rem] min-w-[20rem] mr-6">
-                                <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+                            <div class="flex justify-center sm:block">
+                                <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
+                                    <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
 
+                                    </div>
                                 </div>
                             </div>
                             
+
+                                
                             <leader-modals name="{{ staffmember.name|striptags }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
+
 
                         </div>
                     </div>

@@ -213,6 +213,13 @@ class WhoWeAre(Page):
     
 class LeadershipIndex(Page):
     is_creatable = False
+
+    leadership_description = RichTextField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel('leadership_description'), 
+    ]
+
     subpage_types = [
         'home.LeadershipEntry'
     ]
@@ -249,6 +256,13 @@ class LeadershipEntry(Page):
 
 class FacultyAffiliatesIndex(Page):
     is_creatable = False
+
+    faculty_description = RichTextField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel('faculty_description'), 
+    ]
+
     subpage_types = [
         'home.FacultyAffiliatesEntry'
     ]
@@ -280,9 +294,43 @@ class FacultyAffiliatesEntry(Page):
     subpage_types = []
 
 class House(Page):
+
+    header_text = models.CharField(max_length=255)
+    descriptive_text = RichTextField()
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    east_campus_map = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    map_title_text = models.CharField(max_length=255)
+    map_description_text = RichTextField()
+    map_button_text = models.CharField(max_length=255)
+    map_button_link = models.CharField(max_length=255)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        FieldPanel('descriptive_text'),
+        FieldPanel('feature_image'),
+        FieldPanel('map_title_text'),
+        FieldPanel('map_description_text'),
+        FieldPanel('map_button_text'),
+        FieldPanel('map_button_link'),
+        FieldPanel('east_campus_map'),
+    ]
+
     is_creatable = False
     subpage_types = []
-
 
 
 
