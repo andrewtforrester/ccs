@@ -742,7 +742,6 @@ select {
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 700;
-  font-style: italic;
 }
 
 @media (min-width: 640px) {
@@ -775,8 +774,7 @@ select {
   font-family: EB Garamond;
   font-size: 2.25rem;
   line-height: 2.5rem;
-  font-weight: 600;
-  font-style: italic;
+  font-weight: 700;
 }
 
 @media (min-width: 1024px) {
@@ -790,8 +788,7 @@ select {
   font-family: EB Garamond;
   font-size: 1.875rem;
   line-height: 2.25rem;
-  font-weight: 600;
-  font-style: italic;
+  font-weight: 700;
 }
 
 @media (min-width: 1024px) {
@@ -805,8 +802,7 @@ select {
   font-family: EB Garamond;
   font-size: 1.25rem;
   line-height: 1.75rem;
-  font-weight: 600;
-  font-style: italic;
+  font-weight: 700;
 }
 
 @media (min-width: 1024px) {
