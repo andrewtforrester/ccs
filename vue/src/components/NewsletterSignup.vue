@@ -13,13 +13,13 @@
 			</div>
 			
 
-			<div :class="{ 'invisible': !form_cover_active, 'visible bg-white z-[50]': form_cover_active }" class="absolute inset-0 flex items-center justify-center duration-300 transform transition-color ease-in-our">
-				<div class="h-[2rem] w-[2rem] bg-burgundy rounded-full animate-ping">
+			<div :class="{ 'invisible': !form_cover_active, 'visible bg-navy z-[50]': form_cover_active }" class="absolute inset-0 flex items-center justify-center duration-300 transform transition-color ease-in-our">
+				<div class="h-[2rem] w-[2rem] bg-rose rounded-full animate-ping">
 				</div>
 			</div>	
 
-			<div :class="{ 'invisible': !form_cover_active2, 'visible bg-white z-[60]': form_cover_active2 }" class="absolute inset-0 flex items-center justify-center duration-300 transform transition-color ease-in-our">
-				<h2 class="font-serif text-3xl italic font-bold">Thank you! </h2>
+			<div :class="{ 'invisible': !form_cover_active2, 'visible bg-navy z-[60]': form_cover_active2 }" class="absolute inset-0 flex items-center justify-center duration-300 transform transition-color ease-in-our">
+				<h2 class="font-serif text-3xl font-bold text-white">Thank you! </h2>
 			</div>
 		</div>
 	</div>
@@ -41,8 +41,9 @@
 		methods: {
 			sf() {	
 				this.form_cover_active = true;
-
 				setTimeout(() => this.form_cover_active2 = true, 2500);
+
+				
 
 			}
 		}

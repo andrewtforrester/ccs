@@ -4,5 +4,51 @@
 {% load wagtailcore_tags %}
 
 {% block extra_bottom_content %}
+
+    <div class="bg-navy p-6 sm:p-10">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="pb-20">
+                <h2 class="title-2 text-white">House Programming</h2>
+            </div>
+
+            <div>
+                {% for program in page.house_programming %}
+                    <div class="flex {% if not forloop.counter0|divisibleby:"2" %} justify-end {% else %} justify-start {% endif %} ">
+                        {% image program.value.feature_image width-2000 as pimg %}
+
+                        <div class="relative w-3/4 pb-20">
+                            <div class="w-full h-[30rem] xl:h-[40rem] bg-cover bg-center" style="background-image: url('{{ pimg.url }}');">
+    
+                            </div>
+
+                            <div class="absolute top-[50%] translate-y-[-50%]  {% if not forloop.counter0|divisibleby:"2" %} left-0 translate-x-[-25%] {% else %} right-0 translate-x-[25%] {% endif %} z-10">
+                                <div class="bg-rose p-6 w-[30rem] rounded-sm {% if not forloop.counter0|divisibleby:"2" %} text-right {% endif %}">
+                                    <div class="pb-4">
+                                        <h3 class="title-3 text-navy">{{ program.value.title }}</h3>
+                                    </div>
+                                    {% if program.value.extra_text %}
+                                        <div class="pb-2">
+                                            <div class="body-text-1">{{ program.value.extra_text|richtext }}</div>
+                                        </div>
+                                    {% endif %}
+                                    <button>
+                                        <a href="{{ program.value.button_reference }}">
+                                            <div class="navybutton">
+                                                {{ program.value.button_text }}
+                                            </div>
+                                        </a>
+                                        
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+
     {% include '_partials/map.html' %}
 {% endblock %}

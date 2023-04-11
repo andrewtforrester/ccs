@@ -38,37 +38,36 @@
     <section>
         <div class="w-full p-6 bg-navy sm:p-10">
             <div class="py-10 max-w-screen-2xl mx-auto">
-                <div class="mb-10 lg:mb-20 xl:max-w-[60rem]">
-                    <h2 class="title-2 text-white">{{ page.we_believe_title_text|richtext }}</h2>
+                <div class="mb-10 lg:mb-20">
+                    <h2 class="title-1 text-center text-white max-w-[75rem] mx-auto">{{ page.we_believe_title_text|replace:'abundant life.;<span class="text-rose">abundant life.</span>'|richtext }}</h2>
                 </div>
-                <div class="w-full sm:w-10/12 mb-16 sm:mb-0 relative">
+                <div class="w-full flex justify-center mb-16 sm:mb-0 relative">
                     {% image page.we_believe_feature_image width-2000 as b2i %}
 
                     
-
-                    <div class="relative px-4 sm:px-10">
-                        <img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative z-10" src="{{ b2i.url }}" alt="">
-                        <div class="absolute inset-x-4 sm:inset-x-10 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
-                    </div>
+                        <div class="relative px-4 sm:px-10">
+                            <img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative z-10" src="{{ b2i.url }}" alt="">
+                            <div class="absolute inset-x-4 sm:inset-x-10 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
+                        </div>
+                    
                 </div>
 
-                <div class="flex justify-end">
-                    <div class="w-full sm:pt-24 sm:text-right sm:w-10/12">
+                <div class="flex justify-center">
+                    <div class="text-center w-full sm:pt-24 sm:w-10/12">
                         <div class="pb-6 text-white text-xl sm:text-2xl">
                             {{ page.we_believe_description_text|richtext }}
                         </div>
-                        <div class="flex justify-center sm:block">
-                            <button class="">
-                                <a href="{{ page.we_believe_button_link }}">
-                                    <div class="whitebutton">
-                                        {{ page.we_believe_button_text }}
-                                    </div>  
-                                </a>
-                            </button>
-                        </div>
+                        <button class="">
+                            <a href="{{ page.we_believe_button_link }}">
+                                <div class="whitebutton">
+                                    {{ page.we_believe_button_text }}
+                                </div>  
+                            </a>
+                        </button>
                         
                     </div>
                 </div>
+                
                 
             </div>
         </div>
@@ -213,7 +212,7 @@
                 {% include 'home/_partials/events.html' %}
 
                 <a href="/events">
-                    <h2 class="text-center sm:text-left text-navy font-serif text-2xl font-bold italic pb-10">See all events →</h2>
+                    <h2 class="text-center sm:text-left text-navy font-serif text-2xl font-bold pb-10">See all events →</h2>
                 </a>
             </div>
         </div>

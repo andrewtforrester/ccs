@@ -318,6 +318,18 @@ class House(Page):
     map_button_text = models.CharField(max_length=255)
     map_button_link = models.CharField(max_length=255)
 
+    programming_title_text = models.CharField(max_length=255)
+
+    house_programming = StreamField([
+        ('program', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('extra_text', blocks.RichTextBlock(required=False)),
+            ('button_text', blocks.CharBlock()),
+            ('button_reference', blocks.CharBlock()),
+            ('feature_image', ImageChooserBlock()),
+        ])),
+    ], use_json_field=True)
+
     content_panels = Page.content_panels + [
         FieldPanel('header_text'),
         FieldPanel('descriptive_text'),
@@ -327,6 +339,8 @@ class House(Page):
         FieldPanel('map_button_text'),
         FieldPanel('map_button_link'),
         FieldPanel('east_campus_map'),
+        FieldPanel('programming_title_text'),
+        FieldPanel('house_programming'),
     ]
 
     is_creatable = False
