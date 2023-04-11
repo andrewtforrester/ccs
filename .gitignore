@@ -10,6 +10,11 @@ db.sqlite3
 venv/
 venv/* 
 
+# Vue
+
+static/src/vue/dist/*.hot-update.js 
+static/src/vue/dist/*.json 
+
 
 ### MacOS ###
 
