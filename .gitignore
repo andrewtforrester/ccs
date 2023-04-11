@@ -12,8 +12,8 @@ venv/*
 
 # Vue
 
-static/src/vue/dist/*.hot-update.js 
-static/src/vue/dist/*.json 
+vue/
+vue/* 
 
 
 ### MacOS ###
