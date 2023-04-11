@@ -1,3 +1,8 @@
+cd vue
+yarn build
+cd ..
+python3 manage.py collectstatic --clear
+
 git add -A
 echo Commit Message: 
 
@@ -5,5 +10,3 @@ read msg
 git commit -m "$msg"
 
 git push
-
-ssh andrewforrester@139.144.53.66
