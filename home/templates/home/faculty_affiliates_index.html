@@ -14,7 +14,7 @@
                 {{ page.faculty_description|richtext }}
             </div>
 
-            <div class="grid grid-cols-2 lg:grid-cols-3 grid-flow-row text-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-flow-row text-center">
                 {% for item in page.get_children.specific.all %}
                     <div class="pb-20">
                         <h2 class="font-bold text-2xl font-serif  pb-1">{{ item.first_name }} {{ item.last_name }}</h2>

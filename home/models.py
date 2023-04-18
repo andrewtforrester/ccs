@@ -257,7 +257,7 @@ class LeadershipEntry(Page):
 class FacultyAffiliatesIndex(Page):
     is_creatable = False
 
-    faculty_description = RichTextField()
+    faculty_description = RichTextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('faculty_description'), 
