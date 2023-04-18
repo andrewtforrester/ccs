@@ -163,6 +163,8 @@ class HomePage(Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
+    subpage_types = []
+
 
 # ABOUT
 
@@ -621,6 +623,10 @@ class Give(Page):
 
 
 # HELPERS
+
+class EventIndex(Page):
+    subpage_types = ['home.Event']
+    is_creatable = False
 
 class Event(Page):
 
