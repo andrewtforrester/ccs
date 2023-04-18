@@ -624,10 +624,6 @@ class Give(Page):
 
 # HELPERS
 
-class EventIndex(Page):
-    subpage_types = ['home.Event']
-    is_creatable = False
-
 class Event(Page):
 
     description = RichTextField(null=True, blank=True)
