@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.conf import settings
 import json
 
-stripe.api_key = str(settings.STRIPE_SECRET_KEY)
+stripe.api_key = str(settings.STRIPE_PRIVATE_KEY)
 
 # Serves the stripe element on the giving homepage a client secret
 @csrf_exempt
