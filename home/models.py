@@ -214,7 +214,7 @@ class WhoWeAre(Page):
 class LeadershipIndex(Page):
     is_creatable = False
 
-    leadership_description = RichTextField()
+    leadership_description = RichTextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('leadership_description'), 
