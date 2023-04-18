@@ -2838,6 +2838,10 @@ p {
     min-height: 60rem;
   }
 
+  .sm\:min-h-\[48rem\] {
+    min-height: 48rem;
+  }
+
   .sm\:w-\[55\%\] {
     width: 55%;
   }
@@ -3197,6 +3201,10 @@ p {
 
   .lg\:h-\[43rem\] {
     height: 43rem;
+  }
+
+  .lg\:min-h-\[43rem\] {
+    min-height: 43rem;
   }
 
   .lg\:w-3\/4 {
