@@ -1267,6 +1267,14 @@ select {
   z-index: 30;
 }
 
+.z-\[500\] {
+  z-index: 500;
+}
+
+.z-\[-500\] {
+  z-index: -500;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -3290,6 +3298,11 @@ p {
 
   .lg\:pt-6 {
     padding-top: 1.5rem;
+  }
+
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
