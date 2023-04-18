@@ -108,7 +108,7 @@ class HomePage(Page):
     )
 
     map_title_text = models.CharField(max_length=255)
-    map_description_text = RichTextField()
+    map_description_text = RichTextField(blank=True, null=True)
     map_button_text = models.CharField(max_length=255)
     map_button_link = models.CharField(max_length=255)
 

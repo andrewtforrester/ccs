@@ -1443,8 +1443,8 @@ select {
   height: .3rem;
 }
 
-.h-\[8rem\] {
-  height: 8rem;
+.h-\[6rem\] {
+  height: 6rem;
 }
 
 .h-\[2rem\] {
@@ -1453,6 +1453,10 @@ select {
 
 .h-auto {
   height: auto;
+}
+
+.h-\[8rem\] {
+  height: 8rem;
 }
 
 .min-h-screen {
@@ -1511,8 +1515,8 @@ select {
   width: .3rem;
 }
 
-.w-\[8rem\] {
-  width: 8rem;
+.w-\[6rem\] {
+  width: 6rem;
 }
 
 .w-\[48\%\] {
@@ -1531,6 +1535,10 @@ select {
   width: 0.25rem;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -1545,10 +1553,6 @@ select {
 
 .w-auto {
   width: auto;
-}
-
-.w-3 {
-  width: 0.75rem;
 }
 
 .w-2 {
@@ -1567,6 +1571,14 @@ select {
 
 .w-11 {
   width: 2.75rem;
+}
+
+.w-\[8rem\] {
+  width: 8rem;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .min-w-\[10rem\] {
@@ -2844,6 +2856,10 @@ p {
 
   .lg\:w-2\/3 {
     width: 66.666667%;
+  }
+
+  .lg\:w-11\/12 {
+    width: 91.666667%;
   }
 
   .lg\:max-w-\[90\%\] {
