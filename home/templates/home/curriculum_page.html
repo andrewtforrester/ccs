@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load replace %}
+
+
+{% block content %}
+    <div class="bg-white px-4 sm:px-10 pt-40 pb-6 sm:pb-10">
+        <div class="mx-auto max-w-screen-2xl">
+            <h1 class="title-1 text-navy pb-6">{{ page.title }}</h1>
+
+            <p class="body-text-1 text-navy pb-10 max-w-[40rem]">Complete two house courses and two additional CCS academic offerings to earn the Certificate of Christian Studies.</p>
+
+
+            <div class="bg-navy rounded-lg w-full py-6 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40 mb-10">
+                <h2 class="text-sm font-sans font-bold text-rose">PICK 2</h2>
+
+                <h2 class="title-2 text-rose pb-4">House Courses</h2>
+
+                <p class="body-text-1 text-white pb-10">CCS House Courses are Duke courses taught by Christian professors. They are half-credit courses graded Sat/Unsat and provide elective credit toward graduation.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
+                    <div class="text-navy w-full">
+                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 pb-20 rounded-lg">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Science and Faith</h3>
+
+                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
+
+                            <button class="absolute bottom-4 left-4">
+                                <a href="">
+                                    <div class="navybutton">
+                                        Learn more
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-navy w-full">
+                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 pb-20 rounded-lg">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Faith and Power</h3>
+                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
+
+                            <button class="absolute bottom-4 left-4">
+                                <a href="">
+                                    <div class="navybutton">
+                                        Learn more
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-navy w-full">
+                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 pb-20 rounded-lg">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Being Human</h3>
+                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
+                            <button class="absolute bottom-4 left-4">
+                                <a href="">
+                                    <div class="navybutton">
+                                        Learn more
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="text-navy w-full">
+                        <div class="relative bg-rose h-full pt-4 px-4 pb-20 rounded-lg">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">What Do Christians Believe and Why?</h3>
+                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
+                            <button class="absolute bottom-4 left-4">
+                                <a href="">
+                                    <div class="navybutton">
+                                        Learn more
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button>
+                    <a href="/courses">
+                        <div class="whitebutton">
+                            See all courses
+                        </div>
+                    </a>
+                    
+                </button>
+            </div>
+
+            <div class="bg-rose rounded-lg w-full py-6 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40">
+                <h2 class="text-sm font-sans font-bold text-navy">PICK 2</h2>
+
+                <h2 class="title-2 text-navy pb-10">Projects and Experiences</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="text-white w-full">
+                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 pb-20 rounded-lg">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Fellows Project</h3>
+
+                            <p class="text-md">The CCS Fellows meet once a month over one academic year to apply Christian thought to their future careers with guidance from Christian faculty.</p>
+
+                            <button class="absolute bottom-4 left-4">
+                                <a href="">
+                                    <div class="whitebutton">
+                                        Learn more
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-white w-full">
+                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 pb-20 rounded-lg">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Affiliated Courses</h3>
+
+                            <p class="text-md">CCS-affiliated courses are taught by Christian faculty within their Duke departments, engage with big questions, and are open to Christian answers.</p>
+
+                            <button class="absolute bottom-4 left-4">
+                                <a href="">
+                                    <div class="whitebutton">
+                                        Learn more
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-white w-full">
+                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 pb-20 rounded-lg">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Summer Session</h3>
+
+                            <p class="text-md">CCS also offers shorter, more intensive summer programs, including a trip to Israel and internship opportunities.</p>
+
+                            <button class="absolute bottom-4 left-4">
+                                <a href="">
+                                    <div class="whitebutton">
+                                        Learn more
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

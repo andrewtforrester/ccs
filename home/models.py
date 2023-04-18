@@ -163,8 +163,6 @@ class HomePage(Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
-    subpage_types = []
-
 
 # ABOUT
 
@@ -666,4 +664,7 @@ class ConstructionPage(Page):
     ]
 
     is_creatable = False
+    subpage_types = []
+
+class CurriculumPage(Page):
     subpage_types = []
