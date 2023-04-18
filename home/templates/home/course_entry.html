@@ -26,26 +26,20 @@
                 </div>
             {% endif %}
 
-            <div class="flex">
-                <div class="w-1/2">
-                    {% if page.instructor|length %}<div class="title-4 pb-2 flex">Lead by <span class="ml-1"></span> {{ page.instructor|richtext }}</div>{% endif %}
-                    {% if page.location|length %}<div class="title-4 pb-2 flex">Location: {{ page.location|richtext }}</div>{% endif %}
-                    {% if page.meeting_pattern|length %}<div class="title-4 pb-2 flex">{{ page.meeting_pattern|richtext }}</div>{% endif %}
-                </div>
-                {% if page.get_children.specific.all|length %}
-                    <div class="w-1/2">
-                        <div onclick="toggleVisibility()" id="all_meetings_header" class="title-4 pb-2 flex hover:cursor-pointer">› See all meetings</div>
+            {% if page.instructor|length %}<div class="title-4 pb-2 flex">Lead by <span class="ml-1"></span> {{ page.instructor|richtext }}</div>{% endif %}
+            {% if page.location|length %}<div class="title-4 pb-2 flex">Location: {{ page.location|richtext }}</div>{% endif %}
+            {% if page.meeting_pattern|length %}<div class="title-4 pb-2 flex">{{ page.meeting_pattern|richtext }}</div>{% endif %}
+            {% if false %}
+                <div onclick="toggleVisibility()" id="all_meetings_header" class="title-4 pb-2 flex hover:cursor-pointer">› See all meetings</div>
 
-                        <div id="all_times_container" class="h-0 transition-height ease-in-out duration-300 transform overflow-hidden">
-                            {% for item in page.get_children.specific.all %}
-                                <div>
-                                    <h2 class="title-4">{{ item.date|date:'M d' }} at {{ item.time }}</h2>
-                                </div>
-                            {% endfor %}
+                <div id="all_times_container" class="h-0 transition-height ease-in-out duration-300 transform overflow-hidden">
+                    {% for item in page.get_children.specific.all %}
+                        <div>
+                            <h2 class="title-4">{{ item.date|date:'M d' }} at {{ item.time }}</h2>
                         </div>
-                    </div>
-                {% endif %}
-            </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}
