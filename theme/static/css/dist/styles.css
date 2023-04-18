@@ -1203,6 +1203,10 @@ select {
   left: 1rem;
 }
 
+.top-20 {
+  top: 5rem;
+}
+
 .z-\[10000\] {
   z-index: 10000;
 }
@@ -1435,6 +1439,18 @@ select {
   margin-top: 6rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
 .block {
   display: block;
 }
@@ -1569,6 +1585,10 @@ select {
 
 .h-\[23rem\] {
   height: 23rem;
+}
+
+.h-\[5rem\] {
+  height: 5rem;
 }
 
 .min-h-screen {
