@@ -2,17 +2,24 @@
 {% load static %}
 
 {% block content %}
-<div id="giving-page-container" class="px-6 pt-40 sm:px-10 bg-white">
-	<div class="max-w-screen-2xl mx-auto">
-		<h1 class="pb-10 title-1">Give</h1>
+<div id="giving-page-container" class="pt-40 sm:px-10 bg-white">
+	<div class="max-w-screen-xl mx-auto">
+		<h1 class="pb-10 title-1 px-6 sm:px-0">Give</h1>
 
-		<div class="lg:flex items-start pb-20">
-			<div class="sm:pr-10 ">
-				<p class="text-xl pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit nisl arcu. In at elementum leo. Nulla congue laoreet eros, ac sodales arcu pulvinar vel. Maecenas commodo vel purus nec elementum. Sed consequat semper nisl et pulvinar. Vestibulum lobortis sodales libero at hendrerit. Donec venenatis mollis nisi, eget ornare mauris gravida vel. Fusce sodales enim ac euismod aliquam. Duis lectus velit, aliquam facilisis libero id, ornare congue mauris. Curabitur aliquam ligula vel justo rhoncus ornare. Proin quis blandit orci. Donec arcu augue, maximus sed gravida et, porttitor in velit. Vivamus lorem est, sodales nec faucibus ac, consectetur tincidunt lectus.</p>
-				
+		<div class="items-start sm:pb-20 relative">
+			<div class="sm:pr-10 px-6 sm:px-0">
+
+				<h3 class="title-3 text-navy pb-20">Your contribution helps us <span class="text-rose">enrich the intellectual lives</span>  of Christians at Duke.</h3>
+
+				<div class="relative sm:h-[48rem] lg:h-[43rem]  mt-10">
+					<img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="200" class="mb-2 sm:mb-0 rounded-lg sm:absolute top-0 left-0 sm:h-[15rem] sm:w-[23.5rem] xl:h-[18rem] " src="{% static "learn.jpg" %}" alt="">
+					<img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="400" class="mb-2 sm:mb-0 rounded-lg sm:absolute top-[8rem] left-[12rem] lg:top-[5rem] lg:left-[15rem] sm:h-[20rem] xl:left-[20rem] xl:h-[23rem]" src="{% static "give.jpeg" %}" alt="">
+					<img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="600" class="mb-2 sm:mb-0 rounded-lg sm:absolute top-[30rem] lg:top-[23rem] right-[0rem] lg:left-[33rem] xl:left-[38rem] sm:h-[18rem] xl:h-[21rem]" src="{% static "game.jpeg" %}" alt="">
+					<img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="800" class="mb-2 sm:mb-0 rounded-lg sm:absolute top-[21rem] left-[1rem] sm:h-[15rem] xl:h-[18rem]" src="{% static "staff.jpg" %}" alt="">
+				</div>
 				
 			</div>
-			<div class="flex justify-center lg:justify-end pt-10 lg:pt-0">
+			<div class="sm:absolute top-[8rem] right-10 sm:flex justify-center lg:justify-end pt-10 lg:pt-0 z-[100]">
 				{% include "give/_partials/paymentflow.html" %}
 			</div>
 		</div>
@@ -21,10 +28,10 @@
 
 </div>
 <div class="p-6 sm:px-10 sm:py-20 bg-navy">
-	<div class="max-w-screen-2xl mx-auto">
+	<div class="max-w-screen-xl mx-auto">
 		<h2 class="title-3 text-white pb-10">Help us make an impact at Duke</h2>
 
-		<div class="rounded-lg bg-rose px-2 relative max-w-[60rem] mx-auto">
+		<div class="mb-2 sm:mb-0 rounded-lg bg-rose px-2 relative max-w-[60rem] mx-auto">
 			<div class="main-carousel w-full bg-transparent text-navy rounded-lg">
 				<div class="carousel-cell w-full px-20 py-10">
 					<p class="text-2xl pb-4">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
@@ -32,8 +39,13 @@
 				</div>
 	
 				<div class="carousel-cell w-full px-20 py-10">
-					<p class="text-2xl pb-4">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
-					<p class="text-2xl font-bold">Carter Duncan, ’17</p>
+					<p class="text-2xl pb-4">"It's strange to imagine a life at Duke for me without the Center for Christianity and Scholarship and all of the friends and mentors whom I've come to cherish there.”</p>
+					<p class="text-2xl font-bold">Lizzie Bond, ’21</p>
+				</div>
+
+				<div class="carousel-cell w-full px-20 py-10">
+					<p class="text-2xl pb-4">"My faith is much richer because of being a Fellow at CCS. I found that CCS offered something very different from campus ministries, proving Christian fellowship at Duke to be much more expansive than I anticipated.”</p>
+					<p class="text-2xl font-bold">Sebastian Borda, ’20</p>
 				</div>
 			</div>
 	
@@ -44,7 +56,7 @@
 
 
 <div class="p-6 sm:p-10 bg-cover bg-center relative" style="background-image: url('{% static "os.jpg" %}');">
-	<div class="max-w-screen-2xl mx-auto">
+	<div class="max-w-screen-xl mx-auto">
 		<div class="absolute inset-0 z-10 bg-navy opacity-[0.6]"></div>
 
 		<div class="relative z-20 pb-10 lg:pb-20">
@@ -127,27 +139,3 @@
 {% block extra_css %}
 	<link rel="stylesheet" href="{% static 'stripestyles.css' %}">
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-

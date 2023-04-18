@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Buy cool new product</title>
-  </head>
-  <body>
-    <h1>Success!</h1>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="h-screen w-full flex items-center justify-center text-center">
+        <div>
+            <h1 class="title-1 text-navy mb-4">Thank You!</h1>
+            <p class="body-text-1 max-w-[30rem]">Your donation will help us enrich the intellectual lives of Christian students at Duke.</p>
+        </div>
+    </div>
+{% endblock %}

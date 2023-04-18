@@ -49,7 +49,7 @@ function goBackToPriceSelect() {
     document.querySelector("#payment-box-container").classList.add('h-0');
 
     setTimeout(function() {
-        document.querySelector("#initial-container").classList.add('h-[20rem]');
+        document.querySelector("#initial-container").classList.add('h-[23rem]','sm:h-[20rem]');
         document.querySelector("#initial-container").classList.remove('h-0');
     }, 100);
 
@@ -73,14 +73,14 @@ async function runDonationProcess() {
 
         d = priceValidation(d);
 
-        document.querySelector("#initial-container").classList.remove('h-[20rem]');
+        document.querySelector("#initial-container").classList.remove('h-[23rem]','sm:h-[20rem]');
         document.querySelector("#initial-container").classList.add('h-0');
         document.querySelector("#donation-amount-container").innerHTML = d;
 
         setTimeout(function() {
             document.querySelector("#submit").classList.remove("hidden");
             document.querySelector("#price-label-container").classList.remove('hidden');
-            document.querySelector("#price-label-container").classList.add('flex');
+            document.querySelector("#price-label-container").classList.add('sm:flex');
 
             initialize(d);
             checkStatus();

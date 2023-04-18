@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Buy cool new product</title>
-  </head>
-  <body>
-    <h1>Failure!</h1>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="h-screen w-full flex items-center justify-center text-center">
+        <div>
+            <h1 class="title-1 text-navy mb-4">Donation Failed</h1>
+            <p class="body-text-1 max-w-[30rem]">We're sorry, something seems to have gone wrong. Please reload the page and try again.</p>
+        </div>
+    </div>
+{% endblock %}
