@@ -6,6 +6,10 @@ ccs/settings/*
 # Database
 db.sqlite3
 
+# Other Custom
+
+.deploy
+
 # Local Virtual Environment Files
 venv/
 venv/* 
