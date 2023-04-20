@@ -9,6 +9,7 @@ db.sqlite3
 # Other Custom
 
 .deploy
+requirements.txt 
 
 # Local Virtual Environment Files
 venv/
