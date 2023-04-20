@@ -14,9 +14,7 @@ def CreateCheckoutSessionView(request,dollars):
         intent = stripe.PaymentIntent.create(
             amount=int(dollars)*100,
             currency='usd',
-            automatic_payment_methods={
-                'enabled': True,
-            },
+            payment_method_types=['card', 'cashapp'],
         )
 
         return JsonResponse({
