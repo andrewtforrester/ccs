@@ -163,6 +163,8 @@ class HomePage(Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
+    subpage_types = []
+
 
 # ABOUT
 
