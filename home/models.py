@@ -439,8 +439,8 @@ class CourseEntry(Page):
     ]
 
     def abridged_description(self):
-        if len(self.description) > 300:
-            return self.description[:300] + "..."
+        if len(self.description) > 400:
+            return self.description[:400] + "..."
         else:
             return self.description
 
@@ -521,8 +521,8 @@ class ReadingGroup(Page):
     ]
 
     def abridged_description(self):
-        if len(self.description) > 300:
-            return self.description[:300] + "..."
+        if len(self.description) > 400:
+            return self.description[:400] + "..."
         else:
             return self.description
 
@@ -625,16 +625,28 @@ class Give(Page):
 class Event(Page):
 
     description = RichTextField(null=True, blank=True)
+    registration_link = models.CharField(max_length=1023, blank=True)
+    location = models.CharField(max_length=1023, blank=True)
+    poster = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('description'),
+        FieldPanel('registration_link'),
+        FieldPanel('location'),
+        FieldPanel('poster'),
     ]
     
     subpage_types = ['home.EventInstance']
 
     def abridged_description(self):
-        if len(self.description) > 300:
-            return self.description + "..."
+        if len(self.description) > 400:
+            return self.description[:400] + "..."
         else:
             return self.description
 

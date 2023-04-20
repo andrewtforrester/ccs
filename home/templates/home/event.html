@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load replace %}
+
+
+{% block content %}
+    <section class="standard-space min-h-screen">
+        <div class="max-w-screen-md mx-auto">
+            <div class="pb-12">
+                <h1 class="text-navy title-2">{{ page.title }}</h1>
+            </div>
+            <div class="body-text-1">{{ page.description|richtext }}</div>
+
+            {% if page.registration_link|length %}
+                <div class="py-10">
+                    <button class="relative">
+                        <a href="{{ page.registration_link }}">
+                            <div class="navybutton">
+                                Register 
+                            </div>  
+                        </a>
+                    </button>
+                </div>
+            {% endif %}
+
+            {% if page.instructor|length %}<div class="title-4 pb-2 flex">Lead by <span class="ml-1"></span> {{ page.instructor|richtext }}</div>{% endif %}
+            {% if page.location|length %}<div class="title-4 pb-2 flex">Location: {{ page.location|richtext }}</div>{% endif %}
+            {% if page.meeting_pattern|length %}<div class="title-4 pb-2 flex">{{ page.meeting_pattern|richtext }}</div>{% endif %}
+            {% if false %}
+                <div onclick="toggleVisibility()" id="all_meetings_header" class="title-4 pb-2 flex hover:cursor-pointer">› See all meetings</div>
+
+                <div id="all_times_container" class="h-0 transition-height ease-in-out duration-300 transform overflow-hidden">
+                    {% for item in page.get_children.specific.all %}
+                        <div>
+                            <h2 class="title-4">{{ item.date|date:'M d' }} at {{ item.time }}</h2>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var allTimesOpen = false;
+
+        toggleVisibility = function() {
+            allTimesOpen = !allTimesOpen;
+            
+            if (allTimesOpen) {
+                document.getElementById('all_times_container').classList.remove('h-0');
+                document.getElementById('all_times_container').classList.add('py-10');
+            } else {
+                document.getElementById('all_times_container').classList.add('h-0');
+                document.getElementById('all_times_container').classList.remove('py-10');
+
+            }
+        }
+
+    </script>
+{% endblock %}
