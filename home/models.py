@@ -705,8 +705,8 @@ class CertificatePathwayPage(Page):
         ('content_block', blocks.StructBlock([
             ('title', blocks.CharBlock()),
             ('description', blocks.RichTextBlock()),
-            ('button_text', blocks.CharBlock()),
-            ('button_link', blocks.CharBlock()),
+            ('button_text', blocks.CharBlock(blank=True)),
+            ('button_link', blocks.CharBlock(blank=True)),
         ])),
     ], use_json_field=True)
 
@@ -723,8 +723,8 @@ class CertificatePathwayPage(Page):
         ('content_block', blocks.StructBlock([
             ('title', blocks.CharBlock()),
             ('description', blocks.RichTextBlock()),
-            ('button_text', blocks.CharBlock()),
-            ('button_link', blocks.CharBlock()),
+            ('button_text', blocks.CharBlock(blank=True)),
+            ('button_link', blocks.CharBlock(blank=True)),
         ])),
     ], use_json_field=True)
 
