@@ -51,17 +51,7 @@
 
     <body class="bg-white relative ">
 
-        <!-- <div class="fixed z-[10000] bottom-10 right-10 bg-white border-rose border-4 w-[18rem] p-2">
-            <div class="body-text-1 font-bold">
-                ccsduke.org v.0.9.0
-            </div>
-            <div class="body-text-1 font-bold">
-                For testing and review only - don't share this link yet! 
-            </div>
-        </div> -->
-
         <div id="app">
-
             <global-menu></global-menu>
 
             {% if page.title == 'Home' or page.title == 'Who We Are' or page.title == 'Leadership' %}
@@ -69,13 +59,11 @@
             {% else %}
                 <global-header lighttop="Yes"></global-header> 
             {% endif %}
-            
 
             {% block content %}
             {% endblock %}
         
             {% include '_partials/footer.html' %}
-
         </div>
 
 
@@ -94,13 +82,9 @@
         {# Flickity #}
         <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-
-
         {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
+            {# Override this in templates to add extra javascript #}
         {% endblock %}
-
-        
 
     </body>
 </html>
