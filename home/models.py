@@ -439,8 +439,8 @@ class CourseEntry(Page):
     ]
 
     def abridged_description(self):
-        if len(self.description) > 400:
-            return self.description[:400] + "..."
+        if len(self.description) > 350:
+            return self.description[:350] + "..."
         else:
             return self.description
 
@@ -521,8 +521,8 @@ class ReadingGroup(Page):
     ]
 
     def abridged_description(self):
-        if len(self.description) > 400:
-            return self.description[:400] + "..."
+        if len(self.description) > 350:
+            return self.description[:350] + "..."
         else:
             return self.description
 
@@ -645,8 +645,8 @@ class Event(Page):
     subpage_types = ['home.EventInstance']
 
     def abridged_description(self):
-        if len(self.description) > 400:
-            return self.description[:400] + "..."
+        if len(self.description) > 350:
+            return self.description[:350] + "..."
         else:
             return self.description
 
@@ -744,7 +744,7 @@ class CertificatePathwayPage(Page):
         FieldPanel('course_block_header_1'),
         FieldPanel('course_block_header_2'),
         FieldPanel('course_block_description'),
-        FieldPanel('eligable_courses'),
+        # FieldPanel('eligable_courses'),
         FieldPanel('course_block_button_text'),
         FieldPanel('course_block_button_link'),
     ]
@@ -767,3 +767,12 @@ class CertificatePathwayPage(Page):
     ])
 
     subpage_types = []
+
+    def active_courses(self):
+        return CourseEntry.objects.live().filter(type='active').specific()
+
+class FellowsProgramIndex(Page):
+    pass
+
+class SummerProgramsIndex(Page):
+    pass

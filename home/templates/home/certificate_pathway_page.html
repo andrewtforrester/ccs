@@ -23,8 +23,26 @@
                     <div class="body-text-1 text-white pb-10">{{ page.course_block_description|richtext }}</div>
     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+
+                        {% for course in page.active_courses %}
+                            <div class="text-navy w-full">
+                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
+                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.title }}</h3>
+
+                                    <div class="text-md text-navy">{{ course.abridged_description|richtext }}</div>
+
+                                    <button class="absolute bottom-4 left-4">
+                                        <a href="{{ course.url }}">
+                                            <div class="navybutton">
+                                                Learn more
+                                            </div>
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
     
-                        {% for course in page.eligable_courses %}
+                        <!-- {% for course in page.eligable_courses %}
                             <div class="text-navy w-full">
                                 <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 {% if course.value.button_link|length and course.value.button_text|length %} pb-20 {% endif %} rounded-lg">
                                     <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.value.title }}</h3>
@@ -42,7 +60,7 @@
                                     {% endif %}
                                 </div>
                             </div>
-                        {% endfor %}
+                        {% endfor %} -->
                     </div>
     
                     <button>

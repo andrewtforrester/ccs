@@ -2136,6 +2136,11 @@ select {
   padding-bottom: 3.5rem;
 }
 
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
 .pt-40 {
   padding-top: 10rem;
 }
@@ -3081,6 +3086,10 @@ p {
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:p-14 {
+    padding: 3.5rem;
   }
 
   .lg\:py-10 {
