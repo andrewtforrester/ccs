@@ -26,18 +26,20 @@
     
                         {% for course in page.eligable_courses %}
                             <div class="text-navy w-full">
-                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
+                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 {% if course.value.button_link|length and course.value.button_text|length %} pb-20 {% endif %} rounded-lg">
                                     <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.value.title }}</h3>
     
                                     <p class="text-md text-navy">{{ course.value.description }}</p>
     
-                                    <button class="absolute bottom-4 left-4">
-                                        <a href="{{ course.value.button_link }}">
-                                            <div class="navybutton">
-                                                {{ course.value.button_text }}
-                                            </div>
-                                        </a>
-                                    </button>
+                                    {% if course.value.button_link|length and course.value.button_text|length %}
+                                        <button class="absolute bottom-4 left-4">
+                                            <a href="{{ course.value.button_link }}">
+                                                <div class="navybutton">
+                                                    {{ course.value.button_text }}
+                                                </div>
+                                            </a>
+                                        </button>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endfor %}
@@ -63,18 +65,20 @@
 
                         {% for project in page.eligable_projects %}
                             <div class="text-white w-full">
-                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
+                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 {% if project.value.button_link|length and project.value.button_text|length %} pb-20 {% endif %} rounded-lg">
                                     <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ project.value.title }}</h3>
 
                                     <p class="text-md">{{ project.value.description }}</p>
 
-                                    <button class="absolute bottom-4 left-4">
-                                        <a href="{{ project.value.button_link }}">
-                                            <div class="whitebutton">
-                                                {{ project.value.button_text }}
-                                            </div>
-                                        </a>
-                                    </button>
+                                    {% if project.value.button_link|length and project.value.button_text|length %}
+                                        <button class="absolute bottom-4 left-4">
+                                            <a href="{{ project.value.button_link }}">
+                                                <div class="whitebutton">
+                                                    {{ project.value.button_text }}
+                                                </div>
+                                            </a>
+                                        </button>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endfor %}
