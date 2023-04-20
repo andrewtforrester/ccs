@@ -1,37 +1,39 @@
-<form class="bg-[#ffffff] w-full sm:w-[22rem] lg:w-[25rem] py-6 px-6" id="payment-form">
+<form class="bg-[#ffffff] w-full py-6 px-6" id="payment-form">
     {% csrf_token %}
 
     
-    <div id="initial-container" class="overflow-hidden flex flex-col justify-between h-[23rem] sm:h-[20rem] transition-all ease-in-out duration-500 transform">
+    <div id="initial-container" class="overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-500 transform">
         
-        <div class="font-bold title-4 mb-4 sm:mb-0">
-            Make a One-Time Donation
+        <div class="font-bold text-2xl mb-4">
+            Make a One-Time Gift
         </div>
 
-        <div class="text-md">
+        <div class="text-xl mb-10">
             You can make a one-time gift to the Center here, or check below for more giving options!
         </div>
         
         <div>
-            <div class="sm:flex justify-start w-full pb-4">
-                <div class="w-full sm:w-auto mb-2 sm:mb-0" id="donate1">
-                    <div class="navybutton rounded-lg w-full sm:w-[5rem] sm:mr-2 text-center">
+            <div class="sm:flex sm:flex-wrap justify-start items-center w-full pb-2">
+                <div class="w-full mb-2 sm:mb-0 sm:w-20 mr-2" id="donate1">
+                    <div class="navybutton rounded-lg w-full text-center">
                         $25
                     </div>
                 </div>
-                <div class="w-full sm:w-auto mb-2 sm:mb-0" id="donate2">
-                    <div class="navybutton rounded-lg w-full sm:w-[5rem] sm:mx-2 text-center">
+                <div class="w-full mb-2 sm:mb-0 sm:w-20 mr-2" id="donate2">
+                    <div class="navybutton rounded-lg w-full text-center">
                         $50
                     </div>
                 </div>
-                <div class="w-full sm:w-auto mb-2 sm:mb-0" id="donate3">
-                    <div class="navybutton rounded-lg w-full sm:w-[5rem] sm:mx-2 text-center">
+                <div class="w-full mb-2 sm:mb-0 sm:w-20 mr-4" id="donate3">
+                    <div class="navybutton rounded-lg w-full text-center">
                         $100
                     </div>
                 </div>
+
+                
             </div>
 
-            <div class="relative h-[3rem] flex">
+            <div class="relative flex pb-10">
                 <div class="text-xl whitespace-nowrap flex items-center">
                     Other Amount: $
                 </div>
@@ -40,6 +42,8 @@
 
                 </div>
             </div>
+
+            
 
             <div id="errorContainer" class="text-lg text-burgundy pt-4 overflow-hidden hidden">
                 Please enter a valid dollar amount.
