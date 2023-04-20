@@ -3093,6 +3093,11 @@ p {
     padding-right: 5rem;
   }
 
+  .lg\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
   .lg\:pb-6 {
     padding-bottom: 1.5rem;
   }
@@ -3126,6 +3131,10 @@ p {
 }
 
 @media (min-width: 1280px) {
+  .xl\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .xl\:h-\[45rem\] {
     height: 45rem;
   }
@@ -3140,6 +3149,10 @@ p {
 
   .xl\:max-w-\[80\%\] {
     max-width: 80%;
+  }
+
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .xl\:text-7xl {
