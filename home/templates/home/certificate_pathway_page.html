@@ -6,98 +6,107 @@
 
 
 {% block content %}
-    <div class="bg-white px-4 sm:px-10 pt-40 pb-6 sm:pb-10">
+    <div class="bg-white pt-40 pb-6 sm:pb-10">
         <div class="mx-auto max-w-screen-2xl">
-            <h1 class="title-1 text-navy pb-6">{{ page.title }}</h1>
-
-            <div class="body-text-1 text-navy pb-10 max-w-[40rem]">{{ page.page_description|richtext }}</div>
-
-
-            <div class="bg-navy rounded-lg w-full py-6 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40 mb-10">
-                <h2 class="text-sm font-sans font-bold text-rose">{{ page.course_block_header_1 }}</h2>
-
-                <h2 class="title-2 text-rose pb-4">{{ page.course_block_header_2 }}</h2>
-
-                <div class="body-text-1 text-white pb-10">{{ page.course_block_description|richtext }}</div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-
-                    {% for course in page.eligable_courses %}
-                        <div class="text-navy w-full">
-                            <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.value.title }}</h3>
-
-                                <p class="text-md text-navy">{{ course.value.description }}</p>
-
-                                <button class="absolute bottom-4 left-4">
-                                    <a href="{{ course.value.button_link }}">
-                                        <div class="navybutton">
-                                            {{ course.value.button_text }}
-                                        </div>
-                                    </a>
-                                </button>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <button>
-                    <a href="{{ page.course_block_button_link }}">
-                        <div class="whitebutton">
-                            {{ page.course_block_button_text }}
-                        </div>
-                    </a>
-                </button>
+            <div class="px-4 sm:px-10 pb-10 sm:pb-0">
+                <h1 class="title-1 text-navy pb-6">{{ page.title }}</h1>
+                <div class="text-2xl text-navy pb-10 max-w-[50rem]">{{ page.page_description|richtext }}</div>
             </div>
+            
 
-            <div class="bg-rose rounded-lg w-full py-6 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40">
-                <h2 class="text-sm font-sans font-bold text-navy">{{ page.project_block_header_1 }}</h2>
-
-                <h2 class="title-2 text-navy pb-10">{{ page.project_block_header_2 }}</h2>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                    {% for project in page.eligable_projects %}
-                        <div class="text-white w-full">
-                            <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ project.value.title }}</h3>
-
-                                <p class="text-md">{{ project.value.description }}</p>
-
-                                <button class="absolute bottom-4 left-4">
-                                    <a href="{{ project.value.button_link }}">
-                                        <div class="whitebutton">
-                                            {{ project.value.button_text }}
-                                        </div>
-                                    </a>
-                                </button>
+            <div class="sm:px-10">
+                <div class="bg-navy sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40 sm:mb-10">
+                    <h2 class="text-sm font-sans font-bold text-rose">{{ page.course_block_header_1 }}</h2>
+    
+                    <h2 class="title-2 text-rose pb-4">{{ page.course_block_header_2 }}</h2>
+    
+                    <div class="body-text-1 text-white pb-10">{{ page.course_block_description|richtext }}</div>
+    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+    
+                        {% for course in page.eligable_courses %}
+                            <div class="text-navy w-full">
+                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
+                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.value.title }}</h3>
+    
+                                    <p class="text-md text-navy">{{ course.value.description }}</p>
+    
+                                    <button class="absolute bottom-4 left-4">
+                                        <a href="{{ course.value.button_link }}">
+                                            <div class="navybutton">
+                                                {{ course.value.button_text }}
+                                            </div>
+                                        </a>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+    
+                    <button>
+                        <a href="{{ page.course_block_button_link }}">
+                            <div class="whitebutton">
+                                {{ page.course_block_button_text }}
+                            </div>
+                        </a>
+                    </button>
                 </div>
             </div>
+            
+            <div class="sm:px-10">
+                <div class="bg-rose sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40">
+                    <h2 class="text-sm font-sans font-bold text-navy">{{ page.project_block_header_1 }}</h2>
 
+                    <h2 class="title-2 text-navy pb-10">{{ page.project_block_header_2 }}</h2>
 
-            <div class="my-20">
-                <div class="flex justify-center items-center">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
-                    {% image page.contact_headshot width-1000 as ch %}
+                        {% for project in page.eligable_projects %}
+                            <div class="text-white w-full">
+                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
+                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ project.value.title }}</h3>
 
-                    <div class="bg-center bg-cover h-52 w-52 rounded-full mr-5" style="background-image: url('{{ ch.url }}');">
+                                    <p class="text-md">{{ project.value.description }}</p>
+
+                                    <button class="absolute bottom-4 left-4">
+                                        <a href="{{ project.value.button_link }}">
+                                            <div class="whitebutton">
+                                                {{ project.value.button_text }}
+                                            </div>
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-28 mb-20 px-4 sm:px-10">
+                <div class="sm:flex justify-center items-center">
+
+                    {% image page.contact_headshot width-1500 as ch %}
+
+                    <div class="flex justify-center sm:block">
+                        <div class="bg-center bg-cover h-52 w-52 lg:h-60 lg:w-60 rounded-full mr-5 mb-5 sm:mb-0" style="background-image: url('{{ ch.url }}');">
+
+                    </div>
 
                     </div>
                     <div>
-                        <div class="text-2xl text-navy max-w-[40rem]">
+                        <div class="text-2xl text-navy max-w-[40rem] py-5 sm:py-0">
                             {{ page.contact_description|richtext }}
                         </div>
                         
-                        <button>
-                            <a href="{{ page.contact_button_link }}">
-                                <div class="navybutton">
-                                    {{ page.contact_button_text }}
-                                </div>
-                            </a>
-                        </button>
+                        <div class="flex justify-center sm:block">
+                            <button>
+                                <a href="{{ page.contact_button_link }}">
+                                    <div class="navybutton">
+                                        {{ page.contact_button_text }}
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
