@@ -612,13 +612,6 @@ class LendAHand(Page):
     is_creatable = False
     subpage_types = []
 
-class Give(Page):
-    
-    is_creatable = False
-    subpage_types = []
-
-
-
 
 # HELPERS
 
