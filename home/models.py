@@ -1,5 +1,6 @@
 from django.db import models
 from django import forms
+from wagtailseo.models import SeoMixin
 
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
@@ -10,7 +11,7 @@ import datetime
 
 # HOMEPAGE
 
-class HomePage(Page):
+class HomePage(SeoMixin, Page):
     is_creatable = False
     # Helper Methods
 
@@ -159,7 +160,7 @@ class HomePage(Page):
         ObjectList(off, heading='What We Offer'),
         ObjectList(slideshow, heading='Slideshow'),
         ObjectList(map_tab, heading='East Campus Map'),
-        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(SeoMixin.seo_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
@@ -422,6 +423,13 @@ class CourseEntry(Page):
         related_name='+'
     )
 
+    categories = [
+        ('Short Course', 'Short Course'),
+        ('Duke Course', 'Duke Course'),
+    ]
+
+    category = RichTextField(features=[], choices=categories)
+
     status = [
         ('active','Active'),
         ('archived','Archived'),
@@ -437,6 +445,7 @@ class CourseEntry(Page):
         FieldPanel('meeting_pattern'),
         FieldPanel('description'),
         FieldPanel('poster'),
+        FieldPanel('category',widget=forms.Select),
         FieldPanel('type',widget=forms.Select),
     ]
 

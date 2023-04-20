@@ -11,27 +11,33 @@
         <div class="carousel-cell w-full">
             <div class="sm:px-20 py-16">
                 <div class="pb-8">
-                <div class="title-3 pb-3">
-                    {{ course.title }}
-                </div>
-                {% if course.location|length %}
-                    <div class="text-navy text-md font-semibold">
-                        {{ course.location }} 
+                    <div class="mb-6">
+                        <span class="text-navy font-bold text-sm">
+                            {{ course.category|upper }}
+                        </span>
                     </div>
-                {% endif %}
+                    
+                    <div class="title-3 pb-3">
+                        {{ course.title }}
+                    </div>
+                    {% if course.location|length %}
+                        <div class="text-navy text-md font-semibold">
+                            {{ course.location }} 
+                        </div>
+                    {% endif %}
 
 
-                {% if course.meeting_pattern|length %}
-                    <div class="text-navy text-md font-semibold">
-                        {{ course.meeting_pattern }} 
-                    </div>
-                {% endif %}
+                    {% if course.meeting_pattern|length %}
+                        <div class="text-navy text-md font-semibold">
+                            {{ course.meeting_pattern }} 
+                        </div>
+                    {% endif %}
 
-                {% if course.instructor|length %}
-                    <div class="text-navy text-md font-semibold">
-                        Lead by {{ course.instructor }}
-                    </div>
-                {% endif %}
+                    {% if course.instructor|length %}
+                        <div class="text-navy text-md font-semibold">
+                            Lead by {{ course.instructor }}
+                        </div>
+                    {% endif %}
                 </div>
                 
                 <div class="body-text-1 pb-4">
