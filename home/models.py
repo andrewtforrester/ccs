@@ -679,4 +679,91 @@ class ConstructionPage(Page):
     subpage_types = []
 
 class CertificatePathwayPage(Page):
+
+    # GENERAL
+
+    page_description = RichTextField()
+    contact_headshot = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    contact_description = RichTextField()
+    contact_button_text = models.TextField(max_length=255)
+    contact_button_link = models.TextField(max_length=255)
+    
+
+    # COURSE BLOCK
+
+    course_block_header_1 = models.TextField(max_length=255)
+    course_block_header_2 = models.TextField(max_length=255)
+    course_block_description = RichTextField()
+
+    eligable_courses = StreamField([
+        ('content_block', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('description', blocks.RichTextBlock()),
+            ('button_text', blocks.CharBlock()),
+            ('button_link', blocks.CharBlock()),
+        ])),
+    ], use_json_field=True)
+
+    course_block_button_text = models.TextField(max_length=255)
+    course_block_button_link = models.TextField(max_length=255)
+
+    # PROJECT BLOCK
+
+    project_block_header_1 = models.TextField(max_length=255)
+    project_block_header_2 = models.TextField(max_length=255)
+    project_block_description = RichTextField()
+
+    eligable_projects = StreamField([
+        ('content_block', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('description', blocks.RichTextBlock()),
+            ('button_text', blocks.CharBlock()),
+            ('button_link', blocks.CharBlock()),
+        ])),
+    ], use_json_field=True)
+
+    project_block_button_text = models.TextField(max_length=255)
+    project_block_button_link = models.TextField(max_length=255)
+
+    general_panel = [
+        FieldPanel('title'),
+        FieldPanel('page_description'),
+        FieldPanel('contact_headshot'),
+        FieldPanel('contact_description'),
+        FieldPanel('contact_button_text'),
+        FieldPanel('contact_button_link'),
+    ]
+
+    course_block_panel = [
+        FieldPanel('course_block_header_1'),
+        FieldPanel('course_block_header_2'),
+        FieldPanel('course_block_description'),
+        FieldPanel('eligable_courses'),
+        FieldPanel('course_block_button_text'),
+        FieldPanel('course_block_button_link'),
+    ]
+
+    project_block_panel = [
+        FieldPanel('project_block_header_1'),
+        FieldPanel('project_block_header_2'),
+        FieldPanel('project_block_description'),
+        FieldPanel('eligable_projects'),
+        FieldPanel('project_block_button_text'),
+        FieldPanel('project_block_button_link'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(general_panel, heading='General'),
+        ObjectList(course_block_panel, heading='Courses Requirement'),
+        ObjectList(project_block_panel, heading='Projects and Experiences Requirement'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
+
     subpage_types = []

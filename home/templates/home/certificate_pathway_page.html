@@ -10,137 +10,98 @@
         <div class="mx-auto max-w-screen-2xl">
             <h1 class="title-1 text-navy pb-6">{{ page.title }}</h1>
 
-            <p class="body-text-1 text-navy pb-10 max-w-[40rem]">Complete two house courses and two additional CCS academic offerings to earn the Certificate of Christian Studies.</p>
+            <div class="body-text-1 text-navy pb-10 max-w-[40rem]">{{ page.page_description|richtext }}</div>
 
 
             <div class="bg-navy rounded-lg w-full py-6 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40 mb-10">
-                <h2 class="text-sm font-sans font-bold text-rose">PICK 2</h2>
+                <h2 class="text-sm font-sans font-bold text-rose">{{ page.course_block_header_1 }}</h2>
 
-                <h2 class="title-2 text-rose pb-4">House Courses</h2>
+                <h2 class="title-2 text-rose pb-4">{{ page.course_block_header_2 }}</h2>
 
-                <p class="body-text-1 text-white pb-10">CCS House Courses are Duke courses taught by Christian professors. They are half-credit courses graded Sat/Unsat and provide elective credit toward graduation.</p>
+                <div class="body-text-1 text-white pb-10">{{ page.course_block_description|richtext }}</div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-                    <div class="text-navy w-full">
-                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Science and Faith</h3>
 
-                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
+                    {% for course in page.eligable_courses %}
+                        <div class="text-navy w-full">
+                            <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
+                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.value.title }}</h3>
 
-                            <button class="absolute bottom-4 left-4">
-                                <a href="">
-                                    <div class="navybutton">
-                                        Learn more
-                                    </div>
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="text-navy w-full">
-                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Faith and Power</h3>
-                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
+                                <p class="text-md text-navy">{{ course.value.description }}</p>
 
-                            <button class="absolute bottom-4 left-4">
-                                <a href="">
-                                    <div class="navybutton">
-                                        Learn more
-                                    </div>
-                                </a>
-                            </button>
+                                <button class="absolute bottom-4 left-4">
+                                    <a href="{{ course.value.button_link }}">
+                                        <div class="navybutton">
+                                            {{ course.value.button_text }}
+                                        </div>
+                                    </a>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text-navy w-full">
-                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Being Human</h3>
-                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
-                            <button class="absolute bottom-4 left-4">
-                                <a href="">
-                                    <div class="navybutton">
-                                        Learn more
-                                    </div>
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="text-navy w-full">
-                        <div class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">What Do Christians Believe and Why?</h3>
-                            <p class="text-md text-navy">Cras viverra hendrerit imperdiet. Maecenas justo arcu, congue</p>
-                            <button class="absolute bottom-4 left-4">
-                                <a href="">
-                                    <div class="navybutton">
-                                        Learn more
-                                    </div>
-                                </a>
-                            </button>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
                 <button>
-                    <a href="/courses">
+                    <a href="{{ page.course_block_button_link }}">
                         <div class="whitebutton">
-                            See all courses
+                            {{ page.course_block_button_text }}
                         </div>
                     </a>
-                    
                 </button>
             </div>
 
             <div class="bg-rose rounded-lg w-full py-6 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40">
-                <h2 class="text-sm font-sans font-bold text-navy">PICK 2</h2>
+                <h2 class="text-sm font-sans font-bold text-navy">{{ page.project_block_header_1 }}</h2>
 
-                <h2 class="title-2 text-navy pb-10">Projects and Experiences</h2>
+                <h2 class="title-2 text-navy pb-10">{{ page.project_block_header_2 }}</h2>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="text-white w-full">
-                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Fellows Project</h3>
 
-                            <p class="text-md">The CCS Fellows meet once a month over one academic year to apply Christian thought to their future careers with guidance from Christian faculty.</p>
+                    {% for project in page.eligable_projects %}
+                        <div class="text-white w-full">
+                            <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
+                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ project.value.title }}</h3>
 
-                            <button class="absolute bottom-4 left-4">
-                                <a href="">
-                                    <div class="whitebutton">
-                                        Learn more
-                                    </div>
-                                </a>
-                            </button>
+                                <p class="text-md">{{ project.value.description }}</p>
+
+                                <button class="absolute bottom-4 left-4">
+                                    <a href="{{ project.value.button_link }}">
+                                        <div class="whitebutton">
+                                            {{ project.value.button_text }}
+                                        </div>
+                                    </a>
+                                </button>
+                            </div>
                         </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="my-20">
+                <div class="flex justify-center items-center">
+
+                    {% image page.contact_headshot width-1000 as ch %}
+
+                    <div class="bg-center bg-cover h-52 w-52 rounded-full mr-5" style="background-image: url('{{ ch.url }}');">
+
                     </div>
-                    <div class="text-white w-full">
-                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Affiliated Courses</h3>
-
-                            <p class="text-md">CCS-affiliated courses are taught by Christian faculty within their Duke departments, engage with big questions, and are open to Christian answers.</p>
-
-                            <button class="absolute bottom-4 left-4">
-                                <a href="">
-                                    <div class="whitebutton">
-                                        Learn more
-                                    </div>
-                                </a>
-                            </button>
+                    <div>
+                        <div class="text-2xl text-navy max-w-[40rem]">
+                            {{ page.contact_description|richtext }}
                         </div>
-                    </div>
-                    <div class="text-white w-full">
-                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
-                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">Summer Session</h3>
-
-                            <p class="text-md">CCS also offers shorter, more intensive summer programs, including a trip to Israel and internship opportunities.</p>
-
-                            <button class="absolute bottom-4 left-4">
-                                <a href="">
-                                    <div class="whitebutton">
-                                        Learn more
-                                    </div>
-                                </a>
-                            </button>
-                        </div>
+                        
+                        <button>
+                            <a href="{{ page.contact_button_link }}">
+                                <div class="navybutton">
+                                    {{ page.contact_button_text }}
+                                </div>
+                            </a>
+                        </button>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 {% endblock content %}
