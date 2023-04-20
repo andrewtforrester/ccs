@@ -678,5 +678,5 @@ class ConstructionPage(Page):
     is_creatable = False
     subpage_types = []
 
-class CurriculumPage(Page):
+class CertificatePathwayPage(Page):
     subpage_types = []
