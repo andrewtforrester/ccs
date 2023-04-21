@@ -9,8 +9,8 @@
     <div class="bg-white pt-40 pb-6 sm:pb-10">
         <div class="mx-auto max-w-screen-2xl">
             <div class="px-4 sm:px-10 pb-10 sm:pb-0">
-                <h1 class="title-1 text-navy pb-6">{{ page.title }}</h1>
-                <div class="text-2xl text-navy pb-10 max-w-[50rem]">{{ page.page_description|richtext }}</div>
+                <h1 class="title-1 text-royal pb-6">{{ page.title }}</h1>
+                <div class="text-2xl text-royal pb-10 max-w-[50rem]">{{ page.page_description|richtext }}</div>
             </div>
             
 
@@ -24,12 +24,12 @@
     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
 
-                        {% for course in page.active_courses %}
-                            <div class="text-navy w-full">
+                        <!-- {% for course in page.active_courses %}
+                            <div class="text-royal w-full">
                                 <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 pb-20 rounded-lg">
                                     <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.title }}</h3>
 
-                                    <div class="text-md text-navy">{{ course.abridged_description|richtext }}</div>
+                                    <div class="text-md text-royal">{{ course.abridged_description|richtext }}</div>
 
                                     <button class="absolute bottom-4 left-4">
                                         <a href="{{ course.url }}">
@@ -40,14 +40,14 @@
                                     </button>
                                 </div>
                             </div>
-                        {% endfor %}
+                        {% endfor %} -->
     
-                        <!-- {% for course in page.eligable_courses %}
-                            <div class="text-navy w-full">
+                        {% for course in page.eligable_courses %}
+                            <div class="text-royal w-full">
                                 <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 {% if course.value.button_link|length and course.value.button_text|length %} pb-20 {% endif %} rounded-lg">
                                     <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.value.title }}</h3>
     
-                                    <p class="text-md text-navy">{{ course.value.description }}</p>
+                                    <p class="text-md text-royal">{{ course.value.description }}</p>
     
                                     {% if course.value.button_link|length and course.value.button_text|length %}
                                         <button class="absolute bottom-4 left-4">
@@ -60,7 +60,7 @@
                                     {% endif %}
                                 </div>
                             </div>
-                        {% endfor %} -->
+                        {% endfor %}
                     </div>
     
                     <button>
@@ -75,15 +75,15 @@
             
             <div class="sm:px-10">
                 <div class="bg-rose sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40">
-                    <h2 class="text-sm font-sans font-bold text-navy">{{ page.project_block_header_1 }}</h2>
+                    <h2 class="text-sm font-sans font-bold text-royal">{{ page.project_block_header_1 }}</h2>
 
-                    <h2 class="title-2 text-navy pb-10">{{ page.project_block_header_2 }}</h2>
+                    <h2 class="title-2 text-royal pb-10">{{ page.project_block_header_2 }}</h2>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
                         {% for project in page.eligable_projects %}
                             <div class="text-white w-full">
-                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 {% if project.value.button_link|length and project.value.button_text|length %} pb-20 {% endif %} rounded-lg">
+                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-royal h-full pt-4 px-4 sm:px-6 {% if project.value.button_link|length and project.value.button_text|length %} pb-20 {% endif %} rounded-lg">
                                     <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ project.value.title }}</h3>
 
                                     <p class="text-md">{{ project.value.description }}</p>
@@ -116,7 +116,7 @@
 
                     </div>
                     <div>
-                        <div class="text-2xl text-navy max-w-[40rem] py-5 sm:py-0">
+                        <div class="text-2xl text-royal max-w-[40rem] py-5 sm:py-0">
                             {{ page.contact_description|richtext }}
                         </div>
                         
