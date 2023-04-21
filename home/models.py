@@ -748,7 +748,7 @@ class CertificatePathwayPage(Page):
         FieldPanel('course_block_header_1'),
         FieldPanel('course_block_header_2'),
         FieldPanel('course_block_description'),
-        # FieldPanel('eligable_courses'),
+        FieldPanel('eligable_courses'),
         FieldPanel('course_block_button_text'),
         FieldPanel('course_block_button_link'),
     ]
