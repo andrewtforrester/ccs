@@ -164,7 +164,7 @@ class HomePage(SeoMixin, Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
-    subpage_types = []
+    subpage_types = ['home.ArchivePage']
 
 
 # ABOUT
@@ -780,3 +780,26 @@ class FellowsProgramIndex(Page):
 
 class SummerProgramsIndex(Page):
     pass
+
+class ArchivePage(Page):
+    archived_items = StreamField([
+        ('item', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('description', blocks.RichTextBlock()),
+            ('date', blocks.DateBlock(required=False)),
+            ('button_text', blocks.CharBlock()),
+            ('button_link', blocks.CharBlock()),
+            ('image', ImageChooserBlock(required=False)),
+        ])),
+    ], use_json_field=True)
+
+    archive = [
+        FieldPanel('title'),
+        FieldPanel('archived_items'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(archive, heading='Archive'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])

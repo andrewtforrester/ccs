@@ -6,47 +6,47 @@
 
 {% block current_offerings_header %}Our Spring 2023 Courses{% endblock %}
 
-{% block active_offerings_loop %}
+{% block active_offerings_loop_fl %}
     {% for course in page.active_courses %}
-        <div class="carousel-cell w-full">
-            <div class="sm:px-20 py-16">
-                <div class="pb-8">
-                    <div class="mb-6">
-                        <span class="text-navy font-bold text-sm">
+        <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="carousel-cell bg-navy sm:bg-rose px-6 sm:px-0 rounded-lg mb-10 sm:mb-0 w-full">
+            <div class="sm:px-20 py-6 sm:py-16">
+                <div class="pb-10">
+                    <div class="sm:mb-6">
+                        <span class="text-white sm:text-navy font-bold text-sm">
                             {{ course.category|upper }}
                         </span>
                     </div>
                     
-                    <div class="title-3 pb-3">
+                    <div class="font-bold font-serif text-4xl pb-8">
                         {{ course.title }}
                     </div>
                     {% if course.location|length %}
-                        <div class="text-navy text-md font-semibold">
+                        <div class="text-white sm:text-navy text-md font-semibold">
                             {{ course.location }} 
                         </div>
                     {% endif %}
 
 
                     {% if course.meeting_pattern|length %}
-                        <div class="text-navy text-md font-semibold">
+                        <div class="text-white sm:text-navy text-md font-semibold">
                             {{ course.meeting_pattern }} 
                         </div>
                     {% endif %}
 
                     {% if course.instructor|length %}
-                        <div class="text-navy text-md font-semibold">
+                        <div class="text-white sm:text-navy text-md font-semibold">
                             Lead by {{ course.instructor }}
                         </div>
                     {% endif %}
                 </div>
                 
-                <div class="body-text-1 pb-4">
+                <div class="body-text-1 pb-8 sm:pb-4">
                     {{ course.description|richtext }}
                 </div>
-                <div class="flex">
+                <div class="flex justify-center sm:justify-start">
                     <button class="pr-4">
                         <a href="{{ course.url }}">
-                            <div class="navybutton">
+                            <div class="whitebutton sm:navybutton">
                                 Learn more
                             </div>
                         </a>
@@ -54,7 +54,68 @@
                     {% if course.registration_link|length %}
                         <button class="">
                             <a href="{{ course.registration_link }}">
-                                <div class="navybutton">
+                                <div class="whitebutton sm:navybutton">
+                                    Register
+                                </div>
+                            </a>
+                        </button>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block active_offerings_loop_nfl %}
+    {% for course in page.active_courses %}
+        <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="carousel-cell bg-navy sm:bg-rose px-6 sm:px-0 rounded-lg mb-10 sm:mb-0 w-full">
+            <div class="sm:px-20 py-6 sm:py-16">
+                <div class="pb-10">
+                    <div class="sm:mb-6">
+                        <span class="text-white sm:text-navy font-bold text-sm">
+                            {{ course.category|upper }}
+                        </span>
+                    </div>
+                    
+                    <div class="font-bold font-serif text-4xl pb-8">
+                        {{ course.title }}
+                    </div>
+                    {% if course.location|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            {{ course.location }} 
+                        </div>
+                    {% endif %}
+
+
+                    {% if course.meeting_pattern|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            {{ course.meeting_pattern }} 
+                        </div>
+                    {% endif %}
+
+                    {% if course.instructor|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            Lead by {{ course.instructor }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="body-text-1 pb-8 sm:pb-4">
+                    {{ course.description|richtext }}
+                </div>
+                <div class="flex justify-center sm:justify-start">
+                    <button class="pr-4">
+                        <a href="{{ course.url }}">
+                            <div class="whitebutton sm:navybutton">
+                                Learn more
+                            </div>
+                        </a>
+                    </button>
+                    {% if course.registration_link|length %}
+                        <button class="">
+                            <a href="{{ course.registration_link }}">
+                                <div class="whitebutton sm:navybutton">
                                     Register
                                 </div>
                             </a>
@@ -72,11 +133,11 @@
         <div class="hidden archive-pages" id="archive-page-{{ course_collection.1 }}">
             {% for course in course_collection.0 %}
                 <div class="pb-10">
-                    <div class="title-3 text-navy pb-2">
+                    <div class="title-3 text-navy sm:text-navy pb-2">
                         {{ course.title }}
                     </div>
 
-                    <div class="title-4 text-navy pb-3">
+                    <div class="title-4 text-navy sm:text-navy pb-3">
                         {{ course.semester }}
                     </div>
 

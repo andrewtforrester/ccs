@@ -12,25 +12,19 @@
     <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-16">
         <div class="max-w-screen-2xl mx-auto">
             <div class="max-w-screen-2xl mx-auto">
-                <div class="pb-10 sm:pb-32">
+                <div class="pb-10 sm:pb-20">
                     <h1 class="text-navy title-1">{% block header_content %}{{ page.title }}{% endblock %}</h1>
                 </div>
             </div>
-    
-    
-            <div class="sm:flex">
 
-                <div class="sm:hidden w-full sm:w-[55%] md:w-[60%] mb-16 sm:mb-0">
-                    {% image page.feature_image width-2000 as fi %}
-                    <div class="relative px-2">
-                        <div class="relative z-10 bg-right bg-cover h-[30rem] lg:h-[40rem] w-full" style="background-image: url('{{ fi.url }}');">
 
-                        </div>
-                        <div class="absolute inset-x-2 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
-                    </div>
+            {% image page.feature_image width-2000 as fi %}
+
+            <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="sm:flex bg-navy text-white rounded-lg overflow-hidden">
+                <div class="bg-cover bg-center sm:w-1/2 h-[20rem] sm:h-auto" style="background-image: url('{{ fi.url }}');">
+
                 </div>
-    
-                <div class="sm:w-[45%] md:w-[40%] pr-4">
+                <div class="sm:w-1/2 px-6 py-10 sm:px-10 sm:py-16 lg:py-32 xl:py-40">
                     <div class="title-2 pb-6">
                         {{ page.header_text }}
                     </div>
@@ -38,17 +32,9 @@
                         {{ page.descriptive_text|richtext }}
                     </div>
                 </div>
-    
-                <div class="hidden sm:block w-full sm:w-[55%] md:w-[60%] mb-16 sm:mb-0">
-                    {% image page.feature_image width-2000 as fi %}
-                    <div class="relative px-10">
-                        <div class="relative z-10 bg-right bg-cover h-[30rem] lg:h-[40rem] w-full" style="background-image: url('{{ fi.url }}');">
-
-                        </div>
-                        <div class="absolute inset-x-10 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
-                    </div>
-                </div>
             </div>
+    
+    
         </div>
     </section>
 

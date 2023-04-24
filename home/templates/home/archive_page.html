@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load replace %}
+
+
+{% block content %}
+    <div class="bg-white text-royal p-4 sm:p-10 lg:p-14">
+        <div class="mt-32 sm:mt-40 max-w-screen-2xl mx-auto">
+            <div class="title-1 pb-20">
+                {{ page.title }}
+            </div>
+            {% for item in page.archived_items %}
+                {% image item.value.image width-3000 as iimg %}
+                <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="bg-rose md:flex rounded-lg mb-20 overflow-hidden">
+                    {% if iimg.url|length %}
+                        <div class="w-full md:w-1/2 h-[20rem] md:h-auto bg-center bg-cover" style="background-image: url('{{ iimg.url }}');">
+
+                        </div>
+                    {% endif %}
+                    <div class=" {% if iimg.url|length %} w-full md:w-1/2 {% else %} w-full {% endif %} px-6 py-10 sm:px-10 sm:py-14 lg:py-20">
+                        <div class="text-xl font-bold pb-2">
+                            {{ item.value.date|date:'D, M d, Y' }}
+                        </div>
+                        <div class="title-2 pb-8">
+                            {{ item.value.title }}
+                        </div>
+                        <div class="body-text-1 pb-2">
+                            {{ item.value.description|richtext }}
+                        </div>
+                        <button>
+                            <a href="{{ item.value.button_link }}">
+                                <div class="navybutton">
+                                    {{ item.value.button_text }}
+                                </div>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    </div>  
+
+    
+    
+{% endblock content %}
