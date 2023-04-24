@@ -4,10 +4,85 @@ from wagtailseo.models import SeoMixin
 
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
-from wagtail.admin.panels import FieldPanel, TabbedInterface, ObjectList
+from wagtail.admin.panels import FieldPanel, TabbedInterface, ObjectList, PageChooserPanel
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 import datetime
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.contrib.settings.models import BaseSetting, register_setting
+
+
+@register_setting
+class Footer(BaseSetting):
+
+    site_description = RichTextField()
+
+    address = StreamField([
+        ('address_line', blocks.CharBlock())
+    ])
+
+    house_hours = StreamField([
+        ('hour', blocks.CharBlock())
+    ])
+
+    email_address = models.CharField(max_length=511)
+    mailto_link = models.CharField(max_length=511)
+
+    ccs_house_header_text = models.CharField(max_length=511)
+    ccs_house_header_link = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+
+    
+    footer_links = StreamField([
+        ('category', blocks.StructBlock([
+            ('category_name', blocks.CharBlock()),
+            ('category_links', blocks.StreamBlock([
+                ('internal_link', blocks.StructBlock([
+                    ('link_text', blocks.CharBlock()),
+                    ('link_reference', blocks.PageChooserBlock()),
+                ])),
+                ('external_link', blocks.StructBlock([
+                    ('link_text', blocks.CharBlock()),
+                    ('link_reference', blocks.CharBlock()),
+                ])),
+            ]))
+        ])),
+    ], use_json_field=True)
+
+    general_information = [
+        FieldPanel('site_description'),
+        MultiFieldPanel([
+            FieldPanel('ccs_house_header_text'),
+            PageChooserPanel('ccs_house_header_link'),
+        ], heading="CCS House Heading"),
+        FieldPanel('address'),
+        FieldPanel('house_hours'),
+        MultiFieldPanel([
+            FieldPanel('email_address'),
+            FieldPanel('mailto_link'),
+        ], heading="Email Address"),
+    ]
+
+    footer_navigation = [
+        FieldPanel('footer_links'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(general_information, heading='General Information'),
+        ObjectList(footer_navigation, heading='Footer Navigation'),
+    ])
+
+    panels = [
+        FieldPanel('footer_links')
+    ]
+
+
 
 # HOMEPAGE
 

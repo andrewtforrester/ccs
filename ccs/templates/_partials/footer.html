@@ -1,3 +1,7 @@
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
 <footer>
     <div class="w-full px-6 py-10 bg-navy sm:px-10 sm:py-20 ">
         <div class="mx-auto max-w-screen-2xl">
@@ -7,27 +11,33 @@
                         <div class="pb-6 font-serif text-3xl italic font-bold text-white">
                             Center for Christianity <br> and Scholarship
                         </div>
-                        <div class="pt-10 md:pt-0 pb-6 text-white body-text-1 lg:w-3/4">
-                            We believe that Christian intellectual exploration & imagination yield abundant life.
+                        <div class="pt-10 pb-6 text-white md:pt-0 body-text-1 lg:w-3/4">
+                            {{ settings.home.Footer.site_description|richtext }}
                         </div>
                     </div>
 
 
 
-                    <div class="hidden md:block md:pt-10 mb-20 sm:pb-0">
-                        <a href="/house">
-                            <div class="mb-4 text-white font-bold font-serif text-xl sm:text-2xl text-white">CCS House →</div>
+                    <div class="hidden mb-20 md:block md:pt-10 sm:pb-0">
+                        <a href="{{ settings.home.Footer.ccs_house_header_link.url }}">
+                            <div class="mb-4 font-serif text-xl font-bold text-white sm:text-2xl">{{ settings.home.Footer.ccs_house_header_text }}</div>
                         </a>
 
-                        <div class="text-white text-lg whitespace-nowrap">608 N. Buchanan Blvd</div>
-                        <div class="mb-2 text-white text-lg">Durham, NC 27701</div>
-
-                        <div class="text-white text-lg whitespace-nowrap">Monday-Thursday 10am - 10pm</div>
-                        <div class="text-white text-lg whitespace-nowrap">Friday 10am - 5pm</div>
+                        <div class="mb-2">
+                            {% for line in settings.home.Footer.address %}
+                                <div class="text-lg text-white whitespace-nowrap">{{ line.value }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="mb-2">
+                            {% for line in settings.home.Footer.house_hours %}
+                                <div class="text-lg text-white whitespace-nowrap">{{ line.value }}</div>
+                            {% endfor %}
+                        </div>
                     </div>
 
 
-                    <div class="hidden md:block py-10 sm:py-0">
+                    <div class="hidden py-10 md:block sm:py-0">
                         <div class="text-sm text-white whitespace-nowrap"><a href="mailto:info@christianityandscholarship.org">info@christianityandscholarship.org</a></div>
                     </div>
 
@@ -42,96 +52,49 @@
 
                     <div class="flex flex-wrap">
 
-                        <div class="mb-6 md:mb-0 mr-2 lg:mr-4 md:min-h-[15rem] w-full md:w-[45%] lg:w-[30%] flex md:block">
-                            <h1 class="w-1/2 mb-6 text-white md:w-auto font-bold font-serif text-xl sm:text-2xl text-rose">About</h1>
-
-                            <div class="w-1/2 md:w-auto">
-                                <a href="/who-we-are">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Who We Are</h4>
-                                </a>
-
-                                <a href="/leadership">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Leadership</h4>
-                                </a>
-                                <a href="/faculty-affiliates">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Faculty Affiliates</h4>
-
-                                </a>
+                        {% for category in settings.home.Footer.footer_links %}
+                            <div class="mb-6 md:mb-0 mr-2 lg:mr-4 md:min-h-[15rem] w-full md:w-[45%] lg:w-[30%] flex md:block">
+                                <h1 class="w-1/2 mb-6 font-serif text-xl font-bold text-white md:w-auto sm:text-2xl text-rose">{{ category.value.category_name }}</h1>
+                                
+                                <div class="w-1/2 md:w-auto">
+                                    {% for link in category.value.category_links %}
+                                        <a href="{% if link.block_type == 'internal_link' %}{{ link.value.link_reference.url }}{% else %}{{ link.value.link_reference }}{% endif %}">
+                                            <h4 class="text-lg text-white whitespace-nowrap">{{ link.value.link_text }}</h4>
+                                        </a>
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </div>
+                        {% endfor %}
 
-                        <div class="mb-6 md:mb-0 mr-2 lg:mr-4 md:min-h-[15rem] w-full md:w-[45%] lg:w-[30%] flex md:block">
-                            <h1 class="w-1/2 mb-6 text-white md:w-auto font-bold font-serif text-xl sm:text-2xl text-rose">Academics</h1>
-
-                            <div>
-                                <a href="/courses">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Courses</h4>
-                                </a>
-                                <a href="/reading-groups">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Reading Groups</h4>
-                                </a>
-                                <a href="/certificate-pathway">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Certificate Pathway</h4>
-                                </a>
-                                <a href="https://www.etreligio.org">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Et Religio</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="mb-6 md:mb-0 mr-2 lg:mr-4 md:min-h-[15rem] w-full md:w-[45%] lg:w-[30%] flex md:block">
-                            <h1 class="w-1/2 mb-6 text-white md:w-auto font-bold font-serif text-xl sm:text-2xl text-rose">Community</h1>
-
-                            <div>
-                                <a href="/calendar">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Calendar</h4>
-                                </a>
-                                <a href="/house">
-                                    <h4 class="text-white text-lg whitespace-nowrap">House</h4>
-                                </a>
-                                <a href="/wwm">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Weekly Meal</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="mb-6 md:mb-0 mr-2 lg:mr-4 md:min-h-[15rem] w-full md:w-[45%] lg:w-[30%] flex md:block">
-                            <h1 class="w-1/2 mb-6 text-white md:w-auto font-bold font-serif text-xl sm:text-2xl text-rose">Support</h1>
-
-                            <div>
-                                <a href="/donate">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Donate</h4>
-
-                                </a>
-                                <a href="/lend-a-hand">
-                                    <h4 class="text-white text-lg whitespace-nowrap">Lend a hand</h4>
-                                </a>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="md:hidden md:pt-10 my-12  sm:pb-0">
-                        <a href="/house">
-                            <div class="mb-4 text-white font-bold font-serif text-xl sm:text-2xl text-white">CCS House →</div>
+                    <div class="my-12 md:hidden md:pt-10 sm:pb-0">
+                        <a href="{{ settings.home.Footer.ccs_house_header_link.url }}">
+                            <div class="mb-4 font-serif text-xl font-bold text-white sm:text-2xl">{{ settings.home.Footer.ccs_house_header_text }}</div>
                         </a>
 
-                        <div class="text-white text-lg whitespace-nowrap">608 N. Buchanan Blvd</div>
-                        <div class="mb-2 text-white text-lg">Durham, NC 27701</div>
+                        {% for line in settings.home.Footer.address %}
+                            <div class="text-lg text-white whitespace-nowrap">{{ line.value }}</div>
+                        {% endfor %}
 
-                        <div class="text-white text-lg whitespace-nowrap">Monday-Thursday 10am - 10pm</div>
-                        <div class="text-white text-lg whitespace-nowrap">Friday 10am - 5pm</div>
+                        <div class="mb-2">
+                            {% for line in settings.home.Footer.house_hours %}
+                                <div class="text-lg text-white whitespace-nowrap">{{ line.value }}</div>
+                            {% endfor %}
+                        </div>
+
                     </div>
 
                     <!-- <div class="py-10">
-                        <h2 class="pb-6 text-white font-bold font-serif text-xl sm:text-2xl text-white">Join our email list</h2>
+                        <h2 class="pb-6 font-serif text-xl font-bold text-white sm:text-2xl">Join our email list</h2>
                         <newsletter-signup></newsletter-signup>
                     </div> -->
 
 
 
                 </div>
-                <div class="md:hidden pt-10">
-                    <div class="text-sm text-white whitespace-nowrap"><a href="mailto:info@christianityandscholarship.org">info@christianityandscholarship.org</a></div>
+                <div class="pt-10 md:hidden">
+                    <div class="text-sm text-white whitespace-nowrap"><a href="{{ settings.home.Footer.mailto_link }}">{{ settings.home.Footer.email_address }}</a></div>
                 </div>
 
             </div>
