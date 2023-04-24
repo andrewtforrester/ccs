@@ -454,6 +454,7 @@ class Course(Page):
     category = RichTextField(features=[], choices=categories)
 
     status = [
+        ('future','Future'),
         ('active','Active'),
         ('archived','Archived'),
     ]
@@ -539,6 +540,7 @@ class ReadingGroup(Page):
     )
 
     status = [
+        ('future','Future'),
         ('active','Active'),
         ('archived','Archived'),
     ]
@@ -622,6 +624,7 @@ class Lecture(Page):
     )
 
     status = [
+        ('future','Future'),
         ('active','Active'),
         ('archived','Archived'),
     ]
@@ -688,6 +691,7 @@ class CertificatePathwayPage(Page):
     eligable_courses = StreamField([
         ('content_block', blocks.StructBlock([
             ('title', blocks.CharBlock()),
+            ('semester', blocks.CharBlock()),
             ('description', blocks.RichTextBlock()),
             ('button_text', blocks.CharBlock(blank=True, required=False)),
             ('button_link', blocks.CharBlock(blank=True, required=False)),
