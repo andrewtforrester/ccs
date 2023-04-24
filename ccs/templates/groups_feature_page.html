@@ -14,18 +14,23 @@
 
                 <section>
                     <div class="w-full relative">
-                        <div class="sm:bg-rose rounded-lg px-2 relative max-w-screen-2xl mx-auto">
-                            <div class="hidden sm:block main-carousel w-full bg-transparent text-white sm:text-navy rounded-lg">
-                                {% block active_offerings_loop_fl %}{% endblock %}
-                            </div>
+                        {% if page.active_items|length %}
+                            <div class="sm:bg-rose rounded-lg px-2 relative max-w-screen-2xl mx-auto">
+                                <div class="hidden sm:block main-carousel w-full bg-transparent text-white sm:text-navy rounded-lg">
+                                    {% block active_offerings_loop_fl %}{% endblock %}
+                                </div>
 
-                            <div class="sm:hidden w-full bg-transparent text-white sm:text-navy rounded-lg">
-                                {% block active_offerings_loop_nfl %}{% endblock %}
-                            </div>
+                                <div class="sm:hidden w-full bg-transparent text-white sm:text-navy rounded-lg">
+                                    {% block active_offerings_loop_nfl %}{% endblock %}
+                                </div>
 
-                            <div id="" class="hidden sm:block absolute top-0 bottom-0 left-0 w-20 bg-rose rounded-lg"></div>
-                            <div class="hidden sm:block absolute top-0 bottom-0 right-0 w-20 bg-rose rounded-lg"></div>
-                        </div>
+                                <div id="" class="hidden sm:block absolute top-0 bottom-0 left-0 w-20 bg-rose rounded-lg"></div>
+                                <div class="hidden sm:block absolute top-0 bottom-0 right-0 w-20 bg-rose rounded-lg"></div>
+                            </div>
+                        {% else %}
+                            {% block no_upcoming %}
+                            {% endblock %}
+                        {% endif %}
                     </div>
                 </section>
             </div>

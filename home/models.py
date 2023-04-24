@@ -401,10 +401,10 @@ class CoursesIndex(Page):
         related_name='+'
     )
 
-    def active_courses(self):
+    def active_items(self):
         return Course.objects.live().filter(type='active').specific()
     
-    def archived_courses(self):
+    def archived_items(self):
         result = []
         temp = []
         i = 1
@@ -500,10 +500,10 @@ class ReadingGroupsIndex(Page):
         FieldPanel('feature_image'),
     ]
 
-    def active_reading_groups(self):
+    def active_items(self):
         return ReadingGroup.objects.live().filter(type='active').specific()
     
-    def archived_reading_groups(self):
+    def archived_items(self):
         result = []
         temp = []
         i = 1
@@ -583,15 +583,15 @@ class LectureIndex(Page):
         FieldPanel('feature_image'),
     ]
 
-    def active_lectures(self):
+    def active_items(self):
         return Lecture.objects.live().filter(type='active').specific()
     
-    def archived_lectures(self):
+    def archived_items(self):
         result = []
         temp = []
         i = 1
 
-        for course in Lecture.objects.live().filter(type='archived').specific():
+        for course in Lecture.objects.live().filter(type='archived').specific().order_by('date'):
             temp = temp + [course]
             if len(temp) == 5:
                 result = result + [(temp,i)]
@@ -751,10 +751,6 @@ class CertificatePathwayPage(Page):
     ])
 
     subpage_types = []
-
-    def active_courses(self):
-        return Course.objects.live().filter(type='active').specific()
-
 
 
 
