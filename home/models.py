@@ -164,7 +164,7 @@ class HomePage(SeoMixin, Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
-    subpage_types = ['home.ArchivePage']
+    subpage_types = []
 
 
 # ABOUT
@@ -296,6 +296,9 @@ class FacultyAffiliatesEntry(Page):
 
     subpage_types = []
 
+
+# COMMUNITY
+
 class House(Page):
 
     header_text = models.CharField(max_length=255)
@@ -349,9 +352,26 @@ class House(Page):
     is_creatable = False
     subpage_types = []
 
+class WeeklyWednesdayMealIndex(Page):
 
+    header_text = models.CharField(max_length=255)
+    descriptive_text = RichTextField()
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
-# EVENTS HEADER
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        FieldPanel('descriptive_text'),
+        FieldPanel('feature_image'),
+    ]
+
+    is_creatable = False
+    subpage_types = []
 
 class CurrentEvents(Page):
     is_creatable = False
@@ -366,6 +386,11 @@ class CurrentEvents(Page):
 
     subpage_types = ['home.Event']
 
+
+# ACADEMICS
+
+
+
 class CoursesIndex(Page):
 
     header_text = models.CharField(max_length=255)
@@ -379,14 +404,14 @@ class CoursesIndex(Page):
     )
 
     def active_courses(self):
-        return CourseEntry.objects.live().filter(type='active').specific()
+        return Course.objects.live().filter(type='active').specific()
     
     def archived_courses(self):
         result = []
         temp = []
         i = 1
 
-        for course in CourseEntry.objects.live().filter(type='archived').specific():
+        for course in Course.objects.live().filter(type='archived').specific():
             temp = temp + [course]
             if len(temp) == 5:
                 result = result + [(temp,i)]
@@ -405,9 +430,9 @@ class CoursesIndex(Page):
     ]
 
     is_creatable = False
-    subpage_types = ['home.CourseEntry']
+    subpage_types = ['home.Course']
 
-class CourseEntry(Page):
+class Course(Page):
 
     semester = models.CharField(max_length=127)
     instructor = models.CharField(max_length=127, blank=True)
@@ -456,6 +481,8 @@ class CourseEntry(Page):
             return self.description
 
     subpage_types = ['home.EventInstance']
+
+
 
 class ReadingGroupsIndex(Page):
 
@@ -539,26 +566,7 @@ class ReadingGroup(Page):
 
     subpage_types = ['home.EventInstance']
 
-class WeeklyWednesdayMealIndex(Page):
 
-    header_text = models.CharField(max_length=255)
-    descriptive_text = RichTextField()
-    feature_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    content_panels = Page.content_panels + [
-        FieldPanel('header_text'),
-        FieldPanel('descriptive_text'),
-        FieldPanel('feature_image'),
-    ]
-
-    is_creatable = False
-    subpage_types = []
 
 class LectureIndex(Page):
     is_creatable = False
@@ -568,6 +576,8 @@ class LectureIndex(Page):
 
 class Lecture(Page):
     subpage_types = []
+
+
 
 class ConferenceIndex(Page):
     is_creatable = False
@@ -580,11 +590,7 @@ class Conference(Page):
     pass
 
 
-# FACULTY
-
-
-
-# FRIENDS
+# SUPPORT
 
 class ContinuingEducation(Page):
 
@@ -773,33 +779,10 @@ class CertificatePathwayPage(Page):
     subpage_types = []
 
     def active_courses(self):
-        return CourseEntry.objects.live().filter(type='active').specific()
+        return Course.objects.live().filter(type='active').specific()
 
 class FellowsProgramIndex(Page):
     pass
 
 class SummerProgramsIndex(Page):
     pass
-
-class ArchivePage(Page):
-    archived_items = StreamField([
-        ('item', blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('description', blocks.RichTextBlock()),
-            ('date', blocks.DateBlock(required=False)),
-            ('button_text', blocks.CharBlock()),
-            ('button_link', blocks.CharBlock()),
-            ('image', ImageChooserBlock(required=False)),
-        ])),
-    ], use_json_field=True)
-
-    archive = [
-        FieldPanel('title'),
-        FieldPanel('archived_items'),
-    ]
-
-    edit_handler = TabbedInterface([
-        ObjectList(archive, heading='Archive'),
-        ObjectList(Page.promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings'),
-    ])
