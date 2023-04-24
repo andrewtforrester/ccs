@@ -1,14 +1,172 @@
-{% extends "base.html" %}
+{% extends "groups_feature_page.html" %}
+
 {% load static %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block content %}
-    <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10">
-        <div class="max-w-screen-lg mx-auto">
-            <div class="pb-12">
-                <h1 class="text-navy title-1">{{ page.title }}</h1>
+{% block current_offerings_header %}Upcoming Lectures{% endblock %}
+
+{% block active_offerings_loop_fl %}
+    {% for course in page.active_lectures %}
+        <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="carousel-cell bg-navy sm:bg-rose px-6 sm:px-0 rounded-lg mb-10 sm:mb-0 w-full">
+            <div class="sm:px-20 py-6 sm:py-16">
+                <div class="pb-10">
+                    <div class="sm:mb-6">
+                        <span class="text-white sm:text-navy font-bold text-sm">
+                            {{ course.category|upper }}
+                        </span>
+                    </div>
+                    
+                    <div class="font-bold font-serif text-4xl pb-8">
+                        {{ course.title }}
+                    </div>
+                    {% if course.location|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            {{ course.location }} 
+                        </div>
+                    {% endif %}
+
+
+                    {% if course.meeting_pattern|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            {{ course.meeting_pattern }} 
+                        </div>
+                    {% endif %}
+
+                    {% if course.instructor|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            Lead by {{ course.instructor }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="body-text-1 pb-8 sm:pb-4">
+                    {{ course.description|richtext }}
+                </div>
+                <div class="flex justify-center sm:justify-start">
+                    <button class="pr-4">
+                        <a href="{{ course.url }}">
+                            <div class="whitebutton sm:navybutton">
+                                Learn more
+                            </div>
+                        </a>
+                    </button>
+                    {% if course.registration_link|length %}
+                        <button class="">
+                            <a href="{{ course.registration_link }}">
+                                <div class="whitebutton sm:navybutton">
+                                    Register
+                                </div>
+                            </a>
+                        </button>
+                    {% endif %}
+                </div>
+                
             </div>
         </div>
-    </section>
+    {% endfor %}
 {% endblock %}
+
+{% block active_offerings_loop_nfl %}
+    {% for course in page.active_courses %}
+        <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="carousel-cell bg-navy sm:bg-rose px-6 sm:px-0 rounded-lg mb-10 sm:mb-0 w-full">
+            <div class="sm:px-20 py-6 sm:py-16">
+                <div class="pb-10">
+                    <div class="sm:mb-6">
+                        <span class="text-white sm:text-navy font-bold text-sm">
+                            {{ course.category|upper }}
+                        </span>
+                    </div>
+                    
+                    <div class="font-bold font-serif text-4xl pb-8">
+                        {{ course.title }}
+                    </div>
+                    {% if course.location|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            {{ course.location }} 
+                        </div>
+                    {% endif %}
+
+
+                    {% if course.meeting_pattern|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            {{ course.meeting_pattern }} 
+                        </div>
+                    {% endif %}
+
+                    {% if course.instructor|length %}
+                        <div class="text-white sm:text-navy text-md font-semibold">
+                            Lead by {{ course.instructor }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="body-text-1 pb-8 sm:pb-4">
+                    {{ course.description|richtext }}
+                </div>
+                <div class="flex justify-center sm:justify-start">
+                    <button class="pr-4">
+                        <a href="{{ course.url }}">
+                            <div class="whitebutton sm:navybutton">
+                                Learn more
+                            </div>
+                        </a>
+                    </button>
+                    {% if course.registration_link|length %}
+                        <button class="">
+                            <a href="{{ course.registration_link }}">
+                                <div class="whitebutton sm:navybutton">
+                                    Register
+                                </div>
+                            </a>
+                        </button>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block archive_loop %}
+    {% for course_collection in page.archived_lectures %}
+        <div class="hidden archive-pages" id="archive-page-{{ course_collection.1 }}">
+            {% for course in course_collection.0 %}
+                <div class="pb-10">
+                    <div class="title-3 text-navy sm:text-navy pb-2">
+                        {{ course.title }}
+                    </div>
+
+                    <div class="title-4 text-navy sm:text-navy pb-3">
+                        {{ course.date|date:'D, M d, Y' }}
+                    </div>
+
+                    <div class="title-4 text-navy sm:text-navy pb-3">
+                        {{ course.speaker }}
+                    </div>
+
+                    {% if course.archival_link|length %}
+                        <div class="pb-2">
+                            <button>
+                                <a href="{{ course.archival_link }}">
+                                    <div class="navybutton">
+                                        View here
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    {% endif %}
+
+                    <div class="body-text-1">
+                        {{ course.description|richtext }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+
+
+{% block archive_header %}Course Archive{% endblock %}

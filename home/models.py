@@ -164,8 +164,6 @@ class HomePage(SeoMixin, Page):
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
 
-    subpage_types = []
-
 
 # ABOUT
 
@@ -569,14 +567,86 @@ class ReadingGroup(Page):
 
 
 class LectureIndex(Page):
-    is_creatable = False
-    subpage_types = [
-        'home.Lecture'
+    header_text = models.CharField(max_length=255)
+    descriptive_text = RichTextField()
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        FieldPanel('descriptive_text'),
+        FieldPanel('feature_image'),
     ]
 
-class Lecture(Page):
-    subpage_types = []
+    def active_lectures(self):
+        return Lecture.objects.live().filter(type='active').specific()
+    
+    def archived_lectures(self):
+        result = []
+        temp = []
+        i = 1
 
+        for course in Lecture.objects.live().filter(type='archived').specific():
+            temp = temp + [course]
+            if len(temp) == 5:
+                result = result + [(temp,i)]
+                temp = []
+                i = i + 1
+
+        if not temp == []:
+            result = result + [(temp,i)]
+        return result
+    
+    is_creatable = False
+    subpage_types = ['home.Lecture']
+
+class Lecture(Page):
+    description = RichTextField(blank=True)
+    speaker = models.CharField(max_length=1023, blank=True)
+    registration_link = models.CharField(max_length=1023, blank=True)
+    archival_link = models.CharField(max_length=1023, blank=True)
+    location = models.CharField(max_length=1023, blank=True)
+    date = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
+    featured_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    status = [
+        ('active','Active'),
+        ('archived','Archived'),
+    ]
+
+    type = RichTextField(features=[], choices=status)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description'),
+        FieldPanel('speaker'),
+        FieldPanel('registration_link'),
+        FieldPanel('archival_link'),
+        FieldPanel('location'),
+        FieldPanel('date'),
+        FieldPanel('time'),
+        FieldPanel('featured_image'),
+        FieldPanel('type', widget=forms.Select),
+    ]
+
+    def abridged_description(self):
+        if len(self.description) > 350:
+            return self.description[:350] + "..."
+        else:
+            return self.description
+
+    subpage_types = []
 
 
 class ConferenceIndex(Page):
@@ -588,6 +658,104 @@ class ConferenceIndex(Page):
 
 class Conference(Page):
     pass
+
+
+
+
+class CertificatePathwayPage(Page):
+
+    # GENERAL
+
+    page_description = RichTextField()
+    contact_headshot = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    contact_description = RichTextField()
+    contact_button_text = models.TextField(max_length=255)
+    contact_button_link = models.TextField(max_length=255)
+    
+
+    # COURSE BLOCK
+
+    course_block_header_1 = models.TextField(max_length=255)
+    course_block_header_2 = models.TextField(max_length=255)
+    course_block_description = RichTextField()
+
+    eligable_courses = StreamField([
+        ('content_block', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('description', blocks.RichTextBlock()),
+            ('button_text', blocks.CharBlock(blank=True, required=False)),
+            ('button_link', blocks.CharBlock(blank=True, required=False)),
+        ])),
+    ], use_json_field=True)
+
+    course_block_button_text = models.TextField(max_length=255)
+    course_block_button_link = models.TextField(max_length=255)
+
+    # PROJECT BLOCK
+
+    project_block_header_1 = models.TextField(max_length=255)
+    project_block_header_2 = models.TextField(max_length=255)
+    project_block_description = RichTextField()
+
+    eligable_projects = StreamField([
+        ('content_block', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('description', blocks.RichTextBlock()),
+            ('button_text', blocks.CharBlock(blank=True, required=False)),
+            ('button_link', blocks.CharBlock(blank=True, required=False)),
+        ])),
+    ], use_json_field=True)
+
+    project_block_button_text = models.TextField(max_length=255)
+    project_block_button_link = models.TextField(max_length=255)
+
+    general_panel = [
+        FieldPanel('title'),
+        FieldPanel('page_description'),
+        FieldPanel('contact_headshot'),
+        FieldPanel('contact_description'),
+        FieldPanel('contact_button_text'),
+        FieldPanel('contact_button_link'),
+    ]
+
+    course_block_panel = [
+        FieldPanel('course_block_header_1'),
+        FieldPanel('course_block_header_2'),
+        FieldPanel('course_block_description'),
+        FieldPanel('eligable_courses'),
+        FieldPanel('course_block_button_text'),
+        FieldPanel('course_block_button_link'),
+    ]
+
+    project_block_panel = [
+        FieldPanel('project_block_header_1'),
+        FieldPanel('project_block_header_2'),
+        FieldPanel('project_block_description'),
+        FieldPanel('eligable_projects'),
+        FieldPanel('project_block_button_text'),
+        FieldPanel('project_block_button_link'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(general_panel, heading='General'),
+        ObjectList(course_block_panel, heading='Courses Requirement'),
+        ObjectList(project_block_panel, heading='Projects and Experiences Requirement'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
+
+    subpage_types = []
+
+    def active_courses(self):
+        return Course.objects.live().filter(type='active').specific()
+
+
 
 
 # SUPPORT
@@ -687,99 +855,6 @@ class ConstructionPage(Page):
 
     is_creatable = False
     subpage_types = []
-
-class CertificatePathwayPage(Page):
-
-    # GENERAL
-
-    page_description = RichTextField()
-    contact_headshot = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    contact_description = RichTextField()
-    contact_button_text = models.TextField(max_length=255)
-    contact_button_link = models.TextField(max_length=255)
-    
-
-    # COURSE BLOCK
-
-    course_block_header_1 = models.TextField(max_length=255)
-    course_block_header_2 = models.TextField(max_length=255)
-    course_block_description = RichTextField()
-
-    eligable_courses = StreamField([
-        ('content_block', blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('description', blocks.RichTextBlock()),
-            ('button_text', blocks.CharBlock(blank=True, required=False)),
-            ('button_link', blocks.CharBlock(blank=True, required=False)),
-        ])),
-    ], use_json_field=True)
-
-    course_block_button_text = models.TextField(max_length=255)
-    course_block_button_link = models.TextField(max_length=255)
-
-    # PROJECT BLOCK
-
-    project_block_header_1 = models.TextField(max_length=255)
-    project_block_header_2 = models.TextField(max_length=255)
-    project_block_description = RichTextField()
-
-    eligable_projects = StreamField([
-        ('content_block', blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('description', blocks.RichTextBlock()),
-            ('button_text', blocks.CharBlock(blank=True, required=False)),
-            ('button_link', blocks.CharBlock(blank=True, required=False)),
-        ])),
-    ], use_json_field=True)
-
-    project_block_button_text = models.TextField(max_length=255)
-    project_block_button_link = models.TextField(max_length=255)
-
-    general_panel = [
-        FieldPanel('title'),
-        FieldPanel('page_description'),
-        FieldPanel('contact_headshot'),
-        FieldPanel('contact_description'),
-        FieldPanel('contact_button_text'),
-        FieldPanel('contact_button_link'),
-    ]
-
-    course_block_panel = [
-        FieldPanel('course_block_header_1'),
-        FieldPanel('course_block_header_2'),
-        FieldPanel('course_block_description'),
-        FieldPanel('eligable_courses'),
-        FieldPanel('course_block_button_text'),
-        FieldPanel('course_block_button_link'),
-    ]
-
-    project_block_panel = [
-        FieldPanel('project_block_header_1'),
-        FieldPanel('project_block_header_2'),
-        FieldPanel('project_block_description'),
-        FieldPanel('eligable_projects'),
-        FieldPanel('project_block_button_text'),
-        FieldPanel('project_block_button_link'),
-    ]
-
-    edit_handler = TabbedInterface([
-        ObjectList(general_panel, heading='General'),
-        ObjectList(course_block_panel, heading='Courses Requirement'),
-        ObjectList(project_block_panel, heading='Projects and Experiences Requirement'),
-        ObjectList(Page.promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings'),
-    ])
-
-    subpage_types = []
-
-    def active_courses(self):
-        return Course.objects.live().filter(type='active').specific()
 
 class FellowsProgramIndex(Page):
     pass
