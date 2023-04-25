@@ -65,24 +65,23 @@
 
     <body class="relative bg-white ">
 
+        <global-menu></global-menu>
+
+        {% include '_partials/header.html' %}
+
+        {% include '_partials/menu.html' %}
+
         <div id="app">
-            <global-menu></global-menu>
-
-            {% include '_partials/header.html' %}
-
-            {% include '_partials/menu.html' %}
-
-
             {% block content %}
             {% endblock %}
-        
-            {% include '_partials/footer.html' %}
         </div>
+    
+        {% include '_partials/footer.html' %}
 
 
         {# VUE Files #}
-        <!-- <script type="text/javascript" src="{% static 'src/vue/dist/js/chunk-vendors.js' %}"></script>
-        <script type="text/javascript" src="{% static 'src/vue/dist/js/app.js' %}"></script> -->
+        <script type="text/javascript" src="{% static 'src/vue/dist/js/chunk-vendors.js' %}"></script>
+        <script type="text/javascript" src="{% static 'src/vue/dist/js/app.js' %}"></script>
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/ccs.js' %}"></script>
@@ -93,6 +92,7 @@
 
         {# Flickity #}
         <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
