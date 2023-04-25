@@ -130,27 +130,28 @@
                             {% endif %}
                         </div>
 
-                        <div class="md:hidden">
-                            <div class="flex justify-center">
-                                {% image block.value.photo width-800 as bph %}
-                                <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-full h-[25rem] bg-cover bg-center md:rounded-full" style="background-image: url('{{ bph.url }}');"></div>
+                        <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="sm:flex rounded-lg overflow-hidden bg-rose md:bg-transparent">
+                            <div class="md:hidden">
+                                <div class="flex justify-center h-full">
+                                    {% image block.value.photo width-1200 as bph %}
+                                    <div class="w-full h-[25rem] bg-cover bg-center sm:h-full sm:w-[15rem] md:h-auto md:rounded-full" style="background-image: url('{{ bph.url }}');"></div>
+                                </div>
+                            </div>
+                                    
+                            <div class="pt-10 md:pt-16 pb-10 md:py-0 px-4 md:px-10 md:max-w-[40rem] {% if not forloop.counter0|divisibleby:"2" %}md:text-right{% endif %}">
+                                <h1 class="pb-6 text-navy md:text-rose title-3">{{ block.value.title }}</h1>
+                                <div class="pb-6 text-navy md:text-white body-text-1">{{ block.value.description }}</div>
+    
+                                <button>
+                                    <a href="{{ block.value.button_link }}">
+                                        <div class="navybutton md:whitebutton">
+                                            {{ block.value.button_text }}
+                                        </div>  
+                                    </a>
+                                </button>
                             </div>
                         </div>
-                                
-
-
-                        <div class="pt-16 pb-10 md:py-0 md:px-10 md:max-w-[40rem] {% if not forloop.counter0|divisibleby:"2" %}md:text-right{% endif %}">
-                            <h1 class="pb-6 text-rose title-3">{{ block.value.title }}</h1>
-                            <div class="pb-6 text-white body-text-1">{{ block.value.description }}</div>
-
-                            <button>
-                                <a href="{{ block.value.button_link }}">
-                                    <div class="whitebutton">
-                                        {{ block.value.button_text }}
-                                    </div>  
-                                </a>
-                            </button>
-                        </div>
+                        
 
                         <div class="hidden md:block">
                             {% if not forloop.counter0|divisibleby:"2" %}

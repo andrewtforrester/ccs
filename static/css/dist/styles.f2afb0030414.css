@@ -2895,6 +2895,14 @@ p {
     height: 20rem;
   }
 
+  .sm\:h-full {
+    height: 100%;
+  }
+
+  .sm\:h-\[25rem\] {
+    height: 25rem;
+  }
+
   .sm\:min-h-\[60rem\] {
     min-height: 60rem;
   }
@@ -2929,6 +2937,14 @@ p {
 
   .sm\:w-20 {
     width: 5rem;
+  }
+
+  .sm\:w-\[10rem\] {
+    width: 10rem;
+  }
+
+  .sm\:w-\[15rem\] {
+    width: 15rem;
   }
 
   .sm\:translate-y-\[-50\%\] {
@@ -3207,6 +3223,10 @@ p {
     border-radius: 9999px;
   }
 
+  .md\:bg-transparent {
+    background-color: transparent;
+  }
+
   .md\:p-10 {
     padding: 2.5rem;
   }
@@ -3242,8 +3262,50 @@ p {
     padding-bottom: 0.5rem;
   }
 
+  .md\:pt-16 {
+    padding-top: 4rem;
+  }
+
   .md\:text-right {
     text-align: right;
+  }
+
+  .md\:text-rose {
+    --tw-text-opacity: 1;
+    color: rgb(211 140 149 / var(--tw-text-opacity));
+  }
+
+  .md\:text-white {
+    --tw-text-opacity: 1;
+    color: rgb(250 248 244 / var(--tw-text-opacity));
+  }
+
+  .md\:whitebutton {
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    border-radius: 9999px;
+    border-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgb(250 248 244 / var(--tw-border-opacity));
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    --tw-text-opacity: 1;
+    color: rgb(250 248 244 / var(--tw-text-opacity));
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .md\:whitebutton:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(250 248 244 / var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: rgb(21 24 47 / var(--tw-text-opacity));
   }
 }
 
