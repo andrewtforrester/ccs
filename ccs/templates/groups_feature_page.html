@@ -38,26 +38,28 @@
         
     </section>
 
-    <section class="section-wrapper">
-        <div class="max-w-screen-2xl mx-auto">
-            <div class="title-2 pb-16 text-navy">
-                {% block archive_header %}{% endblock %}
-                
-            </div>
-
-            <div class="max-w-screen-md mx-auto">
-                {% block archive_loop %}{% endblock %}
+    {% if page.archived_items|length %}
+        <section class="section-wrapper">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="title-2 pb-16 text-navy">
+                    {% block archive_header %}{% endblock %}
                     
+                </div>
 
-                <div id="load-more-button" class="flex justify-center py-5">
-                    <button class="navybutton">
-                        Load more
-                    </button>
+                <div class="max-w-screen-md mx-auto">
+                    {% block archive_loop %}{% endblock %}
+                        
+
+                    <div id="load-more-button" class="flex justify-center py-5">
+                        <button class="navybutton">
+                            Load more
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-    </section>
+            
+        </section>
+    {% endif %}
 {% endblock %}
 
 {% block extra_js %}

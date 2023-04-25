@@ -512,17 +512,18 @@ class CoursesIndex(Page):
         result = []
         temp = []
         i = 1
+        if not len(Course.objects.live().filter(type='archived')) == 0:
+            for course in Course.objects.live().filter(type='archived').specific():
+                temp = temp + [course]
+                if len(temp) == 5:
+                    result = result + [(temp,i)]
+                    temp = []
+                    i = i + 1
 
-        for course in Course.objects.live().filter(type='archived').specific():
-            temp = temp + [course]
-            if len(temp) == 5:
+            if not temp == []:
                 result = result + [(temp,i)]
-                temp = []
-                i = i + 1
-
-        if not temp == []:
-            result = result + [(temp,i)]
-
+        else:
+            return []
         return result
 
     content_panels = Page.content_panels + [
@@ -613,16 +614,19 @@ class ReadingGroupsIndex(Page):
         temp = []
         i = 1
 
-        for course in ReadingGroup.objects.live().filter(type='archived').specific():
-            temp = temp + [course]
-            if len(temp) == 5:
-                result = result + [(temp,i)]
-                temp = []
-                i = i + 1
+        if not len(ReadingGroup.objects.live().filter(type='archived')) == 0:
+            for course in ReadingGroup.objects.live().filter(type='archived').specific():
+                temp = temp + [course]
+                if len(temp) == 5:
+                    result = result + [(temp,i)]
+                    temp = []
+                    i = i + 1
 
-        if not temp == []:
-            result = result + [(temp,i)]
-        return result
+            if not temp == []:
+                result = result + [(temp,i)]
+            return result
+        else:
+            return []
     
     is_creatable = False
     subpage_types = ['home.ReadingGroup']
