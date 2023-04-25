@@ -3,8 +3,8 @@
 {% load wagtailcore_tags %}
 
 <menu>
-    <div id="menuSuperContainer" class="fixed overflow-scroll top-0 left-0 right-0 h-screen z-[-1000]">
-        <div id="menuContainer" :class="{ 'opacity-[1]': menuOpen, 'opacity-[0]': !menuOpen }" class="z-[-1000] bg-navy fixed overflow-scroll top-0 left-0 right-0 h-screen transition ease-in-out duration-500 transform">
+    <div id="menuSuperContainer" class="fixed overflow-scroll top-0 left-0 right-0 h-screen z-[-1000] opacity-[0] transition-opacity ease-in-out duration-500 transform">
+        <div id="menuContainer" class="z-[-1000] opacity-[0] bg-navy fixed overflow-scroll top-0 left-0 right-0 h-screen transition-opacity ease-in-out duration-500 transform">
             
         </div>
         <div id="close_button" class="text-center p-6 relative h-full w-full z-[1010] hover:cursor-pointer transition ease-in-out duration-300 transform">
@@ -71,18 +71,16 @@
 
 <script>
     document.getElementById('menu_button').addEventListener('click', function() {
-        document.querySelector('#menuSuperContainer').classList.remove('z-[-1000]');
-        document.querySelector('#menuSuperContainer').classList.add('z-[1000]');
-        document.querySelector('#menuContainer').classList.remove('z-[1000]');
-        document.querySelector('#menuContainer').classList.add('z-[1000]');
+        document.querySelector('#menuSuperContainer').classList.remove('z-[-1000]','opacity-[0]');
+        document.querySelector('#menuSuperContainer').classList.add('z-[1000]','opacity-[1]');
+        document.querySelector('#menuContainer').classList.remove('z-[-1000]','opacity-[0]');
+        document.querySelector('#menuContainer').classList.add('z-[1000]','opacity-[1]');
     });
 
     document.getElementById('close_button').addEventListener('click', function() {
-        setTimeout(function() {
-            document.querySelector('#menuSuperContainer').classList.add('z-[-1000]');
-            document.querySelector('#menuSuperContainer').classList.remove('z-[1000]');
-            document.querySelector('#menuContainer').classList.add('z-[1000]');
-            document.querySelector('#menuContainer').classList.remove('z-[1000]');
-        }, 300);
+        document.querySelector('#menuSuperContainer').classList.add('z-[-1000]','opacity-[0]');
+        document.querySelector('#menuSuperContainer').classList.remove('z-[1000]','opacity-[1]');
+        document.querySelector('#menuContainer').classList.add('z-[-1000]','opacity-[0]');
+        document.querySelector('#menuContainer').classList.remove('z-[1000]','opacity-[1]');
     });
 </script>
