@@ -7,7 +7,7 @@
     <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10 bg-navy">
         <div class="max-w-screen-md mx-auto">
             <div class="pb-32">
-                <h1 class="text-white title-1 pb-10">{{ page.title }}</h1>
+                <h1 class="pb-10 text-white title-1">{{ page.title }}</h1>
 
                 <div class="text-xl text-white">
                     {{ page.leadership_description|richtext }}
@@ -15,12 +15,12 @@
             </div>
 
             <div id="leaders" class="pb-20">
-                <h1 class="pb-20 title-2 text-white">Our Staff</h1>
+                <h1 class="pb-20 text-white title-2">Our Staff</h1>
 
                 {% for staffmember in page.get_children.specific.all %}
                     {% if staffmember.type == 'staff' %}
                         <div class="mb-24 text-white">
-                            <div class="sm:flex text-center sm:text-left items-center">
+                            <div class="items-center text-center sm:flex sm:text-left">
                                 {% image staffmember.photo width-2000 as smp %}
                                 <div class="flex justify-center sm:block">
                                     <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
@@ -43,13 +43,13 @@
         </div>
     </section>
 
-    <section class="p-6 sm:p-10 bg-white">
+    <section class="p-6 bg-white sm:p-10">
         <div class="max-w-screen-md mx-auto">
             <h1 class="pb-20 title-2 text-navy">Our Board of Directors</h1>
             {% for staffmember in page.get_children.specific.all %}
                 {% if staffmember.type == 'boardOfDirectors' %}
                     <div class="mb-24 text-navy">
-                        <div class="sm:flex text-center sm:text-left items-center">
+                        <div class="items-center text-center sm:flex sm:text-left">
                             {% image staffmember.photo width-2000 as smp %}
                             <div class="flex justify-center sm:block">
                                 <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
@@ -80,7 +80,7 @@
             {% for staffmember in page.get_children.specific.all %}
                 {% if staffmember.type == 'advisoryCouncil' %}
                     <div class="mb-24 text-navy">
-                        <div class="sm:flex text-center sm:text-left items-center">
+                        <div class="items-center text-center sm:flex sm:text-left">
                             {% image staffmember.photo width-2000 as smp %}
                             <div class="flex justify-center sm:block">
                                 <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
