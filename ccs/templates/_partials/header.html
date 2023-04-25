@@ -6,6 +6,13 @@
     <div class="flex items-center justify-between">
         <a class="relative" href="/">
             <div class="flex items-center">
+                <div>
+                    {% if page.dark_background %}
+                        <img class="h-10 mr-4" src="{% static 'arches_white.png' %}" alt="">
+                    {% else %}
+                        <img class="h-10 mr-4" src="{% static 'arches_blue.png' %}" alt="">
+                    {% endif %}
+                </div>
                 <div class="{% if page.dark_background %}text-white {% else %} text-navy {% endif %} font-serif text-xl italic font-bold leading-6">
                     Center for Christianity <br> and Scholarship
                 </div>

@@ -8,9 +8,15 @@
             <div class="md:flex">
                 <div class="mr-10 md:w-5/12">
                     <div class="pb-10">
-                        <div class="pb-6 font-serif text-3xl italic font-bold text-white">
-                            Center for Christianity <br> and Scholarship
+                        <div class="flex items-center pb-6">
+                            <div>
+                                <img class="h-16 mr-4" src="{% static 'arches_white.png' %}" alt="">
+                            </div>
+                            <div class="font-serif text-3xl italic font-bold text-white">
+                                Center for Christianity <br> and Scholarship
+                            </div>
                         </div>
+                        
                         <div class="pt-10 pb-6 text-white md:pt-0 body-text-1 lg:w-3/4">
                             {{ settings.home.Footer.site_description|richtext }}
                         </div>
