@@ -1,6 +1,7 @@
 {% load static wagtailcore_tags wagtailuserbar %}
 {% load static tailwind_tags %}
 {% load static %}
+{% load replace %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,16 +63,15 @@
 
     </head>
 
-    <body class="bg-white relative ">
+    <body class="relative bg-white ">
 
         <div id="app">
             <global-menu></global-menu>
 
-            {% if page.title == 'Home' or page.title == 'Who We Are' or page.title == 'Leadership' %}
-                <global-header lighttop="No"></global-header>
-            {% else %}
-                <global-header lighttop="Yes"></global-header> 
-            {% endif %}
+            {% include '_partials/header.html' %}
+
+            {% include '_partials/menu.html' %}
+
 
             {% block content %}
             {% endblock %}
@@ -81,7 +81,6 @@
 
 
         {# VUE Files #}
-
         <script type="text/javascript" src="{% static 'src/vue/dist/js/chunk-vendors.js' %}"></script>
         <script type="text/javascript" src="{% static 'src/vue/dist/js/app.js' %}"></script>
 

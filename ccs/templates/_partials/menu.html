@@ -1,0 +1,88 @@
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<menu>
+    <div id="menuSuperContainer" class="fixed overflow-scroll top-0 left-0 right-0 h-screen z-[-1000]">
+        <div id="menuContainer" :class="{ 'opacity-[1]': menuOpen, 'opacity-[0]': !menuOpen }" class="z-[-1000] bg-navy fixed overflow-scroll top-0 left-0 right-0 h-screen transition ease-in-out duration-500 transform">
+            
+        </div>
+        <div id="close_button" class="text-center p-6 relative h-full w-full z-[1010] hover:cursor-pointer transition ease-in-out duration-300 transform">
+            <div class="flex items-center justify-between">
+                <div class="font-serif text-xl italic font-bold leading-6 text-left text-white">
+                    Center for Christianity <br> and Scholarship
+                </div>
+                <div class="text-2xl font-bold text-white">
+                    ✕
+                </div>
+            </div>
+            
+
+            <div class="flex items-center justify-center min-h-full overflow-scroll">
+                <div class="mt-6 mb-20">
+                    {% for category in settings.home.Header.navigation %}
+                        {% if category.block_type == 'category' %}
+                            <div class="relative text-white group">
+                                <h1 class="pt-10 pb-4 font-serif text-4xl font-bold text-rose hover:cursor-pointer">{{ category.value.category_name }}</h1>
+    
+                                <div class="">
+                                    {% for link in category.value.category_links %}
+                                        {% if link.block_type == 'internal_link' %}
+                                            <a href="{{ link.value.link_reference.url }}">
+                                                <h2 class="pb-1 text-xl">{{ link.value.link_text }}</h2>
+                                            </a>
+                                        {% elif link.block_type == 'external_link' %}
+                                            <a href="{{ link.value.link_reference }}">
+                                                <h2 class="pb-1 text-xl">{{ link.value.link_text }}</h2>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        {% elif category.block_type == 'internal_button ' %}
+                            <div class="hidden ml-4 md:block">
+                                <button>
+                                    <a href="{{ category.value.button_link.url }}">
+                                        <div class="{% if page.dark_background %}border-white text-white hover:bg-white hover:text-navy {% else %} border-blue text-navy hover:bg-navy hover:border-navy hover:text-white {% endif %} px-4 py-1 text-lg font-bold transition duration-200 ease-in-out transform border-2 rounded-full">
+                                            {{ category.value.button_text }}
+                                        </div>
+                                    </a>
+                                </button>
+                            </div>
+                        {% elif category.block_type == 'external_button' %}
+                            <div class="hidden ml-4 md:block">
+                                <button>
+                                    <a href="{{ category.value.button_link }}">
+                                        <div class="{% if page.dark_background %}border-white text-white hover:bg-white hover:text-navy {% else %} border-blue text-navy hover:bg-navy hover:border-navy hover:text-white {% endif %} px-4 py-1 text-lg font-bold transition duration-200 ease-in-out transform border-2 rounded-full">
+                                            {{ category.value.button_text }}
+                                        </div>
+                                    </a>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</menu>
+
+<script>
+    document.getElementById('menu_button').addEventListener('click', function() {
+        document.querySelector('#menuSuperContainer').classList.remove('z-[-1000]');
+        document.querySelector('#menuSuperContainer').classList.add('z-[1000]');
+        document.querySelector('#menuContainer').classList.remove('z-[1000]');
+        document.querySelector('#menuContainer').classList.add('z-[1000]');
+    });
+
+    document.getElementById('close_button').addEventListener('click', function() {
+        setTimeout(function() {
+            document.querySelector('#menuSuperContainer').classList.add('z-[-1000]');
+            document.querySelector('#menuSuperContainer').classList.remove('z-[1000]');
+            document.querySelector('#menuContainer').classList.add('z-[1000]');
+            document.querySelector('#menuContainer').classList.remove('z-[1000]');
+        }, 300);
+    });
+</script>

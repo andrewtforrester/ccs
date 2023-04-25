@@ -13,6 +13,32 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
 @register_setting
+class Header(BaseSetting):
+    navigation = StreamField([
+        ('category', blocks.StructBlock([
+            ('category_name', blocks.CharBlock()),
+            ('category_links', blocks.StreamBlock([
+                ('internal_link', blocks.StructBlock([
+                    ('link_text', blocks.CharBlock()),
+                    ('link_reference', blocks.PageChooserBlock()),
+                ])),
+                ('external_link', blocks.StructBlock([
+                    ('link_text', blocks.CharBlock()),
+                    ('link_reference', blocks.CharBlock()),
+                ])),
+            ]))
+        ])),
+        ('internal_button', blocks.StructBlock([
+            ('button_text', blocks.CharBlock()),
+            ('button_link', blocks.PageChooserBlock()),
+        ])),
+        ('external_button', blocks.StructBlock([
+            ('button_text', blocks.CharBlock()),
+            ('button_link', blocks.CharBlock()),
+        ])),
+    ], use_json_field=True)
+
+@register_setting
 class Footer(BaseSetting):
 
     site_description = RichTextField()
@@ -88,6 +114,7 @@ class Footer(BaseSetting):
 
 class HomePage(SeoMixin, Page):
     is_creatable = False
+    dark_background = True
     # Helper Methods
 
     def events(self):
@@ -243,6 +270,7 @@ class HomePage(SeoMixin, Page):
 # ABOUT
 
 class WhoWeAre(Page):
+    dark_background = True
 
     mission_header = models.CharField(max_length=255)
     mission_text = RichTextField()
@@ -289,6 +317,7 @@ class WhoWeAre(Page):
     
 class LeadershipIndex(Page):
     is_creatable = False
+    dark_background = True
 
     leadership_description = RichTextField(blank=True, null=True)
 

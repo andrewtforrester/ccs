@@ -1,0 +1,70 @@
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<header class="{% if page.dark_background %}text-white {% else %} text-navy {% endif %} absolute z-[1000] top-0 left-0 right-0 px-6 sm:px-10 py-6">
+    <div class="flex items-center justify-between">
+        <a class="relative" href="/">
+            <div class="flex items-center">
+                <div class="{% if page.dark_background %}text-white {% else %} text-navy {% endif %} font-serif text-xl italic font-bold leading-6">
+                    Center for Christianity <br> and Scholarship
+                </div>
+            </div>
+        </a>
+        
+        <menu>
+            <div class="flex items-center justify-bewtween">
+                {% for category in settings.home.Header.navigation %}
+                    {% if category.block_type == 'category' %}
+                        <div class="relative hidden ml-4 sm:block group">
+                            <h1 class="pb-8 text-xl font-bold mt-7 hover:cursor-pointer">{{ category.value.category_name }}</h1>
+                            <div class="absolute top-0 mt-20 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white group-hover:border-2 border-white">
+                                {% for link in category.value.category_links %}
+                                    {% if link.block_type == 'internal_link' %}
+                                        <a href="{{ link.value.link_reference.url }}">
+                                            <h2 class="text-md hover:text-rose">{{ link.value.link_text }}</h2>
+                                        </a>
+                                    {% elif link.block_type == 'external_link' %}
+                                        <a href="{{ link.value.link_reference }}">
+                                            <h2 class="text-md hover:text-rose">{{ link.value.link_text }}</h2>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% elif category.block_type == 'internal_button ' %}
+                        <div class="hidden ml-4 md:block">
+                            <button>
+                                <a href="{{ category.value.button_link.url }}">
+                                    <div class="{% if page.dark_background %}border-white text-white hover:bg-white hover:text-navy {% else %} border-blue text-navy hover:bg-navy hover:border-navy hover:text-white {% endif %} px-4 py-1 text-lg font-bold transition duration-200 ease-in-out transform border-2 rounded-full">
+                                        {{ category.value.button_text }}
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    {% elif category.block_type == 'external_button' %}
+                        <div class="hidden ml-4 md:block">
+                            <button>
+                                <a href="{{ category.value.button_link }}">
+                                    <div class="{% if page.dark_background %}border-white text-white hover:bg-white hover:text-navy {% else %} border-blue text-navy hover:bg-navy hover:border-navy hover:text-white {% endif %} px-4 py-1 text-lg font-bold transition duration-200 ease-in-out transform border-2 rounded-full">
+                                        {{ category.value.button_text }}
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                <div id="menu_button"  class="flex ml-8 sm:hidden hover:cursor-pointer">
+                    
+                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.15rem] h-[.3rem] w-[.3rem] rounded-full">
+                    </div>
+                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.15rem] h-[.3rem] w-[.3rem] rounded-full">
+                    </div>
+                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.15rem] h-[.3rem] w-[.3rem] rounded-full">
+                    </div>
+                </div>
+            </div>
+        </menu>
+    </div>
+</header>
