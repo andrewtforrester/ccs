@@ -6,12 +6,14 @@
 {% block content %}
     <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10 bg-navy">
         <div class="max-w-screen-md mx-auto">
-            <div class="pb-32">
+            <div class="pb-10 sm:pb-32">
                 <h1 class="pb-10 text-white title-1">{{ page.title }}</h1>
 
-                <div class="text-xl text-white">
-                    {{ page.leadership_description|richtext }}
-                </div>
+                {% if page.leadership_description|length %}
+                    <div class="text-xl text-white">
+                        {{ page.leadership_description|richtext }}
+                    </div>
+                {% endif %}
             </div>
 
             <div id="leaders" class="pb-20">
@@ -23,8 +25,8 @@
                             <div class="items-center text-center sm:flex sm:text-left">
                                 {% image staffmember.photo width-2000 as smp %}
                                 <div class="flex justify-center sm:block">
-                                    <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
-                                        <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+                                    <div class="mb-6 sm:mr-6">
+                                        <div class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
     
                                         </div>
                                     </div>
@@ -52,8 +54,8 @@
                         <div class="items-center text-center sm:flex sm:text-left">
                             {% image staffmember.photo width-2000 as smp %}
                             <div class="flex justify-center sm:block">
-                                <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
-                                    <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+                                <div class="mb-6 sm:mr-6">
+                                    <div class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
 
                                     </div>
                                 </div>
@@ -83,8 +85,8 @@
                         <div class="items-center text-center sm:flex sm:text-left">
                             {% image staffmember.photo width-2000 as smp %}
                             <div class="flex justify-center sm:block">
-                                <div class="w-[20rem] min-w-[20rem] mr-6 mb-6">
-                                    <div class="w-[20rem] h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+                                <div class="mb-6 sm:mr-6 ">
+                                    <div class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
 
                                     </div>
                                 </div>
