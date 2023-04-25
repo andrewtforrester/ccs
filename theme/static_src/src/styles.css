@@ -17,6 +17,14 @@ p {
         @apply px-4 py-16 sm:p-10 lg:p-14;
     }
 
+    .section-wrapper-x {
+        @apply px-4 sm:px-10 lg:px-14;
+    }
+
+    .card-wrapper {
+        @apply px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-20 xl:py-28
+    }
+
     .title-1 {
         @apply font-black font-serif text-4xl sm:text-5xl lg:text-6xl lg:leading-[4.2rem];
     }

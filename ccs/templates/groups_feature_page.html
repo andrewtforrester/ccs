@@ -5,7 +5,7 @@
 {% load wagtailcore_tags %}
 
 {% block extra_bottom_content %}
-    <section class="px-6 sm:px-10 py-6 sm:py-16 bg-rose sm:bg-navy">
+    <section class="section-wrapper bg-rose sm:bg-navy">
         <div class="max-w-screen-2xl mx-auto">
             <div class="w-full">
                 <div class="title-2 pb-16 text-navy sm:text-white">
@@ -15,7 +15,7 @@
                 <section>
                     <div class="w-full relative">
                         {% if page.active_items|length %}
-                            <div class="sm:bg-rose rounded-lg px-2 relative max-w-screen-2xl mx-auto">
+                            <div class="sm:bg-rose rounded-lg relative max-w-screen-2xl mx-auto">
                                 <div class="hidden sm:block main-carousel w-full bg-transparent text-white sm:text-navy rounded-lg">
                                     {% block active_offerings_loop_fl %}{% endblock %}
                                 </div>
@@ -38,7 +38,7 @@
         
     </section>
 
-    <section class="p-6 sm:p-10">
+    <section class="section-wrapper">
         <div class="max-w-screen-2xl mx-auto">
             <div class="title-2 pb-16 text-navy">
                 {% block archive_header %}{% endblock %}

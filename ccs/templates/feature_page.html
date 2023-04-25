@@ -9,7 +9,7 @@
     {% block extra_top_content %}
     {% endblock %}
 
-    <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-16">
+    <section class="section-wrapper pt-32 sm:pt-40">
         <div class="max-w-screen-2xl mx-auto">
             <div class="max-w-screen-2xl mx-auto">
                 <div class="pb-10 sm:pb-20">
@@ -20,11 +20,11 @@
 
             {% image page.feature_image width-2000 as fi %}
 
-            <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="sm:flex bg-navy text-white rounded-lg overflow-hidden">
-                <div class="bg-cover bg-center sm:w-1/2 h-[20rem] sm:h-auto" style="background-image: url('{{ fi.url }}');">
+            <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="md:flex bg-navy text-white rounded-lg overflow-hidden">
+                <div class="bg-cover bg-center md:w-1/2 h-[20rem] md:h-auto" style="background-image: url('{{ fi.url }}');">
 
                 </div>
-                <div class="sm:w-1/2 px-6 py-10 sm:px-10 sm:py-16 lg:py-32 xl:py-40">
+                <div class="md:w-1/2 card-wrapper">
                     <div class="title-2 pb-6">
                         {{ page.header_text }}
                     </div>

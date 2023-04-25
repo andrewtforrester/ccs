@@ -17,7 +17,7 @@
                 {% for category in settings.home.Header.navigation %}
                     {% if category.block_type == 'category' %}
                         <div class="relative hidden ml-4 sm:block group">
-                            <h1 class="pb-8 text-xl font-bold mt-7 hover:cursor-pointer">{{ category.value.category_name }}</h1>
+                            <h1 class="pb-8 text-lg lg:text-xl font-bold mt-7 hover:cursor-pointer">{{ category.value.category_name }}</h1>
                             <div class="absolute top-0 mt-20 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white group-hover:border-2 border-white">
                                 {% for link in category.value.category_links %}
                                     {% if link.block_type == 'internal_link' %}
@@ -55,13 +55,13 @@
                     {% endif %}
                 {% endfor %}
                 
-                <div id="menu_button"  class="flex ml-8 sm:hidden hover:cursor-pointer">
+                <div id="menu_button" class="flex ml-4 pl-4 py-4 sm:hidden hover:cursor-pointer">
                     
-                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.15rem] h-[.3rem] w-[.3rem] rounded-full">
+                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.2rem] h-[.4rem] w-[.4rem] rounded-full">
                     </div>
-                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.15rem] h-[.3rem] w-[.3rem] rounded-full">
+                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.2rem] h-[.4rem] w-[.4rem] rounded-full">
                     </div>
-                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.15rem] h-[.3rem] w-[.3rem] rounded-full">
+                    <div class="{% if page.dark_background %}bg-white {% else %} bg-navy {% endif %} mr-[.2rem] h-[.4rem] w-[.4rem] rounded-full">
                     </div>
                 </div>
             </div>

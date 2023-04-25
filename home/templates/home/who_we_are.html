@@ -5,33 +5,36 @@
 
 {% block content %}
     <div class="bg-navy">
-        <section class="px-6 pt-40 pb-6 sm:px-10 sm:pb-10">
+        <section class="pt-40 section-wrapper-x">
             <div class="max-w-screen-2xl mx-auto">
-                <div class="pb-12">
-                    <h1 class="text-white title-1">{{ page.title }}</h1>
-                </div>
+                <h1 class="text-white title-1">{{ page.title }}</h1>
             </div>
         </section>
 
         <section>
-            <div class="w-full p-6 md:p-10 max-w-screen-2xl mx-auto">
-                <div class="md:flex py-10 md:pt-10 md:pb-20">
-                    <div class="w-full md:w-1/2 mb-16 md:mb-0">
-                        {% image page.mission_image width-2000 as b2i %}
-                        <div class="relative px-10">
-                            <div class="relative z-10 bg-center bg-cover h-[40rem] lg:h-[50rem] w-full" style="background-image: url('{{ b2i.url }}');">
+            <div class="w-full section-wrapper max-w-screen-2xl mx-auto">
+                <div class="md:flex md:pt-10 md:pb-20">
 
+                    {% image page.mission_image width-2000 as b2i %}
+
+                    <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="bg-rose rounded-lg overflow-hidden md:flex">
+                        <div class="relative">
+                            <div class="relative z-10 bg-center bg-cover h-[30rem] md:h-full md:w-[20rem] lg:w-[30rem] xl:w-[35rem] w-full" style="background-image: url('{{ b2i.url }}');">
+    
                             </div>
-                            <div class="absolute inset-x-10 inset-y-0 bg-rose z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
+                        </div>
+    
+                        <div class="w-full card-wrapper">
+                            <h1 class="pb-6 font-serif text-5xl italic font-bold text-navy">{{ page.mission_header }}</h1>
+                            <div class="text-navy body-text-1">
+                                {{ page.mission_text|richtext }}
+                            </div>
                         </div>
                     </div>
+                    
 
-                    <div class="w-full md:w-1/2">
-                        <h1 class="pb-6 font-serif text-5xl italic font-bold text-white">{{ page.mission_header }}</h1>
-                        <div class="pb-6 text-white body-text-1">
-                            {{ page.mission_text|richtext }}
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </section>
@@ -41,13 +44,13 @@
     <section>
         <div class="bg-white">
             <div class="relative sm:flex">
-                <div class="w-full sm:w-1/2 lg:w-[45%] p-6 md:p-10 overflow-hidden">
+                <div class="w-full sm:w-1/2 lg:w-[45%] section-wrapper overflow-hidden">
                     <div id="b3textcontainer" class="">
-                        <h1 class="pt-10 pb-40 title-2 text-navy">{{ page.values_header }}</h1>
+                        <h1 class="pt-10 pb-20 sm:pb-40 title-2 text-navy">{{ page.values_header }}</h1>
 
                         {% for item in page.beliefs %}
-                            <div class="px-2 pb-32">
-                                <div class="pb-10 title-4 text-navy">
+                            <div class="px-2 pb-20 md:pb-32">
+                                <div class="pb-10 text-xl lg:text-2xl text-navy">
                                     {{ item.value.text }}
                                 </div>
                             </div>
