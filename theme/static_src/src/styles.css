@@ -18,7 +18,7 @@ p {
     }
 
     .title-1 {
-        @apply font-bold font-serif text-4xl sm:text-5xl lg:text-6xl lg:leading-[4.2rem];
+        @apply font-black font-serif text-4xl sm:text-5xl lg:text-6xl lg:leading-[4.2rem];
     }
 
     #price-box {
@@ -26,15 +26,15 @@ p {
     }
 
     .title-2 {
-        @apply text-4xl lg:text-5xl font-bold font-serif;
+        @apply text-4xl lg:text-5xl font-black font-serif;
     }
 
     .title-3 {
-        @apply text-3xl lg:text-4xl font-bold font-serif;
+        @apply text-3xl lg:text-4xl font-black font-serif;
     }
 
     .title-4 {
-        @apply text-xl lg:text-2xl font-bold font-serif;
+        @apply text-xl lg:text-2xl font-black font-serif;
     }
 
     .body-text-1 {
