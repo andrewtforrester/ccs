@@ -36,10 +36,10 @@
     </section>
 
     <section>
-        <div class="w-full p-6 bg-navy sm:p-10">
-            <div class="py-10 max-w-screen-2xl mx-auto">
+        <div class="section-wrapper w-full bg-navy">
+            <div class="max-w-screen-2xl mx-auto">
                 <div class="mb-10 lg:mb-20">
-                    <h2 class="title-1 text-center text-white max-w-[75rem] mx-auto">{{ page.we_believe_title_text|replace:'abundant life.;<span class="text-rose">abundant life.</span>'|richtext }}</h2>
+                    <h2 class="title-1 sm:text-center text-white max-w-[75rem] mx-auto">{{ page.we_believe_title_text|replace:'abundant life.;<span class="text-rose">abundant life.</span>'|richtext }}</h2>
                 </div>
                 <div class="w-full flex justify-center mb-16 sm:mb-0 relative">
                     {% image page.we_believe_feature_image width-2000 as b2i %}
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <div class="text-center w-full sm:pt-24 sm:w-10/12">
+                    <div class="sm:text-center w-full sm:pt-24 sm:w-10/12">
                         <div class="pb-6 text-white text-xl sm:text-2xl">
                             {{ page.we_believe_description_text|richtext }}
                         </div>
@@ -76,9 +76,9 @@
     <section>
         <div class="bg-white">
             <div class="relative sm:flex">
-                <div class="w-full sm:w-1/2 lg:w-[45%] p-6 md:p-10 overflow-hidden">
+                <div class="w-full sm:w-1/2 lg:w-[45%] section-wrapper overflow-hidden">
                     <div id="b3textcontainer" class="2xl:max-w-[50rem] mx-auto">
-                        <h1 class="pt-10 pb-20 title-2 text-navy">{{ page.what_we_do_header }}</h1>
+                        <h1 class="pb-20 title-2 text-navy">{{ page.what_we_do_header }}</h1>
 
                         {% for item in page.what_we_do %}
                             <div class="px-2 pb-20 sm:pb-40">
@@ -111,7 +111,7 @@
     </section>
 
     <section>
-        <div class="w-full p-6 bg-navy sm:p-10">
+        <div class="w-full bg-navy section-wrapper">
 
             <div class="relative flex pb-10 max-w-[62rem] mb-10 mx-auto">
                 <h1 class="text-white title-2">{{ page.what_we_offer_heading }}</h1>
@@ -168,13 +168,11 @@
         </div>
     </section>
 
-    <section>
-        <div class="p-6 bg-navy sm:p-10">
-            <h1 class="pt-10 pb-10 text-right text-rose title-2">{{ page.slides_header_text }}</h1>
+    <section class="bg-navy">
+        <div class="bg-navy section-wrapper">
+            <h1 class="pb-10 text-right text-rose title-2">{{ page.slides_header_text }}</h1>
         </div>
-    </section>
 
-    <section>
         <div class="w-full h-[35rem] sm:h-[50rem] bg-navy relative">
             <div class="main-carousel w-full h-[35rem] sm:h-[50rem] px-2">
                 {% for block in page.houseSlides %}
@@ -207,8 +205,8 @@
     </div>
     
 
-    <section class="">
-        <div class="w-full p-6 bg-white sm:p-10">
+    <section>
+        <div class="w-full bg-white section-wrapper">
             <div class="w-full mx-auto sm:w-10/12 lg:w-2/3 max-w-screen-md">
                 {% include 'home/_partials/events.html' %}
 

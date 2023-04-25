@@ -13,6 +13,10 @@ p {
 
 @layer components {
 
+    .section-wrapper {
+        @apply px-4 py-16 sm:p-10 lg:p-14;
+    }
+
     .title-1 {
         @apply font-bold font-serif text-4xl sm:text-5xl lg:text-6xl lg:leading-[4.2rem];
     }
