@@ -1680,6 +1680,10 @@ select {
   min-height: 100vh;
 }
 
+.min-h-\[20rem\] {
+  min-height: 20rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -3213,6 +3217,10 @@ p {
     margin-bottom: 0px;
   }
 
+  .md\:ml-6 {
+    margin-left: 1.5rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -3286,6 +3294,11 @@ p {
   .md\:py-14 {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
+  }
+
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .md\:pt-0 {
