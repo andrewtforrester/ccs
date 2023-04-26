@@ -2109,6 +2109,10 @@ select {
   border-radius: 0.25rem;
 }
 
+.rounded-none {
+  border-radius: 0px;
+}
+
 .border-2 {
   border-width: 2px;
 }
@@ -2733,6 +2737,10 @@ select {
 
 .opacity-0 {
   opacity: 0;
+}
+
+.opacity-\[0\.65\] {
+  opacity: 0.65;
 }
 
 .shadow {
