@@ -6,14 +6,14 @@
     <div class="flex items-center justify-between">
         <a class="relative" href="/">
             <div class="flex items-center">
-                <div>
+                <div class="">
                     {% if page.dark_background %}
                         <img class="h-10 mr-4" src="{% static 'arches_white.png' %}" alt="">
                     {% else %}
                         <img class="h-10 mr-4" src="{% static 'arches_blue.png' %}" alt="">
                     {% endif %}
                 </div>
-                <div class="{% if page.dark_background %}text-white {% else %} text-navy {% endif %} font-serif text-xl italic font-bold leading-6">
+                <div class="{% if page.dark_background %}text-white {% else %} text-navy {% endif %} font-serif text-lg sm:text-lg italic font-bold">
                     Center for Christianity <br> and Scholarship
                 </div>
             </div>
@@ -23,8 +23,8 @@
             <div class="flex items-center justify-bewtween">
                 {% for category in settings.home.Header.navigation %}
                     {% if category.block_type == 'category' %}
-                        <div class="relative hidden ml-4 sm:block group">
-                            <h1 class="pb-8 text-lg lg:text-xl font-bold mt-7 hover:cursor-pointer">{{ category.value.category_name }}</h1>
+                        <div class="relative hidden ml-3 lg:ml-4 sm:block group">
+                            <h1 class="pb-8 text-md lg:text-xl font-bold mt-7 hover:cursor-pointer">{{ category.value.category_name }}</h1>
                             <div class="absolute top-0 mt-20 overflow-y-hidden whitespace-nowrap h-0 rounded-[.2rem] transition-all bg-navy px-4 ease-in-out duration-300 transform group-hover:h-auto group-hover:py-4 text-white group-hover:border-2 border-white">
                                 {% for link in category.value.category_links %}
                                     {% if link.block_type == 'internal_link' %}

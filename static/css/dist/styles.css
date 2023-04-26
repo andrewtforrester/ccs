@@ -1520,6 +1520,10 @@ select {
   margin-top: 0.25rem;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .block {
   display: block;
 }
@@ -1662,6 +1666,10 @@ select {
 
 .h-16 {
   height: 4rem;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .min-h-full {
@@ -1812,6 +1820,10 @@ select {
 
 .w-\[65rem\] {
   width: 65rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .min-w-\[10rem\] {
@@ -2531,6 +2543,26 @@ select {
   line-height: 1;
 }
 
+.text-\[5vw\] {
+  font-size: 5vw;
+}
+
+.text-\[10vw\] {
+  font-size: 10vw;
+}
+
+.text-\[6vw\] {
+  font-size: 6vw;
+}
+
+.text-\[7vw\] {
+  font-size: 7vw;
+}
+
+.text-\[6\.5vw\] {
+  font-size: 6.5vw;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -2596,6 +2628,10 @@ select {
   line-height: 2.5rem;
 }
 
+.leading-\[10px\] {
+  line-height: 10px;
+}
+
 .tracking-normal {
   letter-spacing: 0em;
 }
@@ -2633,6 +2669,10 @@ select {
 .text-gray {
   --tw-text-opacity: 1;
   color: rgb(211 214 214 / var(--tw-text-opacity));
+}
+
+.text-\[2xl\] {
+  color: 2xl;
 }
 
 .underline {
@@ -2993,6 +3033,10 @@ p {
     justify-content: flex-start;
   }
 
+  .sm\:whitespace-nowrap {
+    white-space: nowrap;
+  }
+
   .sm\:rounded-lg {
     border-radius: 0.5rem;
   }
@@ -3109,6 +3153,11 @@ p {
 
   .sm\:text-xl {
     font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
     line-height: 1.75rem;
   }
 
@@ -3272,6 +3321,10 @@ p {
 
   .lg\:mb-20 {
     margin-bottom: 5rem;
+  }
+
+  .lg\:ml-4 {
+    margin-left: 1rem;
   }
 
   .lg\:block {

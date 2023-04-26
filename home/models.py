@@ -118,13 +118,7 @@ class HomePage(SeoMixin, Page):
     # Helper Methods
 
     def events(self):
-
-        y = str(datetime.date.today().year)
-        m = str(datetime.date.today().month)
-        d = str(datetime.date.today().day)
-
-        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')[:3]
-        return events
+        return CurrentEvents.events(CurrentEvents)[:3]
 
     # BANNER
 
@@ -479,14 +473,96 @@ class CurrentEvents(Page):
     is_creatable = False
     def events(self):
 
-        y = str(datetime.date.today().year)
-        m = str(datetime.date.today().month)
-        d = str(datetime.date.today().day)
+        y = datetime.date.today().year
+        m = datetime.date.today().month
+        d = datetime.date.today().day
 
-        events = EventInstance.objects.live().public().filter(date__range=[y+"-"+m+"-"+d, "9999-01-01"]).order_by('date')
-        return events
+        result = []
+
+        for event in Event.objects.live():
+            for meeting in event.meetings:
+                if meeting.value['date'] >= datetime.date(year=y,month=m,day=d):
+                    result = result + [({
+                        "title": event.title,
+                        "description": event.description,
+                        "associated_page": event.associated_page.url if event.associated_page else event.url,
+                        "date": meeting.value['date'],
+                        "time": meeting.value['time'],
+                    })]
+
+        return sorted(result, key = lambda d: d['date'])
 
     subpage_types = ['home.Event']
+
+class Event(SeoMixin, Page):
+
+    description = RichTextField(null=True, blank=True)
+    registration_link = models.CharField(max_length=1023, blank=True)
+    location = models.CharField(max_length=1023, blank=True)
+    leader = models.CharField(max_length=1023, blank=True)
+
+    meetings = StreamField([
+        ('meeting', blocks.StructBlock([
+            ('date', blocks.DateBlock()),
+            ('time', blocks.TimeBlock()),
+            ('place', blocks.CharBlock(required=False, help_text='Leave blank to use the event\'s default location.')),
+            ('description', blocks.RichTextBlock(required=False, help_text='Optional description of the meeting (e.g. the content covered in a course or reading group session, special instructions for a particular meeting, etc). Leave blank to use the event\'s default description.')),
+        ]))
+    ])
+    
+    associated_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Leave blank to associate this event with an automatically generated page.'
+    )
+
+    poster = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    general = [
+        FieldPanel('title'),
+        FieldPanel('description'),
+        FieldPanel('location'),
+        FieldPanel('registration_link'),
+        FieldPanel('poster'),
+        FieldPanel('associated_page'),
+    ]
+
+    mtgs = [
+        FieldPanel('meetings')
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(general, 'General Information'),
+        ObjectList(mtgs, 'Meetings'),
+        ObjectList(SeoMixin.seo_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description'),
+        FieldPanel('registration_link'),
+        FieldPanel('location'),
+        FieldPanel('poster'),
+        FieldPanel('meetings'),
+    ]
+
+    def abridged_description(self):
+        if len(self.description) > 350:
+            return self.description[:350] + "..."
+        else:
+            return self.description
+            
+        
+    subpage_types = []
 
 
 # ACADEMICS
@@ -584,7 +660,7 @@ class Course(Page):
         else:
             return self.description
 
-    subpage_types = ['home.EventInstance']
+    subpage_types = []
 
 
 
@@ -672,7 +748,7 @@ class ReadingGroup(Page):
         else:
             return self.description
 
-    subpage_types = ['home.EventInstance']
+    subpage_types = []
 
 
 
@@ -908,45 +984,7 @@ class LendAHand(Page):
 
 # HELPERS
 
-class Event(Page):
 
-    description = RichTextField(null=True, blank=True)
-    registration_link = models.CharField(max_length=1023, blank=True)
-    location = models.CharField(max_length=1023, blank=True)
-    poster = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    content_panels = Page.content_panels + [
-        FieldPanel('description'),
-        FieldPanel('registration_link'),
-        FieldPanel('location'),
-        FieldPanel('poster'),
-    ]
-    
-    subpage_types = ['home.EventInstance']
-
-    def abridged_description(self):
-        if len(self.description) > 350:
-            return self.description[:350] + "..."
-        else:
-            return self.description
-
-class EventInstance(Page):
-
-    date = models.DateField(null=True, blank=True)
-    time = models.TimeField(null=True, blank=True)
-
-    content_panels = Page.content_panels + [
-        FieldPanel('date'),
-        FieldPanel('time'),
-    ]
-
-    subpage_types = []
 
 class ConstructionPage(Page):
 

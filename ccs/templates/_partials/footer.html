@@ -6,18 +6,18 @@
     <div class="w-full bg-navy section-wrapper">
         <div class="mx-auto max-w-screen-2xl">
             <div class="md:flex">
-                <div class="mr-10 md:w-5/12">
+                <div class="mr-4 md:w-5/12">
                     <div class="pb-10">
                         <div class="flex items-center pb-6">
-                            <div>
-                                <img class="h-16 mr-4" src="{% static 'arches_white.png' %}" alt="">
+                            <div class="hidden lg:block w-16 min-w-16">
+                                <img class="h-12" src="{% static 'arches_white.png' %}" alt="">
                             </div>
-                            <div class="font-serif text-3xl italic font-bold text-white">
-                                Center for Christianity <br> and Scholarship
+                            <div class="ml-2 font-serif text-2xl italic font-black text-white">
+                                <span class="sm:whitespace-nowrap">Center for Christianity</span> <br> <span class="whitespace-nowrap">and Scholarship</span> 
                             </div>
                         </div>
                         
-                        <div class="pt-10 pb-6 text-white md:pt-0 body-text-1 lg:w-3/4">
+                        <div class="pt-10 pb-6 text-white md:pt-0 text-lg sm:text-xl lg:w-3/4">
                             {{ settings.home.Footer.site_description|richtext }}
                         </div>
                     </div>
