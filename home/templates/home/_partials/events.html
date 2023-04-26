@@ -11,7 +11,7 @@
             
                 <h2 class="font-bold font-serif text-xl sm:text-2xl text-navy">{{ event.title }}</h2>
             </a>
-            <h2 class="font-bold font-serif text-xl sm:text-2xl text-navy opacity-[0.8] mb-2 sm:mb-0">{{ event.date|date:'D, M d' }} at {{ event.time }}</h2>
+            <h2 class="font-bold font-serif text-xl sm:text-2xl text-navy opacity-[0.8] mb-2 sm:mb-0">{{ event.date|date:'D, M d' }} at {{ event.start_time }}</h2>
         </div>
         <div class="text-lg pt-4 pb-1">{{ event.description|richtext }}</div> 
         

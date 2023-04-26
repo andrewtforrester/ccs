@@ -487,7 +487,8 @@ class CurrentEvents(Page):
                         "description": event.description,
                         "associated_page": event.associated_page.url if event.associated_page else event.url,
                         "date": meeting.value['date'],
-                        "time": meeting.value['time'],
+                        "start_time": meeting.value['start_time'],
+                        "end_time": meeting.value['end_time'],
                     })]
 
         return sorted(result, key = lambda d: d['date'])
@@ -504,7 +505,8 @@ class Event(SeoMixin, Page):
     meetings = StreamField([
         ('meeting', blocks.StructBlock([
             ('date', blocks.DateBlock()),
-            ('time', blocks.TimeBlock()),
+            ('start_time', blocks.TimeBlock()),
+            ('end_time', blocks.TimeBlock(required=False, help_text='Leave blank to only display a start time.')),
             ('place', blocks.CharBlock(required=False, help_text='Leave blank to use the event\'s default location.')),
             ('description', blocks.RichTextBlock(required=False, help_text='Optional description of the meeting (e.g. the content covered in a course or reading group session, special instructions for a particular meeting, etc). Leave blank to use the event\'s default description.')),
         ]))
