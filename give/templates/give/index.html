@@ -7,16 +7,24 @@
 		
 
 		<div class="items-start sm:pb-20 relative">
-			<div class="sm:px-0">
+			<div class="">
 
-				<div class="md:flex mb-10">
-					<div class="">
-						<h1 class="pb-10 title-1 text-navy">Give</h1>
-						<h3 class="title-2 text-navy pb-20">Your contribution helps us <span class="text-rose">enrich the intellectual lives</span>  of Christians at Duke.</h3>
+				<h1 class="pb-10 title-1 text-navy">Give</h1>
+
+
+				<div class="lg:flex lg:items-center mb-10 bg-navy rounded-lg overflow-hidden">
+					<div class="card-wrapper items-center">
+						<div class="">
+							<h3 class="font-black font-serif text-4xl sm:text-5xl lg:text-6xl text-white">Your contribution helps us <span class="text-rose">enrich the intellectual lives</span>  of Christians at Duke.</h3>
+						</div>
+						<!-- 
+						<div class="">
+							<h4 class="text-2xl font-bold text-white">Find out how</h4>
+						</div>	-->
 					</div>
 					
 
-					<div class="w-full md:ml-6">
+					<div class="w-full card-wrapper">
 						{% include "give/_partials/paymentflow.html" %}
 					</div>
 				</div>
