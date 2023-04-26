@@ -2577,6 +2577,11 @@ select {
   font-size: 6.5vw;
 }
 
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -3443,8 +3448,17 @@ p {
     align-items: center;
   }
 
+  .lg\:rounded-none {
+    border-radius: 0px;
+  }
+
   .lg\:bg-transparent {
     background-color: transparent;
+  }
+
+  .lg\:bg-navy {
+    --tw-bg-opacity: 1;
+    background-color: rgb(21 24 47 / var(--tw-bg-opacity));
   }
 
   .lg\:p-14 {
@@ -3527,6 +3541,38 @@ p {
   .lg\:text-white {
     --tw-text-opacity: 1;
     color: rgb(250 248 244 / var(--tw-text-opacity));
+  }
+
+  .lg\:card-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .lg\:card-wrapper {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .lg\:card-wrapper {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .lg\:card-wrapper {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
   }
 
   .lg\:whitebutton {
