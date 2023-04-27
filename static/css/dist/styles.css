@@ -3243,6 +3243,25 @@ p {
     color: rgb(21 24 47 / var(--tw-text-opacity));
   }
 
+  .sm\:section-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 640px) {
+    .sm\:section-wrapper {
+      padding: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sm\:section-wrapper {
+      padding: 3.5rem;
+    }
+  }
+
   .sm\:navybutton {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     border-radius: 9999px;
@@ -3339,6 +3358,10 @@ p {
 
   .md\:max-w-\[40rem\] {
     max-width: 40rem;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-col {

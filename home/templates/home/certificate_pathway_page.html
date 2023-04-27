@@ -7,91 +7,100 @@
 
 {% block content %}
     <div class="bg-white pt-40 pb-6 sm:pb-10">
-        <div class="mx-auto max-w-screen-2xl">
-            <div class="px-4 sm:px-10 pb-10 sm:pb-0">
-                <h1 class="title-1 text-royal pb-6">{{ page.title }}</h1>
-                <div class="text-2xl text-royal pb-10 max-w-[50rem]">{{ page.page_description|richtext }}</div>
+        <div class="">
+            <div class="section-wrapper">
+                <div class="mx-auto max-w-screen-2xl">
+                    <h1 class="title-1 text-royal pb-6">{{ page.title }}</h1>
+                    <div class="text-2xl text-royal pb-10 max-w-[50rem]">{{ page.page_description|richtext }}</div>
+                </div>
             </div>
             
-
-            <div class="sm:px-10">
-                <div class="bg-navy sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40 sm:mb-10">
-                    <h2 class="text-sm font-sans font-bold text-rose">{{ page.course_block_header_1 }}</h2>
-    
-                    <h2 class="title-2 text-rose pb-4">{{ page.course_block_header_2 }}</h2>
-    
-                    <div class="body-text-1 text-white pb-10">{{ page.course_block_description|richtext }}</div>
-    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-    
-                        {% for course in page.eligable_courses %}
-                            <div class="text-royal w-full">
-                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 {% if course.value.button_link|length and course.value.button_text|length %} pb-20 {% endif %} rounded-lg">
-                                    
-                                    {% if course.value.semester|length %}
-                                        <div class="text-md font-bold pb-1">
-                                            {{ course.value.semester }}
+            
+            <div class="sm:section-wrapper">
+                <div class="mx-auto max-w-screen-2xl">
+                    <div class="bg-navy sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40 sm:mb-10">
+                        <h2 class="text-sm font-sans font-bold text-rose">{{ page.course_block_header_1 }}</h2>
+        
+                        <h2 class="title-2 text-rose pb-4">{{ page.course_block_header_2 }}</h2>
+        
+                        <div class="body-text-1 text-white pb-10">{{ page.course_block_description|richtext }}</div>
+        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
+        
+                            {% for course in page.eligable_courses %}
+                                <div class="text-royal w-full">
+                                    <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-rose h-full pt-4 px-4 sm:px-6 {% if course.value.button_link|length and course.value.button_text|length %} pb-20 {% endif %} rounded-lg">
+                                        
+                                        {% if course.value.semester|length %}
+                                            <div class="text-md font-bold pb-1">
+                                                {{ course.value.semester }}
+                                            </div>
+                                        {% endif %}
+                                        
+                                        <h3 class="text-3xl  lg:text-3xl font-bold font-serif pb-4">{{ course.value.title }}</h3>
+        
+                                        <div class="body-text-1 text-royal">{{ course.value.description|richtext }}</div>
+        
+                                        {% if course.value.button_link|length and course.value.button_text|length %}
+                                            <button class="absolute bottom-4 left-4">
+                                                <a href="{{ course.value.button_link }}">
+                                                    <div class="navybutton">
+                                                        {{ course.value.button_text }}
+                                                    </div>
+                                                </a>
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+        
+                        <button>
+                            <a href="{{ page.course_block_button_link }}">
+                                <div class="whitebutton">
+                                    {{ page.course_block_button_text }}
+                                </div>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sm:section-wrapper ">
+                <div class="mx-auto max-w-screen-2xl">
+                    <div class="">
+                        <div class="bg-rose sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40">
+                            <h2 class="text-sm font-sans font-bold text-royal">{{ page.project_block_header_1 }}</h2>
+        
+                            <h2 class="title-2 text-royal pb-10">{{ page.project_block_header_2 }}</h2>
+        
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        
+                                {% for project in page.eligable_projects %}
+                                    <div class="text-white w-full">
+                                        <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-navy h-full pt-4 px-4 sm:px-6 {% if project.value.button_link|length and project.value.button_text|length %} pb-20 {% endif %} rounded-lg">
+                                            <h3 class="text-3xl font-bold font-serif pb-4">{{ project.value.title }}</h3>
+        
+                                            <div class="body-text-1">{{ project.value.description|richtext }}</div>
+        
+                                            {% if project.value.button_link|length and project.value.button_text|length %}
+                                                <button class="absolute bottom-4 left-4">
+                                                    <a href="{{ project.value.button_link }}">
+                                                        <div class="whitebutton">
+                                                            {{ project.value.button_text }}
+                                                        </div>
+                                                    </a>
+                                                </button>
+                                            {% endif %}
                                         </div>
-                                    {% endif %}
-                                    
-                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ course.value.title }}</h3>
-    
-                                    <p class="text-md text-royal">{{ course.value.description }}</p>
-    
-                                    {% if course.value.button_link|length and course.value.button_text|length %}
-                                        <button class="absolute bottom-4 left-4">
-                                            <a href="{{ course.value.button_link }}">
-                                                <div class="navybutton">
-                                                    {{ course.value.button_text }}
-                                                </div>
-                                            </a>
-                                        </button>
-                                    {% endif %}
-                                </div>
+                                    </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                        </div>
                     </div>
-    
-                    <button>
-                        <a href="{{ page.course_block_button_link }}">
-                            <div class="whitebutton">
-                                {{ page.course_block_button_text }}
-                            </div>
-                        </a>
-                    </button>
                 </div>
             </div>
             
-            <div class="sm:px-10">
-                <div class="bg-rose sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40">
-                    <h2 class="text-sm font-sans font-bold text-royal">{{ page.project_block_header_1 }}</h2>
-
-                    <h2 class="title-2 text-royal pb-10">{{ page.project_block_header_2 }}</h2>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                        {% for project in page.eligable_projects %}
-                            <div class="text-white w-full">
-                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative bg-royal h-full pt-4 px-4 sm:px-6 {% if project.value.button_link|length and project.value.button_text|length %} pb-20 {% endif %} rounded-lg">
-                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif pb-2">{{ project.value.title }}</h3>
-
-                                    <p class="text-md">{{ project.value.description }}</p>
-
-                                    {% if project.value.button_link|length and project.value.button_text|length %}
-                                        <button class="absolute bottom-4 left-4">
-                                            <a href="{{ project.value.button_link }}">
-                                                <div class="whitebutton">
-                                                    {{ project.value.button_text }}
-                                                </div>
-                                            </a>
-                                        </button>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
 
             <div class="mt-28 mb-20 px-4 sm:px-10">
                 <div class="sm:flex justify-center items-center">
