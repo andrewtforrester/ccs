@@ -9,31 +9,36 @@
         </div>
         <div id="close_button" class="text-center px-4 py-6 relative h-full w-full z-[1010] hover:cursor-pointer transition ease-in-out duration-300 transform">
             <div class="flex items-center justify-between">
-                <div class="font-serif text-xl italic font-bold leading-6 text-left text-white">
-                    Center for Christianity <br> and Scholarship
+                <div class="flex items-center justify-start">
+                    <img class="h-10 mr-4" src="{% static 'arches_white.png' %}" alt="">
+
+                    <div class="font-serif text-lg italic font-bold leading-6 text-left text-white">
+                        Center for Christianity <br> and Scholarship
+                    </div>
                 </div>
-                <div class="text-2xl font-bold text-white">
+                
+                <div class="text-2xl font-bold text-white mr-2">
                     ✕
                 </div>
             </div>
             
 
             <div class="flex items-center justify-center min-h-full overflow-scroll">
-                <div class="mt-6 mb-40">
+                <div class="mt-16 mb-40">
                     {% for category in settings.home.Header.navigation %}
                         {% if category.block_type == 'category' %}
-                            <div class="relative text-white group">
-                                <h1 class="pt-10 pb-4 font-serif text-4xl font-bold text-rose hover:cursor-pointer">{{ category.value.category_name }}</h1>
+                            <div class="relative text-white group pb-12">
+                                <h1 class="pb-4 font-serif text-4xl font-bold text-rose hover:cursor-pointer">{{ category.value.category_name }}</h1>
     
                                 <div class="">
                                     {% for link in category.value.category_links %}
                                         {% if link.block_type == 'internal_link' %}
                                             <a href="{{ link.value.link_reference.url }}">
-                                                <h2 class="pb-1 text-xl">{{ link.value.link_text }}</h2>
+                                                <h2 class="py-1 text-xl">{{ link.value.link_text }}</h2>
                                             </a>
                                         {% elif link.block_type == 'external_link' %}
                                             <a href="{{ link.value.link_reference }}">
-                                                <h2 class="pb-1 text-xl">{{ link.value.link_text }}</h2>
+                                                <h2 class="py-1 text-xl">{{ link.value.link_text }}</h2>
                                             </a>
                                         {% endif %}
                                     {% endfor %}
