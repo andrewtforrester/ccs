@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <div id="b3imagecontainer" class="hidden sm:block absolute top-0 right-0 bottom-0 w-1/2 lg:w-[55%] overflow-hidden">
-                    {% image page.what_we_do_feature_image width-6000 as b3i %}
+                    {% image page.what_we_do_feature_image width-3000 as b3i %}
                     <div id="b3imagesubcontainer" class="absolute top-0 right-0 w-full h-[100vh] bg-center bg-cover" style="background-image: url('{{ b3i.url }}');">
 
                     </div>
@@ -249,8 +249,8 @@
             const p = textelem.getBoundingClientRect();
 
             var h0 = window.innerHeight;
-            var h1 = p.top - 39;
-            var h2 = p.bottom - h0 + 39;
+            var h1 = p.top - 56;
+            var h2 = p.bottom - h0 + 56;
 
             // middle
             if ((h1 <= 0) & (h2 > 0)) {
