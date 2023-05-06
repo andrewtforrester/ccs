@@ -206,17 +206,19 @@
     </div>
     
 
-    <section>
-        <div class="w-full bg-white section-wrapper">
-            <div class="w-full mx-auto sm:w-10/12 lg:w-2/3 max-w-screen-md">
-                {% include 'home/_partials/events.html' %}
+    {% if page.events|length %}
+        <section>
+            <div class="w-full bg-white section-wrapper">
+                <div class="w-full mx-auto sm:w-10/12 lg:w-2/3 max-w-screen-md">
+                    {% include 'home/_partials/events.html' %}
 
-                <a href="/events">
-                    <h2 class="text-center sm:text-left text-navy font-serif text-2xl font-bold pb-10">See all events →</h2>
-                </a>
+                    <a href="/events">
+                        <h2 class="text-center sm:text-left text-navy font-serif text-2xl font-bold pb-10">See all events →</h2>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
     
 {% endblock content %}
 
