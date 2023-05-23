@@ -315,8 +315,26 @@ class LeadershipIndex(Page):
 
     leadership_description = RichTextField(blank=True, null=True)
 
+    staff_members_displayed = StreamField([
+        ('staff_member', blocks.PageChooserBlock(
+            page_type=[
+                "home.LeadershipEntry",
+            ]
+        )),
+    ], use_json_field=True)
+
+    def staff(self):
+        return LeadershipEntry.objects.filter(type='staff').specific()
+    
+    def board(self):
+        return LeadershipEntry.objects.filter(type='boardOfDirectors').order_by('last_name').specific()
+    
+    def advisors(self):
+        return LeadershipEntry.objects.filter(type='advisoryCouncil').order_by('last_name').specific()
+
     content_panels = Page.content_panels + [
         FieldPanel('leadership_description'), 
+        FieldPanel('staff_members_displayed'), 
     ]
 
     subpage_types = [
@@ -324,7 +342,12 @@ class LeadershipIndex(Page):
     ]
 
 class LeadershipEntry(Page):
-    name = RichTextField(features=[])
+    first_name = models.TextField(max_length=255)
+    last_name = models.TextField(max_length=255)
+
+    def full_name(self):
+        return self.first_name.strip() + " " + self.last_name.strip()
+
     job_title = RichTextField(features=[], blank=True, null=True)
 
     staff_type_choices = [
@@ -344,7 +367,8 @@ class LeadershipEntry(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('name'), 
+        FieldPanel('first_name'), 
+        FieldPanel('last_name'), 
         FieldPanel('job_title'),
         FieldPanel('type', widget=forms.Select),
         FieldPanel('description'),
@@ -583,6 +607,9 @@ class CoursesIndex(Page):
         related_name='+'
     )
 
+    active_header_text = models.CharField(max_length=255)
+    archive_header_text = models.CharField(max_length=255)
+
     def active_items(self):
         return Course.objects.live().filter(type='active').specific()
     
@@ -591,7 +618,7 @@ class CoursesIndex(Page):
         temp = []
         i = 1
         if not len(Course.objects.live().filter(type='archived')) == 0:
-            for course in Course.objects.live().filter(type='archived').specific():
+            for course in Course.objects.live().filter(type='archived').order_by('-year','-semester','title').specific():
                 temp = temp + [course]
                 if len(temp) == 5:
                     result = result + [(temp,i)]
@@ -607,7 +634,8 @@ class CoursesIndex(Page):
     content_panels = Page.content_panels + [
         FieldPanel('header_text'),
         FieldPanel('descriptive_text'),
-        FieldPanel('feature_image'),
+        FieldPanel('active_header_text'),
+        FieldPanel('archive_header_text'),
     ]
 
     is_creatable = False
@@ -615,7 +643,6 @@ class CoursesIndex(Page):
 
 class Course(Page):
 
-    semester = models.CharField(max_length=127)
     instructor = models.CharField(max_length=127, blank=True)
     registration_link = models.CharField(max_length=1023, blank=True)
     location = models.CharField(max_length=1023, blank=True)
@@ -644,8 +671,21 @@ class Course(Page):
 
     type = RichTextField(features=[], choices=status)
 
+    semester_options = [
+        ('1_spring','Spring'),
+        ('2_summer','Summer'),
+        ('3_fall','Fall'),
+    ]
+
+    semester = RichTextField(features=[], choices=semester_options)
+    year = models.IntegerField()
+
+    def semester_and_year(self):
+        return self.get_semester_display() + " " + str(self.year)
+
     content_panels = Page.content_panels + [
-        FieldPanel('semester'),
+        FieldPanel('semester',widget=forms.Select),
+        FieldPanel('year'),
         FieldPanel('instructor'),
         FieldPanel('registration_link'),
         FieldPanel('location'),
@@ -665,7 +705,6 @@ class Course(Page):
     subpage_types = []
 
 
-
 class ReadingGroupsIndex(Page):
 
     header_text = models.CharField(max_length=255)
@@ -678,10 +717,15 @@ class ReadingGroupsIndex(Page):
         related_name='+'
     )
 
+    active_header_text = models.CharField(max_length=255)
+    archive_header_text = models.CharField(max_length=255)
+
     content_panels = Page.content_panels + [
         FieldPanel('header_text'),
         FieldPanel('descriptive_text'),
         FieldPanel('feature_image'),
+        FieldPanel('active_header_text'),
+        FieldPanel('archive_header_text'),
     ]
 
     def active_items(self):
@@ -711,7 +755,6 @@ class ReadingGroupsIndex(Page):
 
 class ReadingGroup(Page):
 
-    semester = models.CharField(max_length=1023, blank=True)
     instructor = models.CharField(max_length=1023, blank=True)
     registration_link = models.CharField(max_length=1023, blank=True)
     location = models.CharField(max_length=1023, blank=True)
@@ -733,8 +776,23 @@ class ReadingGroup(Page):
 
     type = RichTextField(features=[], choices=status)
 
+    semester_options = [
+        ('1_spring','Spring'),
+        ('2_summer','Summer'),
+        ('3_fall','Fall'),
+    ]
+
+    def semester_and_year(self):
+        return self.get_semester_display() + " " + str(self.year)
+
+    year = models.IntegerField()
+
+
+    semester = RichTextField(features=[], choices=semester_options)
+
     content_panels = Page.content_panels + [
-        FieldPanel('semester'),
+        FieldPanel('semester',widget=forms.Select),
+        FieldPanel('year'),
         FieldPanel('instructor'),
         FieldPanel('registration_link'),
         FieldPanel('location'),

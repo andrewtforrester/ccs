@@ -4,7 +4,7 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block current_offerings_header %}Our Spring 2023 Courses{% endblock %}
+{% block current_offerings_header %}{{ page.active_header_text }}{% endblock %}
 
 {% block active_offerings_loop_fl %}
     {% for course in page.active_items %}
@@ -129,7 +129,7 @@
 {% endblock %}
 
 {% block archive_loop %}
-    {% for course_collection in page.archived_reading_groups %}
+    {% for course_collection in page.archived_items %}
         <div class="hidden archive-pages" id="archive-page-{{ course_collection.1 }}">
             {% for course in course_collection.0 %}
                 <div class="pb-10">
@@ -138,7 +138,7 @@
                     </div>
 
                     <div class="title-4 text-navy sm:text-navy pb-3">
-                        {{ course.semester }}
+                        {{ course.semester_and_year }}
                     </div>
 
                     <div class="body-text-1">
@@ -153,4 +153,4 @@
 
 
 
-{% block archive_header %}Reading Group Archive{% endblock %}
+{% block archive_header %}{{ page.archive_header_text }}{% endblock %}

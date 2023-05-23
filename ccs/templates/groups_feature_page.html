@@ -5,51 +5,50 @@
 {% load wagtailcore_tags %}
 
 {% block extra_bottom_content %}
-    <section class="section-wrapper bg-rose sm:bg-navy">
-        <div class="max-w-screen-2xl mx-auto">
-            <div class="w-full">
-                <div class="title-2 pb-16 text-navy sm:text-white">
-                    {% block current_offerings_header %}{% endblock %}
-                </div>
-
-                <section>
-                    <div class="w-full relative">
-                        {% if page.active_items|length %}
-                            <div class="sm:bg-rose rounded-lg relative max-w-screen-2xl mx-auto">
-                                <div class="hidden sm:block main-carousel w-full bg-transparent text-white sm:text-navy rounded-lg">
-                                    {% block active_offerings_loop_fl %}{% endblock %}
-                                </div>
-
-                                <div class="sm:hidden w-full bg-transparent text-white sm:text-navy rounded-lg">
-                                    {% block active_offerings_loop_nfl %}{% endblock %}
-                                </div>
-
-                                <div id="" class="hidden sm:block absolute top-0 bottom-0 left-0 w-20 bg-rose rounded-lg"></div>
-                                <div class="hidden sm:block absolute top-0 bottom-0 right-0 w-20 bg-rose rounded-lg"></div>
-                            </div>
-                        {% else %}
-                            {% block no_upcoming %}
-                            {% endblock %}
-                        {% endif %}
+    {% if page.active_items|length %}
+        <section class="section-wrapper bg-rose sm:bg-navy">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="w-full">
+                    <div class="title-2 pb-16 text-navy sm:text-white">
+                        {% block current_offerings_header %}{% endblock %}
                     </div>
-                </section>
+
+                    <section>
+                        <div class="w-full relative">
+                            {% if page.active_items|length %}
+                                <div class="sm:bg-rose rounded-lg relative max-w-screen-2xl mx-auto">
+                                    <div class="hidden sm:block main-carousel w-full bg-transparent text-white sm:text-navy rounded-lg">
+                                        {% block active_offerings_loop_fl %}{% endblock %}
+                                    </div>
+
+                                    <div class="sm:hidden w-full bg-transparent text-white sm:text-navy rounded-lg">
+                                        {% block active_offerings_loop_nfl %}{% endblock %}
+                                    </div>
+
+                                    <div id="" class="hidden sm:block absolute top-0 bottom-0 left-0 w-20 bg-rose rounded-lg"></div>
+                                    <div class="hidden sm:block absolute top-0 bottom-0 right-0 w-20 bg-rose rounded-lg"></div>
+                                </div>
+                            {% else %}
+                                {% block no_upcoming %}
+                                {% endblock %}
+                            {% endif %}
+                        </div>
+                    </section>
+                </div>
             </div>
-        </div>
-        
-    </section>
+        </section>
+    {% endif %}
 
     {% if page.archived_items|length %}
         <section class="section-wrapper">
             <div class="max-w-screen-2xl mx-auto">
                 <div class="title-2 pb-16 text-navy">
                     {% block archive_header %}{% endblock %}
-                    
                 </div>
 
                 <div class="max-w-screen-md mx-auto">
                     {% block archive_loop %}{% endblock %}
                         
-
                     <div id="load-more-button" class="flex justify-center py-5">
                         <button class="navybutton">
                             Load more

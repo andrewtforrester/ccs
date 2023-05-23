@@ -19,27 +19,22 @@
             <div id="leaders" class="">
                 <h1 class="text-white title-2">Our Staff</h1>
 
-                {% for staffmember in page.get_children.specific.all %}
-                    {% if staffmember.type == 'staff' %}
-                        <div class="mt-24 text-white">
-                            <div class="items-center text-center sm:flex sm:text-left">
-                                {% image staffmember.photo width-2000 as smp %}
-                                <div class="flex justify-center sm:block">
-                                    <div class="mb-6 sm:mr-6">
-                                        <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
-    
-                                        </div>
+                {% for staffmember in page.staff_members_displayed %}
+                    <div class="mt-24 text-white">
+                        <div class="items-center text-center sm:flex sm:text-left">
+                            {% image staffmember.value.photo width-2000 as smp %}
+                            <div class="flex justify-center sm:block">
+                                <div class="mb-6 sm:mr-6">
+                                    <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+
                                     </div>
                                 </div>
-                                
-
-                                    
-                                <leader-modals name="{{ staffmember.name|striptags }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
-
-
                             </div>
+                                
+                            <leader-modals name="{{ staffmember.value.full_name }}" title="{{ staffmember.value.job_title|striptags }}" description="{{ staffmember.value.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
+
                         </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -48,27 +43,25 @@
     <section class="section-wrapper bg-white">
         <div class="max-w-screen-md mx-auto">
             <h1 class="title-2 text-navy">Our Board of Directors</h1>
-            {% for staffmember in page.get_children.specific.all %}
-                {% if staffmember.type == 'boardOfDirectors' %}
-                    <div class="mt-24 text-navy">
-                        <div class="items-center text-center sm:flex sm:text-left">
-                            {% image staffmember.photo width-2000 as smp %}
-                            <div class="flex justify-center sm:block">
-                                <div class="mb-6 sm:mr-6">
-                                    <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+            {% for staffmember in page.board %}
+                <div class="mt-24 text-navy">
+                    <div class="items-center text-center sm:flex sm:text-left">
+                        {% image staffmember.photo width-2000 as smp %}
+                        <div class="flex justify-center sm:block">
+                            <div class="mb-6 sm:mr-6">
+                                <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
 
-                                    </div>
                                 </div>
                             </div>
-                            
-
-                                
-                            <leader-modals name="{{ staffmember.name|striptags }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
-
-
                         </div>
+                        
+
+                            
+                        <leader-modals name="{{ staffmember.full_name }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
+
+
                     </div>
-                {% endif %}
+                </div>
             {% endfor %}
             
         </div>
@@ -79,27 +72,25 @@
             <h1 class="title-2 text-navy">Our Faculty Advisory Council</h1>
 
 
-            {% for staffmember in page.get_children.specific.all %}
-                {% if staffmember.type == 'advisoryCouncil' %}
-                    <div class="mt-24 text-navy">
-                        <div class="items-center text-center sm:flex sm:text-left">
-                            {% image staffmember.photo width-2000 as smp %}
-                            <div class="flex justify-center sm:block">
-                                <div class="mb-6 sm:mr-6 ">
-                                    <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
+            {% for staffmember in page.advisors %}
+                <div class="mt-24 text-navy">
+                    <div class="items-center text-center sm:flex sm:text-left">
+                        {% image staffmember.photo width-2000 as smp %}
+                        <div class="flex justify-center sm:block">
+                            <div class="mb-6 sm:mr-6 ">
+                                <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] rounded-full bg-cover bg-center" style="background-image: url('{{ smp.url }}');">
 
-                                    </div>
                                 </div>
                             </div>
-                            
-
-                                
-                            <leader-modals name="{{ staffmember.name|striptags }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
-
-
                         </div>
+                        
+
+                            
+                        <leader-modals name="{{ staffmember.full_name }}" title="{{ staffmember.job_title|striptags }}" description="{{ staffmember.description|striptags }}" photo="{{ smp.url }}"></leader-modals>
+
+
                     </div>
-                {% endif %}
+                </div>
             {% endfor %}
         </div>
     </section>

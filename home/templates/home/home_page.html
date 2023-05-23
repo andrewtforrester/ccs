@@ -22,8 +22,6 @@
                                 </a>
                             </button>
                         </div>
-                        
-
                         <div class="absolute bottom-[-5rem] sm:bottom-[-5rem] 2xl:bottom-[-8vw] left-[-3rem] right-[-3rem]">
                             <img class="relative w-full opacity-[0.9] " src="{% static 'blue_wave.svg' %}" alt="">
                         </div>
@@ -43,13 +41,10 @@
                 </div>
                 <div class="w-full flex justify-center mb-16 sm:mb-0 relative">
                     {% image page.we_believe_feature_image width-2000 as b2i %}
-
-                    
-                        <div class="relative px-4 w-full lg:w-11/12 sm:px-10">
-                            <img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative z-10" src="{{ b2i.url }}" alt="">
-                            <div class="absolute inset-x-4 sm:inset-x-10 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
-                        </div>
-                    
+                    <div class="relative px-4 w-full lg:w-11/12 sm:px-10">
+                        <img data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative z-10" src="{{ b2i.url }}" alt="">
+                        <div class="absolute inset-x-4 sm:inset-x-10 inset-y-0 bg-olive z-0 translate-x-[-1rem] translate-y-[1rem]"></div>
+                    </div>
                 </div>
 
                 <div class="flex justify-center">
@@ -64,11 +59,8 @@
                                 </div>  
                             </a>
                         </button>
-                        
                     </div>
                 </div>
-                
-                
             </div>
         </div>
     </section>
@@ -99,28 +91,22 @@
                 </div>
                 <div id="b3imagecontainer" class="hidden sm:block absolute top-0 right-0 bottom-0 w-1/2 lg:w-[55%] overflow-hidden">
                     {% image page.what_we_do_feature_image width-3000 as b3i %}
-                    <div id="b3imagesubcontainer" class="absolute top-0 right-0 w-full h-[100vh] bg-center bg-cover" style="background-image: url('{{ b3i.url }}');">
-
-                    </div>
+                    <div id="b3imagesubcontainer" class="absolute top-0 right-0 w-full h-[100vh] bg-center bg-cover" style="background-image: url('{{ b3i.url }}');"></div>
                     <div class="absolute top-0 right-0 bottom-0 left-0  z-[500] bg-navy opacity-[0.5]"></div>
                     <div class="absolute top-0 right-0 bottom-0 left-0  z-[-500] bg-navy"></div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section>
         <div class="w-full bg-navy section-wrapper">
-
             <div class="relative flex pb-10 max-w-[62rem] mb-10 mx-auto">
                 <h1 class="text-white title-2">{{ page.what_we_offer_heading }}</h1>
             </div>
-
             <div class="">
                 {% for block in page.offerings %}
                     <div class="lg:flex items-center justify-center pb-10">
-
                         <div class="hidden lg:block">
                             {% if forloop.counter0|divisibleby:"2" %}
                                 <div class="w-[20rem] lg:w-[25rem] px-4">
@@ -129,15 +115,13 @@
                                 </div>
                             {% endif %}
                         </div>
-
                         <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="sm:flex rounded-lg overflow-hidden bg-rose lg:bg-transparent">
                             <div class="lg:hidden">
                                 <div class="flex justify-center h-full">
                                     {% image block.value.photo width-1200 as bph %}
                                     <div class="w-full h-[25rem] bg-cover bg-center sm:h-full sm:w-[15rem] md:w-[20rem] lg:h-auto" style="background-image: url('{{ bph.url }}');"></div>
                                 </div>
-                            </div>
-                                    
+                            </div>     
                             <div class="py-10 md:py-14 lg:pt-16 lg:pb-10 px-4 md:px-10 lg:max-w-[40rem] {% if not forloop.counter0|divisibleby:"2" %}lg:text-right{% endif %}">
                                 <h1 class="pb-6 text-navy lg:text-rose title-3">{{ block.value.title }}</h1>
                                 <div class="pb-6 text-navy lg:text-white body-text-1">{{ block.value.description }}</div>
@@ -151,8 +135,6 @@
                                 </button>
                             </div>
                         </div>
-                        
-
                         <div class="hidden lg:block">
                             {% if not forloop.counter0|divisibleby:"2" %}
                             <div class="w-[20rem] lg:w-[25rem] px-4">
@@ -161,7 +143,6 @@
                             </div>
                             {% endif %}
                         </div>
-                        
                     </div>
                 {% endfor %}
             </div>
@@ -173,7 +154,6 @@
         <div class="bg-navy section-wrapper">
             <h1 class="pb-10 text-right text-rose title-2">{{ page.slides_header_text }}</h1>
         </div>
-
         <div class="w-full h-[35rem] sm:h-[50rem] bg-navy relative">
             <div class="main-carousel w-full h-[35rem] sm:h-[50rem] px-2">
                 {% for block in page.houseSlides %}
@@ -205,7 +185,6 @@
         {% include 'home/_partials/map.html' %}
     </div>
     
-
     {% if page.events|length %}
         <section>
             <div class="w-full bg-white section-wrapper">
