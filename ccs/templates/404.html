@@ -5,7 +5,11 @@
 {% block body_class %}template-404{% endblock %}
 
 {% block content %}
-<h1>Page not found</h1>
+<div class="flex items-center justify-center text-center h-screen min-h-screen">
+    <div>
+        <h1 class="pb-4 text-xl sm:text-2xl font-bold font-serif text-navy">Page not found</h1>
+        <h2 class="text-lg font-navy">Sorry, this page could not be found.</h2>
+    </div>
+</div>
 
-<h2>Sorry, this page could not be found.</h2>
 {% endblock %}
