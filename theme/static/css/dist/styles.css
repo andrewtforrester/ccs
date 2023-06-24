@@ -3108,6 +3108,11 @@ p {
     line-height: 1.75rem;
   }
 
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .sm\:text-white {
     --tw-text-opacity: 1;
     color: rgb(250 248 244 / var(--tw-text-opacity));
@@ -3458,6 +3463,11 @@ p {
   .lg\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 
   .lg\:text-rose {
