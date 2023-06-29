@@ -430,9 +430,16 @@ class LeadershipIndex(Page):
     
     def advisors(self):
         return LeadershipEntry.objects.filter(type='advisoryCouncil').order_by('last_name').specific()
+    
+    staff_header = models.CharField(max_length=255)
+    board_of_directors_header = models.CharField(max_length=255)
+    advisory_board_header = models.CharField(max_length=255)
 
     content_panels = Page.content_panels + [
         FieldPanel('leadership_description'), 
+        FieldPanel('staff_header'), 
+        FieldPanel('board_of_directors_header'), 
+        FieldPanel('advisory_board_header'), 
         FieldPanel('staff_members_displayed'), 
     ]
 

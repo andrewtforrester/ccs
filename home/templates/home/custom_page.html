@@ -27,10 +27,6 @@
             {% define "whitebutton" as button_code %}
         {% endif %}
 
-        
-
-        
-           
 
         <!-- Article Section Type -->
 
@@ -64,13 +60,8 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
             </div>
 
-
-
-
-            
 
         {% elif block.block_type == 'text_and_image_full_section' %}
 
@@ -88,7 +79,7 @@
                                     {{ item }}
                                 </div>
                             {% elif item.block_type == 'button' %}
-                                <div class="flex justify-center sm:justify-start py-10">
+                                <div class="flex justify-center sm:justify-start py-4">
                                     <button>
                                         <a href="{{ item.value.button_reference }}">
                                             <div class="{{ button_code }}">
@@ -120,7 +111,7 @@
                                         {{ item }}
                                     </div>
                                 {% elif item.block_type == 'button' %}
-                                    <div class="flex justify-center py-10">
+                                    <div class="flex justify-center py-4">
                                         <button>
                                             <a href="{{ item.value.button_reference }}">
                                                 <div class="{{ button_code }}">
@@ -199,7 +190,7 @@
                                                 {{ item }}
                                             </div>
                                         {% elif item.block_type == 'button' %}
-                                            <div class="flex justify-center py-10">
+                                            <div class="flex justify-center py-4">
                                                 <button>
                                                     <a href="{{ item.value.button_reference }}">
                                                         <div class="{{ card_button_code }}">
@@ -221,7 +212,6 @@
             </div>
 
         {% elif block.block_type == 'contact_section' %}
-
 
             <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}">
                 <div class="sm:flex justify-center items-center">
