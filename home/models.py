@@ -8,7 +8,7 @@ from wagtail.admin.panels import FieldPanel, TabbedInterface, ObjectList, PageCh
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 import datetime
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
@@ -108,7 +108,104 @@ class Footer(BaseSetting):
         FieldPanel('footer_links')
     ]
 
+class CustomPage(SeoMixin, Page):
+    is_creatable = True
 
+    color_options = [
+        ('rose','Rose'),
+        ('navy','Navy'),
+        ('white','White'),
+        ('burgundy','Burgundy'),
+    ]
+
+    overlay_options = [
+        ('none','None'),
+        ('navy','Navy'),
+    ]
+
+    page_content = StreamField([
+        ('article_section', blocks.StructBlock([
+            ('background_color', blocks.ChoiceBlock(choices=color_options)),
+            ('article_content', blocks.StreamBlock([
+                ('heading', blocks.CharBlock()),
+                ('paragraph', blocks.RichTextBlock()),
+                ('image', ImageChooserBlock()),
+                ('button', blocks.StructBlock([
+                    ('button_text', blocks.CharBlock()),
+                    ('button_reference', blocks.CharBlock()),
+                ])),
+            ])),
+        ])),
+
+
+        ('text_and_image_full_section', blocks.StructBlock([
+            ('background_color', blocks.ChoiceBlock(choices=color_options)),
+            ('text_side_content', blocks.StreamBlock([
+                ('heading', blocks.CharBlock()),
+                ('paragraph', blocks.RichTextBlock()),
+                ('button', blocks.StructBlock([
+                    ('button_text', blocks.CharBlock()),
+                    ('button_reference', blocks.CharBlock()),
+                ])),
+            ], use_json_field=True)),
+            ('featured_image', ImageChooserBlock()),
+            ('image_overlay', blocks.ChoiceBlock(choices=overlay_options)),
+        ])),
+
+
+        ('card_collection_section', blocks.StructBlock([
+            ('background_color', blocks.ChoiceBlock(choices=color_options)),
+            ('title', blocks.CharBlock(required=False)),
+            ('cards', blocks.StreamBlock([
+                ('image_card', blocks.StructBlock([
+                    ('image', ImageChooserBlock()),
+                ])),
+                ('text_card', blocks.StructBlock([
+                    ('card_color', blocks.ChoiceBlock(choices=color_options)),
+                    ('content', blocks.StreamBlock([
+                        ('heading', blocks.CharBlock()),
+                        ('paragraph', blocks.RichTextBlock()),
+                        ('button', blocks.StructBlock([
+                            ('button_text', blocks.CharBlock()),
+                            ('button_reference', blocks.CharBlock()),
+                        ])),
+                    ], use_json_field=True)),
+                ])),
+                ('text_and_image_card', blocks.StructBlock([
+                    ('card_color', blocks.ChoiceBlock(choices=color_options)),
+                    ('text_side_content', blocks.StreamBlock([
+                        ('heading', blocks.CharBlock()),
+                        ('paragraph', blocks.RichTextBlock()),
+                        ('button', blocks.StructBlock([
+                            ('button_text', blocks.CharBlock()),
+                            ('button_reference', blocks.CharBlock()),
+                        ])),
+                    ], use_json_field=True)),
+                    ('image', ImageChooserBlock()),
+                ])),
+            ], collapsed=True, use_json_field=True)),
+        ])),
+
+        ('contact_section', blocks.StructBlock([
+            ('background_color', blocks.ChoiceBlock(choices=color_options)),
+            ('headshot', ImageChooserBlock()),
+            ('body_text', blocks.CharBlock()),
+            ('button', blocks.StructBlock([
+                ('button_text', blocks.CharBlock()),
+                ('button_reference', blocks.CharBlock()),
+            ])),
+        ]))
+
+
+    ], collapsed=True, use_json_field=True)
+
+
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('page_content'),
+    ]
+
+    
 
 # HOMEPAGE
 
@@ -259,6 +356,8 @@ class HomePage(SeoMixin, Page):
         ObjectList(SeoMixin.seo_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings'),
     ])
+
+    subpage_types = ['home.CustomPage']
 
 
 # ABOUT
@@ -419,7 +518,9 @@ class FacultyAffiliatesEntry(Page):
 
 # COMMUNITY
 
-class House(Page):
+class House(SeoMixin, Page):
+
+    dark_background = True
 
     header_text = models.CharField(max_length=255)
     descriptive_text = RichTextField()
@@ -430,6 +531,27 @@ class House(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    house_cards = StreamField([
+        ('image_card', blocks.StructBlock([
+            ('image', ImageChooserBlock()),
+        ])),
+        ('text_card', blocks.StructBlock([
+            ('title_text', blocks.CharBlock()),
+            ('body_text', blocks.RichTextBlock()),
+            ('button_text', blocks.CharBlock()),
+            ('button_reference', blocks.CharBlock()),
+        ])),
+        ('hours_card', blocks.StructBlock([
+            ('title_text', blocks.CharBlock()),
+            ('hours_text', blocks.StreamBlock([
+                ('house_hours_entry', blocks.StructBlock([
+                    ('title_text_entry', blocks.CharBlock()),
+                    ('hours_text_entry', blocks.CharBlock()),
+                ])),
+            ])),
+        ])),
+    ], use_json_field=True)
 
     east_campus_map = models.ForeignKey(
         'wagtailimages.Image',
@@ -444,30 +566,48 @@ class House(Page):
     map_button_text = models.CharField(max_length=255)
     map_button_link = models.CharField(max_length=255)
 
-    programming_title_text = models.CharField(max_length=255)
+    # programming_title_text = models.CharField(max_length=255)
 
-    house_programming = StreamField([
-        ('program', blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('extra_text', blocks.RichTextBlock(required=False)),
-            ('button_text', blocks.CharBlock()),
-            ('button_reference', blocks.CharBlock()),
-            ('feature_image', ImageChooserBlock()),
-        ])),
-    ], use_json_field=True)
+    # house_programming = StreamField([
+    #     ('program', blocks.StructBlock([
+    #         ('title', blocks.CharBlock()),
+    #         ('extra_text', blocks.RichTextBlock(required=False)),
+    #         ('button_text', blocks.CharBlock()),
+    #         ('button_reference', blocks.CharBlock()),
+    #         ('feature_image', ImageChooserBlock()),
+    #     ])),
+    # ], use_json_field=True)
 
-    content_panels = Page.content_panels + [
+    # content_panels = Page.content_panels + [
+        # FieldPanel('programming_title_text'),
+        # FieldPanel('house_programming'),
+    # ]
+
+    head_panel = [
         FieldPanel('header_text'),
         FieldPanel('descriptive_text'),
         FieldPanel('feature_image'),
+    ]
+
+    card_panel = [
+        FieldPanel('house_cards'),
+    ]
+
+    map_panel = [
         FieldPanel('map_title_text'),
         FieldPanel('map_description_text'),
         FieldPanel('map_button_text'),
         FieldPanel('map_button_link'),
         FieldPanel('east_campus_map'),
-        FieldPanel('programming_title_text'),
-        FieldPanel('house_programming'),
     ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(head_panel, heading='Header'),
+        ObjectList(card_panel, heading='Cards'),
+        ObjectList(map_panel, heading='Map'),
+        ObjectList(SeoMixin.seo_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
 
     is_creatable = False
     subpage_types = []

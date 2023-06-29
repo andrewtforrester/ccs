@@ -1,10 +1,202 @@
-{% extends "feature_page.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block extra_bottom_content %}
+{% block content %}
 
+    <div class="h-screen grid grid-cols-2">
+        <div class="hidden lg:flex section-wrapper py-20 flex items-center bg-navy text-white">
+            <div>
+                <div class="title-1 pb-6 text-rose">
+                    {{ page.header_text }}
+                </div>
+                <div class="body-text-1">
+                    {{ page.descriptive_text|richtext }}
+                </div>
+            </div>
+        </div>
+
+        {% image page.feature_image width-2000 as pfi %}
+
+        <div class="bg-cover col-span-2 lg:col-span-1 bg-center relative" style="background-image: url('{{ pfi.url }}');">
+            <div class="bg-navy absolute inset-0 opacity-[0.8] lg:hidden">
+                
+            </div>
+            <div class="lg:hidden section-wrapper h-full flex items-center text-white relative z-20">
+                <div>
+                    <div class="title-1 pb-6 text-rose">
+                        {{ page.header_text }}
+                    </div>
+                    <div class="body-text-1">
+                        {{ page.descriptive_text|richtext }}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-white section-wrapper text-navy">
+        <div class="grid grid-cols-12 gap-4">
+            {% for card in page.house_cards %}
+                {% if card.block_type == 'text_card' %}
+                    <div class="bg-rose text-navy col-span-12 lg:col-span-6 rounded-lg card-wrapper flex items-center justify-center h-full" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="0">
+                        <div>
+                            <h2 class="title-3 pb-8 text-center">{{ card.value.title_text }}</h2>
+                            <div class="text-xl pb-4">{{ card.value.body_text|richtext }}</div>
+    
+                            <div class="flex justify-center">
+                                <button>
+                                    <a href="{{ card.value.button_reference }}">
+                                        <div class="navybutton">
+                                            {{ card.value.button_text }}
+                                        </div>
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% elif card.block_type == 'image_card' %}
+                    {% image card.value.image width-2000 as c_img %}
+                    <div class="col-span-12 lg:col-span-6 h-[20rem] lg:h-[35rem] rounded-lg bg-center bg-cover" style="background-image: url('{{ c_img.url }}');" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="200">
+                    </div>
+                {% elif card.block_type == 'hours_card' %}
+                    <div class="bg-rose text-navy col-span-12 lg:col-span-6 rounded-lg card-wrapper flex items-center justify-center h-full" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="0">
+                        <div>
+                            <h2 class="title-3 pb-8 text-center">{{ card.value.title_text }}</h2>
+                            <div class="text-xl">
+    
+                                {% for line in card.value.hours_text %}
+                                    <div class="grid grid-cols-2">
+                                        <div class="text-right pr-2">
+                                            {{ line.value.title_text_entry }}
+                                        </div>
+                                        <div class="pl-2">
+                                            {{ line.value.hours_text_entry }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    <!--
+    <div class="bg-white section-wrapper text-navy">
+            <div class="grid grid-cols-10 gap-4">
+                <div class="bg-rose col-span-10 lg:col-span-4 rounded-lg card-wrapper" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="0">
+                    <h2 class="title-3 pb-8 text-center">House Hours</h2>
+                    <div class="text-xl">
+                        <div class="grid grid-cols-2">
+                            <div class="text-right pr-2">
+                                Monday-Thursday
+                            </div>
+                            <div class="pl-2">
+                                10am-10pm
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="text-right pr-2">
+                                Friday
+                            </div>
+                            <div class="pl-2">
+                                10am-5pm
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="text-right pr-2">
+                                Saturday
+                            </div>
+                            <div class="pl-2">
+                                Closed
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="text-right pr-2">
+                                Sunday
+                            </div>
+                            <div class="pl-2">
+                                Closed
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-navy col-span-10 lg:col-span-6 text-white rounded-lg card-wrapper" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="100">
+                    <h2 class="title-3 pb-8 text-center">Getting There</h2>
+                    <div class="text-xl pb-4">We're only a short walk from the East campus dorms and the C1 bus stop. Drivers can park along the street in front of or behind the house.</div>
+
+                    <div class="flex justify-center">
+                        <button>
+                            <a href="">
+                                <div class="whitebutton">
+                                    Get directions
+                                </div>
+                            </a>
+                            
+                        </button>
+                    </div>
+                    
+                </div>
+
+                <div class="hidden lg:block col-span-3 h-[30rem] rounded-lg bg-center bg-cover" style="background-image: url('{{ pfi.url }}');" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="100">
+
+                </div>
+
+                <div class="hidden lg:block col-span-5 h-[30rem] rounded-lg bg-center bg-cover" style="background-image: url('{{ pfi.url }}');" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="200">
+
+                </div>
+
+                <div class="hidden lg:block col-span-2 h-[30rem] rounded-lg bg-center bg-cover" style="background-image: url('{{ pfi.url }}');" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="300">
+
+                </div>
+
+                <div class="bg-burgundy col-span-10 lg:col-span-6 text-white rounded-lg card-wrapper col-span-2" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="200">
+                    <h2 class="title-3 pb-8 text-center">Join us for a meal...</h2>
+                    <div class="text-xl pb-4">Each Wednesday, CCS hosts an informal social time to relax and connect with fellow Christians. Drop in on Wednesday evenings for free food and lively conversations on everything from Duke basketball to infant baptism, from tech addiction to contemporary Christian art.</div>
+
+                    <div class="flex justify-center">
+                        <button>
+                            <a href="">
+                                <div class="whitebutton">
+                                    Learn more
+                                </div>
+                            </a>
+                            
+                        </button>
+                    </div>
+                    
+                </div>
+
+                <div class="bg-rose col-span-10 lg:col-span-4 text-navy rounded-lg card-wrapper" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="300">
+                    <h2 class="title-3 pb-8 text-center">...or a house course!</h2>
+                    <div class="text-xl pb-4">We're only a short walk from the East campus dorms and the C1 bus stop. Drivers can park along the street in front of or behind the house.</div>
+
+                    <div class="flex justify-center">
+                        <button>
+                            <a href="">
+                                <div class="navybutton">
+                                    Get directions
+                                </div>
+                            </a>
+                            
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
+    </div>
+    -->
+
+
+    <!--
     <div class="bg-navy p-6 sm:p-10">
         <div class="max-w-screen-2xl mx-auto">
             <div class="pb-20">
@@ -49,6 +241,7 @@
             
         </div>
     </div>
+    -->
 
     {% include 'home/_partials/map.html' %}
 {% endblock %}

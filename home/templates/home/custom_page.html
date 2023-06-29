@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load define_action %}
+
+{% block content %}
+
+
+    
+
+    {% for block in page.page_content %}
+
+        <!-- Define a variable used to set the background color. -->
+
+        {% if block.value.background_color == 'white' %}
+            {% define "bg-white text-navy" as color_code %}
+            {% define "navybutton" as button_code %}
+        {% elif block.value.background_color == 'navy' %}
+            {% define "bg-navy text-white" as color_code %}
+            {% define "whitebutton" as button_code %}
+        {% elif block.value.background_color == 'rose' %}
+            {% define "bg-rose text-navy" as color_code %}
+            {% define "navybutton" as button_code %}
+        {% elif block.value.background_color == 'burgundy' %}
+            {% define "bg-burgundy text-white" as color_code %}
+            {% define "whitebutton" as button_code %}
+        {% endif %}
+
+        
+
+        
+           
+
+        <!-- Article Section Type -->
+
+        {% if block.block_type == 'article_section' %}
+            <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}"></div>
+                {% for item in block.value.article_content %}
+                    {% if item.block_type == 'heading' %}
+                        <div class="max-w-screen-sm pb-4 mx-auto title-3">
+                            {{ item.value }}
+                        </div>
+                    {% elif item.block_type == 'paragraph' %}
+                        <div class="max-w-screen-sm pb-10 mx-auto body-text-1">
+                            {{ item.value }}
+                        </div>
+                    {% elif item.block_type == 'image' %}
+                        <div class="max-w-[58rem] mx-auto">
+                            {% image item.value width-2000 as bimg %}
+                            <div class="w-full mt-6 mb-10 h-[20rem] sm:h-[30rem] lg:h-[40rem] xl:h-[45rem] bg-cover bg-center" style="background-image: url('{{ bimg.url }}');">
+
+                            </div>
+                        </div>
+                    {% elif item.block_type == 'button' %}
+                        <div class="flex justify-center py-10">
+                            <button>
+                                <a href="{{ item.value.button_reference }}">
+                                    <div class="{{ button_code }}">
+                                        {{ item.value.button_text }}
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+
+
+
+
+            
+
+        {% elif block.block_type == 'text_and_image_full_section' %}
+
+
+            <div class="h-screen grid grid-cols-2">
+                <div class="hidden lg:flex section-wrapper py-20 flex items-center {{ color_code }}">
+                    <div>
+                        {% for item in block.value.text_side_content %}
+                            {% if item.block_type == 'heading' %}
+                                <div class="title-3 pb-4">
+                                    {{ item }}
+                                </div>
+                            {% elif item.block_type == 'paragraph' %}
+                                <div class="body-text-1">
+                                    {{ item }}
+                                </div>
+                            {% elif item.block_type == 'button' %}
+                                <div class="flex justify-center sm:justify-start py-10">
+                                    <button>
+                                        <a href="{{ item.value.button_reference }}">
+                                            <div class="{{ button_code }}">
+                                                {{ item.value.button_text }}
+                                            </div>
+                                        </a>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+        
+                {% image block.value.featured_image width-2000 as pfi %}
+        
+                <div class="bg-cover col-span-2 lg:col-span-1 bg-center relative" style="background-image: url('{{ pfi.url }}');">
+                    <div class="bg-navy text-white absolute inset-0 opacity-[0.8] {% if block.value.image_overlay == 'none' %} lg:hidden {% endif  %}">
+                        
+                    </div>
+                    <div class="lg:hidden section-wrapper h-full flex items-center text-white relative z-20">
+                        <div>
+                            {% for item in block.value.text_side_content %}
+                                {% if item.block_type == 'heading' %}
+                                    <div class="title-3 pb-4">
+                                        {{ item }}
+                                    </div>
+                                {% elif item.block_type == 'paragraph' %}
+                                    <div class="body-text-1">
+                                        {{ item }}
+                                    </div>
+                                {% elif item.block_type == 'button' %}
+                                    <div class="flex justify-center py-10">
+                                        <button>
+                                            <a href="{{ item.value.button_reference }}">
+                                                <div class="{{ button_code }}">
+                                                    {{ item.value.button_text }}
+                                                </div>
+                                            </a>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% elif block.block_type == 'card_collection_section' %}
+
+            <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}">
+                <div class="grid grid-cols-12 gap-4">
+                    {% for card in block.value.cards %}
+
+                        {% if card.value.card_color == 'white' %}
+                            {% define "bg-white text-navy" as card_code %}
+                            {% define "navybutton" as card_button_code %}
+                        {% elif card.value.card_color == 'navy' %}
+                            {% define "bg-navy text-white" as card_code %}
+                            {% define "whitebutton" as card_button_code %}
+                        {% elif card.value.card_color == 'rose' %}
+                            {% define "bg-rose text-navy" as card_code %}
+                            {% define "navybutton" as card_button_code %}
+                        {% elif card.value.card_color == 'burgundy' %}
+                            {% define "bg-burgundy text-white" as card_code %}
+                            {% define "whitebutton" as card_button_code %}
+                        {% endif %}
+
+                        {% if card.block_type == 'text_card' %}
+                            <div class="{{ card_code }} col-span-12 lg:col-span-6 rounded-lg card-wrapper flex items-center justify-center h-full" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="0">
+                                <div>
+                                    {% for item in card.value.content %}
+                                        {% if item.block_type == 'heading' %}
+                                            <div class="title-3 pb-4">
+                                                {{ item }}
+                                            </div>
+                                        {% elif item.block_type == 'paragraph' %}
+                                            <div class="body-text-1">
+                                                {{ item }}
+                                            </div>
+                                        {% elif item.block_type == 'button' %}
+                                            <div class="flex justify-center py-4">
+                                                <button>
+                                                    <a href="{{ item.value.button_reference }}">
+                                                        <div class="{{ card_button_code }}">
+                                                            {{ item.value.button_text }}
+                                                        </div>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% elif card.block_type == 'image_card' %}
+                            {% image card.value.image width-2000 as c_img %}
+                            <div class="col-span-12 lg:col-span-6 h-[20rem] lg:h-[35rem] rounded-lg bg-center bg-cover" style="background-image: url('{{ c_img.url }}');" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" data-aos-delay="200">
+                            </div>
+                        {% elif card.block_type == 'text_and_image_card' %}
+                            <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative w-full rounded-lg grid grid-cols-1 sm:grid-cols-2 col-span-12 overflow-hidden {{ card_code }} mb-10">
+                                <div class="card-wrapper">
+                                    {% for item in card.value.text_side_content %}
+                                        {% if item.block_type == 'heading' %}
+                                            <div class="title-3 pb-4">
+                                                {{ item }}
+                                            </div>
+                                        {% elif item.block_type == 'paragraph' %}
+                                            <div class="body-text-1">
+                                                {{ item }}
+                                            </div>
+                                        {% elif item.block_type == 'button' %}
+                                            <div class="flex justify-center py-10">
+                                                <button>
+                                                    <a href="{{ item.value.button_reference }}">
+                                                        <div class="{{ card_button_code }}">
+                                                            {{ item.value.button_text }}
+                                                        </div>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+        
+                                {% image card.value.image width-2000 as bfi %}
+                                <div class="bg-cover bg-center w-full sm:w-auto sm:h-auto min-h-[20rem] sm:min-h-none" style="background-image: url('{{ bfi.url }}');"></div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        {% elif block.block_type == 'contact_section' %}
+
+
+            <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}">
+                <div class="sm:flex justify-center items-center">
+
+                    {% image block.value.headshot width-1500 as ch %}
+
+                    <div class="flex justify-center sm:block">
+                        <div class="bg-center bg-cover h-52 w-52 lg:h-60 lg:w-60 rounded-full mr-5 mb-5 sm:mb-0" style="background-image: url('{{ ch.url }}');">
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="text-2xl max-w-[35rem] py-5">
+                            {{ block.value.body_text }}
+                        </div>
+                        
+                        <div class="flex justify-center sm:block">
+                            <button>
+                                <a href="{{ block.value.button.button_reference }}">
+                                    <div class="{{ button_code }}">
+                                        {{ block.value.button.button_text }}
+                                    </div>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+            
+        
+       
+
+
+    {% endfor %}
+
+{% endblock %}
