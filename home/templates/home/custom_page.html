@@ -31,7 +31,7 @@
         <!-- Article Section Type -->
 
         {% if block.block_type == 'article_section' %}
-            <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}"></div>
+            <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}">
                 {% for item in block.value.article_content %}
                     {% if item.block_type == 'heading' %}
                         <div class="max-w-screen-sm pb-4 mx-auto title-3">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     {% elif item.block_type == 'button' %}
-                        <div class="flex justify-center py-10">
+                        <div class="flex justify-center pb-10">
                             <button>
                                 <a href="{{ item.value.button_reference }}">
                                     <div class="{{ button_code }}">
