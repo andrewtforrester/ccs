@@ -36,7 +36,7 @@ class Header(BaseSetting):
             ('button_text', blocks.CharBlock()),
             ('button_link', blocks.CharBlock()),
         ])),
-    ], use_json_field=True)
+    ], collapsed=True, use_json_field=True)
 
 @register_setting
 class Footer(BaseSetting):
@@ -64,7 +64,6 @@ class Footer(BaseSetting):
     )
 
 
-    
     footer_links = StreamField([
         ('category', blocks.StructBlock([
             ('category_name', blocks.CharBlock()),
@@ -107,6 +106,86 @@ class Footer(BaseSetting):
     panels = [
         FieldPanel('footer_links')
     ]
+
+
+@register_setting
+class Give(BaseSetting):
+    donation_hero_text = RichTextField()
+    donation_widget_heading = RichTextField()
+    donation_widget_description = RichTextField()
+
+    color_options = [
+        ('rose','Rose'),
+        ('navy','Navy'),
+        ('white','White'),
+        ('burgundy','Burgundy'),
+    ]
+    
+
+    testimonials = StreamField([
+        ('card', blocks.StructBlock([
+            ('card_color', blocks.ChoiceBlock(choices=color_options)),
+            ('text_side_content', blocks.StreamBlock([
+                ('heading', blocks.CharBlock()),
+                ('paragraph', blocks.RichTextBlock()),
+                ('button', blocks.StructBlock([
+                    ('button_text', blocks.CharBlock()),
+                    ('button_reference', blocks.CharBlock()),
+                ])),
+            ], use_json_field=True)),
+            ('image', ImageChooserBlock()),
+        ])),
+    ], collapsed=True, use_json_field=True)
+
+    more_options_header = RichTextField()
+
+    giving_options_background = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    giving_options = StreamField([
+        ('card', blocks.StructBlock([
+            ('content', blocks.StreamBlock([
+                ('heading', blocks.CharBlock()),
+                ('paragraph', blocks.RichTextBlock()),
+                ('button', blocks.StructBlock([
+                    ('button_text', blocks.CharBlock()),
+                    ('button_reference', blocks.CharBlock()),
+                ])),
+            ], use_json_field=True)),
+        ])),
+    ], collapsed=True, use_json_field=True)
+
+    
+
+
+    hero_banner = [
+        FieldPanel('donation_hero_text'),
+        FieldPanel('donation_widget_heading'),
+        FieldPanel('donation_widget_description'),
+    ]
+
+    testimonial_banner = [
+        FieldPanel('testimonials'),
+    ]
+
+    more_options_banner = [
+        FieldPanel('more_options_header'),
+        FieldPanel('giving_options_background'),
+        FieldPanel('giving_options'),
+
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(hero_banner, heading='Hero Banner'),
+        ObjectList(testimonial_banner, heading='Testimonial Banner'),
+        ObjectList(more_options_banner, heading='More Options Banner'),
+    ])
+
 
 class CustomPage(SeoMixin, Page):
     is_creatable = True
@@ -194,12 +273,55 @@ class CustomPage(SeoMixin, Page):
                 ('button_text', blocks.CharBlock()),
                 ('button_reference', blocks.CharBlock()),
             ])),
-        ]))
+        ])),
 
+        ('carousel_section', blocks.StructBlock([
+            ('background_color', blocks.ChoiceBlock(choices=color_options)),
+            ('card_color', blocks.ChoiceBlock(choices=color_options)),
+            ('title', blocks.CharBlock(required=False)),
+            ('carousel_cells', blocks.StreamBlock([
+                ('content', blocks.StreamBlock([
+                    ('heading', blocks.CharBlock()),
+                    ('paragraph', blocks.RichTextBlock()),
+                    ('button', blocks.StructBlock([
+                        ('button_text', blocks.CharBlock()),
+                        ('button_reference', blocks.CharBlock()),
+                    ])),
+                ], collapsed=True, use_json_field=True)),
+            ]))
+        ])),
 
+        ('info_box_section', blocks.StructBlock([
+            ('background_color', blocks.ChoiceBlock(choices=color_options)),
+            ('title', blocks.CharBlock(required=False)),
+            ('cards', blocks.StreamBlock([
+                ('card', blocks.StructBlock([
+                    ('card_color', blocks.ChoiceBlock(choices=color_options)),
+                    ('content', blocks.StreamBlock([
+                        ('heading', blocks.CharBlock()),
+                        ('paragraph', blocks.RichTextBlock()),
+                        ('button', blocks.StructBlock([
+                            ('button_text', blocks.CharBlock()),
+                            ('button_reference', blocks.CharBlock()),
+                        ])),
+                        ('subcard_matrix', blocks.StreamBlock([
+                            ('subcard', blocks.StructBlock([
+                                ('card_color', blocks.ChoiceBlock(choices=color_options)),
+                                ('content', blocks.StreamBlock([
+                                    ('heading', blocks.CharBlock()),
+                                    ('paragraph', blocks.RichTextBlock()),
+                                    ('button', blocks.StructBlock([
+                                        ('button_text', blocks.CharBlock()),
+                                        ('button_reference', blocks.CharBlock()),
+                                    ])),
+                                ])),
+                            ])),
+                        ])),
+                    ], collapsed=True, use_json_field=True)),
+                ])), 
+            ])),
+        ])),
     ], collapsed=True, use_json_field=True)
-
-
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('page_content'),

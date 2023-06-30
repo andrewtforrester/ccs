@@ -1,120 +1,99 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
 
 {% block content %}
-<div id="giving-page-container" class="pt-40 section-wrapper bg-white">
-	<div class="max-w-screen-2xl mx-auto">
-		
+	<div id="giving-page-container" class="pt-40 section-wrapper bg-white">
+		<div class="max-w-screen-2xl mx-auto">
+			<div class="items-start sm:pb-20 relative">
+				<div class="">
+					<h1 class="pb-10 title-1 text-navy">Give</h1>
 
-		<div class="items-start sm:pb-20 relative">
-			<div class="">
+					<div class="lg:flex lg:items-center mb-10 lg:bg-navy rounded-lg overflow-hidden">
+						<div class="bg-navy rounded-lg lg:rounded-none card-wrapper items-center mb-10">
+							<div class="">
+								<h3 class="font-black font-serif text-4xl sm:text-5xl lg:text-6xl text-rose">{{ settings.home.Give.donation_hero_text|richtext }}</h3>
+							</div>
+						</div>
 
-				<h1 class="pb-10 title-1 text-navy">Give</h1>
-
-
-				<div class="lg:flex lg:items-center mb-10 lg:bg-navy rounded-lg overflow-hidden">
-					<div class="bg-navy rounded-lg lg:rounded-none card-wrapper items-center mb-10">
-						<div class="">
-							<h3 class="font-black font-serif text-4xl sm:text-5xl lg:text-6xl text-white">Your contribution helps us <span class="text-rose">enrich the intellectual lives</span>  of Christians at Duke.</h3>
+						<div class="w-full lg:card-wrapper lg:min-w-[28rem] xl:min-w-[30rem]">
+							{% include "give/_partials/paymentflow.html" %}
 						</div>
 					</div>
-
-				
 					
+					{% for card in settings.home.Give.testimonials %}
+						<div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative w-full rounded-lg sm:grid sm:grid-cols-2 overflow-hidden bg-rose mb-10">
+							{% image card.value.image width-2000 as c_img %}
+							<div class="bg-cover bg-center h-[20rem] w-full sm:w-auto sm:h-auto" style="background-image: url('{{ c_img.url }}');"></div>
 
-					<div class="w-full lg:card-wrapper lg:min-w-[28rem] xl:min-w-[30rem]">
-						{% include "give/_partials/paymentflow.html" %}
-					</div>
-				</div>
-				
-
-				<div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative w-full rounded-lg sm:grid sm:grid-cols-2 overflow-hidden bg-rose mb-10">
-					<div class="bg-cover bg-center h-[20rem] w-full sm:w-auto sm:h-auto" style="background-image: url('{% static "learn.jpg" %}');"></div>
-
-					<div class="card-wrapper">
-						<p class="text-lg sm:text-xl lg:text-2xl pb-4">“Having a space in which students of faith can be wholly true to their beliefs and wholly committed to the pursuit of knowledge has been immensely important for my walk with Christ. The mentorship that happens as a direct result of these programs has been such a meaningful part of my entire Duke experience.”</p>
-						<p class="text-lg sm:text-xl lg:text-2xl font-bold">Carter Duncan, ’17</p>
-					</div>
-				</div>
-
-				<div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative w-full rounded-lg sm:grid sm:grid-cols-2 overflow-hidden bg-rose mb-10">
-					<div class="bg-cover bg-center h-[20rem] w-full sm:w-auto sm:h-auto" style="background-image: url('{% static "give.jpeg" %}');"></div>
-
-					<div class="card-wrapper">
-						<p class="text-lg sm:text-xl lg:text-2xl pb-4">"It's strange to imagine a life at Duke for me without the Center for Christianity and Scholarship and all of the friends and mentors whom I've come to cherish there.”</p>
-						<p class="text-lg sm:text-xl lg:text-2xl font-bold">Lizzie Bond, ’21</p>
-					</div>
-				</div>
-
-				<div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative w-full rounded-lg sm:grid sm:grid-cols-2 overflow-hidden bg-rose">
-					<div class="bg-cover bg-center h-[20rem] w-full sm:w-auto sm:h-auto" style="background-image: url('{% static "game.jpeg" %}');"></div>
-
-					<div class="card-wrapper">
-						<p class="text-lg sm:text-xl lg:text-2xl pb-4">"My faith is much richer because of being a Fellow at CCS. I found that CCS offered something very different from campus ministries, proving Christian fellowship at Duke to be much more expansive than I anticipated.”</p>
-						<p class="text-lg sm:text-xl lg:text-2xl font-bold">Sebastian Borda, ’20</p>
-					</div>
+							<div class="card-wrapper">
+								{% for item in card.value.text_side_content %}
+									{% if item.block_type == 'heading' %}
+										<div class="title-3 pb-4">
+											{{ item }}
+										</div>
+									{% elif item.block_type == 'paragraph' %}
+										<div class="body-text-1">
+											{{ item }}
+										</div>
+									{% elif item.block_type == 'button' %}
+										<div class="flex justify-center sm:justify-start py-4">
+											<button>
+												<a href="{{ item.value.button_reference }}">
+													<div class="{{ card_button_code }}">
+														{{ item.value.button_text }}
+													</div>
+												</a>
+											</button>
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
+	<div class="section-wrapper bg-cover bg-center relative" style="background-image: url('{% static "os.jpg" %}');">
+		<div class="max-w-screen-2xl mx-auto">
+			<div class="absolute inset-0 z-10 bg-navy opacity-[0.65]"></div>
 
-
-<div class="section-wrapper bg-cover bg-center relative" style="background-image: url('{% static "os.jpg" %}');">
-	<div class="max-w-screen-2xl mx-auto">
-		<div class="absolute inset-0 z-10 bg-navy opacity-[0.65]"></div>
-
-		<div class="relative z-20 pb-10 lg:pb-20">
-			<h2 class="title-3 pb-6 text-white">More giving options</h2>
-	
-		</div>
-		<div class="lg:flex justify-center pb-16">
-			<!--
-			<div class="lg:w-[25rem] mt-6 lg:pt-0 bg-white border-4 border-rose rounded-lg relative z-[20] px-6 py-10 lg:mx-2">
-				<h4 class="font-bold font-serif text-lg sm:text-2xl lg:pt-6 pb-6">Make a recurring gift</h4>
-				<p class="text-lg lg:text-xl">The Center for Christianity and Scholarship is a 501(c)(3) non-profit organization and is dependent upon financial support from individuals like you. The Center gained its tax-exempt status as a 501(c)(3) organization on March 7, 2013.  All donations received by the Center are tax deductible.</p>
-	
-				<div class="flex justify-center py-4">
-					<a href="">
-						<div class="navybutton">
-							Set up a recurring gift
-						</div>
-					</a>
-				</div>
+			<div class="relative z-20 pb-10 lg:pb-20">
+				<h2 class="title-3 pb-6 text-white">{{ settings.home.Give.more_options_header|richtext }}</h2>
 			</div>
-			-->
-	
-			<div class="lg:w-[25rem] mt-6 lg:pt-0 bg-white border-4 border-rose rounded-lg relative z-[20] px-6 py-10 lg:mx-2">
-				<h4 class="font-bold font-serif text-lg sm:text-2xl lg:pt-6 pb-6">Give through Duke</h4>
-				<p class="text-lg lg:text-xl">If you would like to have your gift to CCS count towards your lifetime giving at Duke and help CCS avoid the small fees charged by our online platform, please click here. You may elect to give a one-time gift or a recurring monthly, quarterly, or annual gift. Enter “Center for Christianity and Scholarship” in the “Search for an area” box and follow the prompts on the form.</p>
-	
-				<div class="flex justify-center py-4">
-					<a href="https://gifts.duke.edu">
-						<div class="navybutton">
-							Give through Duke
-						</div>
-					</a>
-				</div>
-			</div>
-	
-			<div class="lg:w-[25rem] mt-6 lg:pt-0 bg-white border-4 border-rose rounded-lg relative z-[20] px-6 py-10 lg:mx-2">
-				<h4 class="font-bold font-serif text-lg sm:text-2xl lg:pt-6 pb-6">Send a check</h4>
-				<p class="text-lg lg:text-xl">Donations can be made by check to:</p>
 
-				<p class="text-lg lg:text-xl">
-					Center for Christianity and Scholarship <br>
-					608 N Buchanan Blvd <br>
-					Durham, NC 27701
-				</p>
-					
+			<div class="lg:flex justify-center pb-16">
+				{% for card in settings.home.Give.giving_options %}
+					<div class="lg:w-[25rem] mt-6 lg:mx-4 bg-white border-4 border-rose rounded-lg relative z-[20] card-wrapper">
+						{% for item in card.value.content %}
+							{% if item.block_type == 'heading' %}
+								<div class="title-3 pb-4">
+									{{ item }}
+								</div>
+							{% elif item.block_type == 'paragraph' %}
+								<div class="body-text-1">
+									{{ item }}
+								</div>
+							{% elif item.block_type == 'button' %}
+								<div class="flex justify-center sm:justify-start py-4">
+									<button>
+										<a href="{{ item.value.button_reference }}">
+											<div class="navybutton">
+												{{ item.value.button_text }}
+											</div>
+										</a>
+									</button>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
-	
-
-</div>
-  
 {% endblock %}
 
 {% block extra_js %}
@@ -126,7 +105,6 @@
 	</script>
 
 	<script src="{% static 'checkout.js' %}"></script>
-
 {% endblock %}
 
 {% block extra_css %}

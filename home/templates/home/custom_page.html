@@ -44,7 +44,7 @@
                     {% elif item.block_type == 'image' %}
                         <div class="max-w-[58rem] mx-auto">
                             {% image item.value width-2000 as bimg %}
-                            <div class="w-full mt-6 mb-10 h-[20rem] sm:h-[30rem] lg:h-[40rem] xl:h-[45rem] bg-cover bg-center" style="background-image: url('{{ bimg.url }}');">
+                            <div class="w-full mt-6 mb-10 h-[20rem] sm:h-[30rem] lg:h-[40rem] xl:h-[45rem] bg-cover bg-center" style="background-image: url('{{ bimg.url }}');" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
 
                             </div>
                         </div>
@@ -71,15 +71,15 @@
                     <div>
                         {% for item in block.value.text_side_content %}
                             {% if item.block_type == 'heading' %}
-                                <div class="title-3 pb-4">
+                                <div class="title-3 pb-4" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                                     {{ item }}
                                 </div>
                             {% elif item.block_type == 'paragraph' %}
-                                <div class="body-text-1">
+                                <div class="body-text-1" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                                     {{ item }}
                                 </div>
                             {% elif item.block_type == 'button' %}
-                                <div class="flex justify-center sm:justify-start py-4">
+                                <div class="flex justify-center sm:justify-start py-4" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                                     <button>
                                         <a href="{{ item.value.button_reference }}">
                                             <div class="{{ button_code }}">
@@ -103,15 +103,15 @@
                         <div>
                             {% for item in block.value.text_side_content %}
                                 {% if item.block_type == 'heading' %}
-                                    <div class="title-3 pb-4">
+                                    <div class="title-3 pb-4" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                                         {{ item }}
                                     </div>
                                 {% elif item.block_type == 'paragraph' %}
-                                    <div class="body-text-1">
+                                    <div class="body-text-1" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                                         {{ item }}
                                     </div>
                                 {% elif item.block_type == 'button' %}
-                                    <div class="flex justify-center py-4">
+                                    <div class="flex justify-center py-4" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                                         <button>
                                             <a href="{{ item.value.button_reference }}">
                                                 <div class="{{ button_code }}">
@@ -219,17 +219,17 @@
                     {% image block.value.headshot width-1500 as ch %}
 
                     <div class="flex justify-center sm:block">
-                        <div class="bg-center bg-cover h-52 w-52 lg:h-60 lg:w-60 rounded-full mr-5 mb-5 sm:mb-0" style="background-image: url('{{ ch.url }}');">
+                        <div class="bg-center bg-cover h-52 w-52 lg:h-60 lg:w-60 rounded-full mr-5 mb-5 sm:mb-0" style="background-image: url('{{ ch.url }}');" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
 
                         </div>
 
                     </div>
                     <div>
-                        <div class="text-2xl max-w-[35rem] py-5">
+                        <div class="text-2xl max-w-[35rem] py-5" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                             {{ block.value.body_text }}
                         </div>
                         
-                        <div class="flex justify-center sm:block">
+                        <div class="flex justify-center sm:block" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500">
                             <button>
                                 <a href="{{ block.value.button.button_reference }}">
                                     <div class="{{ button_code }}">
@@ -242,12 +242,172 @@
                 </div>
             </div>
 
+        {% elif block.block_type == 'carousel_section' %}
+
+            {% if block.value.card_color == 'white' %}
+                {% define "bg-white text-navy" as card_code %}
+                {% define "navybutton" as card_button_code %}
+            {% elif block.value.card_color == 'navy' %}
+                {% define "bg-navy text-white" as card_code %}
+                {% define "whitebutton" as card_button_code %}
+            {% elif block.value.card_color == 'rose' %}
+                {% define "bg-rose text-navy" as card_code %}
+                {% define "navybutton" as card_button_code %}
+            {% elif block.value.card_color == 'burgundy' %}
+                {% define "bg-burgundy text-white" as card_code %}
+                {% define "whitebutton" as card_button_code %}
+            {% endif %}
+
+            <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}">
+                <div class="main-carousel">
+                    {% for card in block.value.carousel_cells %}
+                    
+                        <div class="carousel-cell {{ card_code }} card-wrapper px-6 sm:px-0 rounded-lg w-full">
+                            {% for item in card.value %}
+                                <div class="px-12 max-w-[50rem] mx-auto">
+                                    {% if item.block_type == 'heading' %}
+                                        <div class="title-3 pb-4">
+                                            {{ item }}
+                                        </div>
+                                    {% elif item.block_type == 'paragraph' %}
+                                        <div class="body-text-1">
+                                            {{ item }}
+                                        </div>
+                                    {% elif item.block_type == 'button' %}
+                                        <div class="flex justify-center sm:justify-start py-2">
+                                            <button>
+                                                <a href="{{ item.value.button_reference }}">
+                                                    <div class="{{ card_button_code }}">
+                                                        {{ item.value.button_text }}
+                                                    </div>
+                                                </a>
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        {% elif block.block_type == 'info_box_section' %}
+
+
+            <div class="{{ color_code }} section-wrapper {% if forloop.counter == 1 %} pt-40 {% endif %}">
+                {% for card in block.value.cards %}
+
+                    {% if card.value.card_color == 'white' %}
+                        {% define "bg-white text-navy" as card_code %}
+                        {% define "navybutton" as card_button_code %}
+                    {% elif card.value.card_color == 'navy' %}
+                        {% define "bg-navy text-white" as card_code %}
+                        {% define "whitebutton" as card_button_code %}
+                    {% elif card.value.card_color == 'rose' %}
+                        {% define "bg-rose text-navy" as card_code %}
+                        {% define "navybutton" as card_button_code %}
+                    {% elif card.value.card_color == 'burgundy' %}
+                        {% define "bg-burgundy text-white" as card_code %}
+                        {% define "whitebutton" as card_button_code %}
+                    {% endif %}
+
+                    <div class="{{ card_code }} sm:rounded-lg w-full py-20 lg:py-10 2xl:py-14 px-4 sm:px-6 lg:px-20 2xl:px-40  sm:mb-10">
+
+
+                        {% for item in card.value.content %}
+                            <div class="mx-auto">
+                                {% if item.block_type == 'heading' %}
+                                    <div class="title-3 pb-4">
+                                        {{ item }}
+                                    </div>
+                                {% elif item.block_type == 'paragraph' %}
+                                    <div class="body-text-1">
+                                        {{ item }}
+                                    </div>
+                                {% elif item.block_type == 'button' %}
+                                    <div class="flex justify-center sm:justify-start py-4">
+                                        <button>
+                                            <a href="{{ item.value.button_reference }}">
+                                                <div class="{{ card_button_code }}">
+                                                    {{ item.value.button_text }}
+                                                </div>
+                                            </a>
+                                        </button>
+                                    </div>
+                                {% elif item.block_type == 'subcard_matrix' %}
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-10">
+                                        {% for subcard in item.value %}
+
+                                            {% if subcard.value.card_color == 'white' %}
+                                                {% define "bg-white text-navy" as card_code %}
+                                                {% define "navybutton" as card_button_code %}
+                                            {% elif subcard.value.card_color == 'navy' %}
+                                                {% define "bg-navy text-white" as card_code %}
+                                                {% define "whitebutton" as card_button_code %}
+                                            {% elif subcard.value.card_color == 'rose' %}
+                                                {% define "bg-rose text-navy" as card_code %}
+                                                {% define "navybutton" as card_button_code %}
+                                            {% elif subcard.value.card_color == 'burgundy' %}
+                                                {% define "bg-burgundy text-white" as card_code %}
+                                                {% define "whitebutton" as card_button_code %}
+                                            {% endif %}
+
+                                            <div class="w-full">
+                                                <div data-aos="zoom-in-right" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="relative {{ card_code }} h-full pt-4 px-4 sm:px-6 {% if course.value.button_link|length and course.value.button_text|length %} pb-20 {% endif %} rounded-lg">
+                                                    {% for subitem in subcard.value.content %}
+                                                        {% if subitem.block_type == 'heading' %}
+                                                            <div class="title-3 pb-4">
+                                                                {{ subitem }}
+                                                            </div>
+                                                        {% elif subitem.block_type == 'paragraph' %}
+                                                            <div class="body-text-1">
+                                                                {{ subitem }}
+                                                            </div>
+                                                        {% elif subitem.block_type == 'button' %}
+                                                            <div class="flex justify-center sm:justify-start py-4">
+                                                                <button>
+                                                                    <a href="{{ subitem.value.button_reference }}">
+                                                                        <div class="{{ card_button_code }}">
+                                                                            {{ subitem.value.button_text }}
+                                                                        </div>
+                                                                    </a>
+                                                                </button>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %} 
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
+
+
+
         {% endif %}
-            
-        
-       
-
-
     {% endfor %}
+{% endblock %}
 
+{% block extra_js %}
+    <script>
+        var elem = document.querySelector('.main-carousel');
+        var flkty = new Flickity( elem, {
+            // options
+            cellAlign: 'left',
+            contain: true,
+            wrapAround: true,
+            lazyLoad: true,
+            draggable: true,
+            prevNextButtons: true,
+            pageDots: false,
+            adaptiveHeight: true,
+        });
+    </script>
 {% endblock %}
