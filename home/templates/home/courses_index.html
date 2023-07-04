@@ -6,6 +6,12 @@
 
 {% block current_offerings_header %}{{ page.active_header_text }}{% endblock %}
 
+{% block no_upcoming %}
+    <div class="text-center flex items-center justify-center text-xl font-bold text-white min-h-[20rem]">
+        No upcoming courses at the moment! 
+    </div>
+{% endblock %}
+
 {% block active_offerings_loop_fl %}
     {% for course in page.active_items %}
         <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="carousel-cell bg-navy sm:bg-rose px-6 sm:px-0 rounded-lg mb-10 sm:mb-0 w-full">

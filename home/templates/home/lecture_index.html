@@ -5,7 +5,7 @@
 {% load wagtailcore_tags %}
 
 {% block no_upcoming %}
-    <div class="text-center text-xl font-bold text-white">
+    <div class="text-center flex items-center justify-center text-xl font-bold text-white min-h-[20rem]">
         No upcoming lectures at the moment! 
     </div>
 {% endblock %}
@@ -28,20 +28,14 @@
                     </div>
                     {% if course.location|length %}
                         <div class="text-white sm:text-navy text-md font-semibold">
-                            {{ course.location }} 
+                            Location: {{ course.location }} 
                         </div>
                     {% endif %}
 
 
-                    {% if course.meeting_pattern|length %}
+                    {% if course.speaker|length %}
                         <div class="text-white sm:text-navy text-md font-semibold">
-                            {{ course.meeting_pattern }} 
-                        </div>
-                    {% endif %}
-
-                    {% if course.instructor|length %}
-                        <div class="text-white sm:text-navy text-md font-semibold">
-                            Lead by {{ course.instructor }}
+                            Speaker: {{ course.speaker }}
                         </div>
                     {% endif %}
                 </div>
@@ -156,17 +150,16 @@
                         {{ course.description|richtext }}
                     </div>
 
-                    {% if course.archival_link|length %}
-                        <div class="pb-2">
-                            <button>
-                                <a href="{{ course.archival_link }}">
-                                    <div class="navybutton">
-                                        View here
-                                    </div>
-                                </a>
-                            </button>
-                        </div>
-                    {% endif %}
+                    <audio class="w-full py-2"
+                        controls
+                        src="{{ course.audio.url }}">
+                            <a href="{{ page.audio.url }}">
+                                Download audio
+                            </a>
+                    </audio>
+
+                    <p class="text-navy">{{ page.audio.url }}</p>
+
                 </div>
             {% endfor %}
         </div>

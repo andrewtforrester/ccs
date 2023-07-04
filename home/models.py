@@ -1118,7 +1118,7 @@ class LectureIndex(Page):
         temp = []
         i = 1
 
-        for course in Lecture.objects.live().filter(type='archived').specific().order_by('date'):
+        for course in Lecture.objects.live().filter(type='archived').specific().order_by('-date'):
             temp = temp + [course]
             if len(temp) == 5:
                 result = result + [(temp,i)]
@@ -1136,7 +1136,7 @@ class Lecture(Page):
     description = RichTextField(blank=True)
     speaker = models.CharField(max_length=1023, blank=True)
     registration_link = models.CharField(max_length=1023, blank=True)
-    archival_link = models.CharField(max_length=1023, blank=True)
+    audio = models.FileField(blank=True, null=True)
     location = models.CharField(max_length=1023, blank=True)
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
@@ -1160,7 +1160,7 @@ class Lecture(Page):
         FieldPanel('description'),
         FieldPanel('speaker'),
         FieldPanel('registration_link'),
-        FieldPanel('archival_link'),
+        FieldPanel('audio'),
         FieldPanel('location'),
         FieldPanel('date'),
         FieldPanel('time'),

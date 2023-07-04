@@ -746,13 +746,25 @@ select {
 
 @media (min-width: 640px) {
   .section-wrapper {
-    padding: 2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .section-wrapper {
-    padding: 3.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .height-control {
+    min-height: 40rem;
   }
 }
 
@@ -1301,6 +1313,14 @@ select {
   grid-column: span 1 / span 1;
 }
 
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
@@ -1400,6 +1420,10 @@ select {
   margin-left: 0.25rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .mt-\[2rem\] {
   margin-top: 2rem;
 }
@@ -1410,10 +1434,6 @@ select {
 
 .mb-\[5rem\] {
   margin-bottom: 5rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 
 .mb-2 {
@@ -2238,14 +2258,14 @@ select {
   padding-bottom: 1.25rem;
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .py-20 {
@@ -2877,11 +2897,6 @@ p {
     right: 0px;
   }
 
-  .sm\:mx-4 {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-
   .sm\:mt-40 {
     margin-top: 10rem;
   }
@@ -3140,14 +3155,14 @@ p {
     line-height: 1;
   }
 
-  .sm\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .sm\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .sm\:text-lg {
@@ -3174,13 +3189,19 @@ p {
 
   @media (min-width: 640px) {
     .sm\:section-wrapper {
-      padding: 2.5rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .sm\:section-wrapper {
-      padding: 3.5rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
     }
   }
 
@@ -3334,11 +3355,6 @@ p {
     grid-column: span 4 / span 4;
   }
 
-  .lg\:mx-2 {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-
   .lg\:mx-4 {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -3488,14 +3504,6 @@ p {
     padding-bottom: 5rem;
   }
 
-  .lg\:pt-0 {
-    padding-top: 0px;
-  }
-
-  .lg\:pt-6 {
-    padding-top: 1.5rem;
-  }
-
   .lg\:pt-16 {
     padding-top: 4rem;
   }
@@ -3522,6 +3530,11 @@ p {
     line-height: 1;
   }
 
+  .lg\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .lg\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -3530,11 +3543,6 @@ p {
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .lg\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 
   .lg\:text-rose {
