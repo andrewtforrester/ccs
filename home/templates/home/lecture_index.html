@@ -44,13 +44,6 @@
                     {{ course.description|richtext }}
                 </div>
                 <div class="flex justify-center sm:justify-start">
-                    <button class="pr-4">
-                        <a href="{{ course.url }}">
-                            <div class="whitebutton sm:navybutton">
-                                Learn more
-                            </div>
-                        </a>
-                    </button>
                     {% if course.registration_link|length %}
                         <button class="">
                             <a href="{{ course.registration_link }}">
@@ -105,13 +98,6 @@
                     {{ course.description|richtext }}
                 </div>
                 <div class="flex justify-center sm:justify-start">
-                    <button class="pr-4">
-                        <a href="{{ course.url }}">
-                            <div class="whitebutton sm:navybutton">
-                                Learn more
-                            </div>
-                        </a>
-                    </button>
                     {% if course.registration_link|length %}
                         <button class="">
                             <a href="{{ course.registration_link }}">
