@@ -150,7 +150,7 @@
                         {{ course.description|richtext }}
                     </div>
 
-                    {% if course.audio.url|length %}
+                    {% if course.audio|length %}
                         <audio class="w-full py-2"
                             controls 
                             preload="none"
