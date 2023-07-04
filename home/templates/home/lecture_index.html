@@ -150,16 +150,16 @@
                         {{ course.description|richtext }}
                     </div>
 
-                    <audio class="w-full py-2"
-                        controls 
-                        preload="none"
-                        src="{{ course.audio.url }}">
-                            <a href="{{ page.audio.url }}">
-                                Download audio
-                            </a>
-                    </audio>
-
-                    <p class="text-navy">{{ page.audio.url }}</p>
+                    {% if course.audio.url|length %}
+                        <audio class="w-full py-2"
+                            controls 
+                            preload="none"
+                            src="{{ course.audio.url }}">
+                                <a href="{{ page.audio.url }}">
+                                    Download audio
+                                </a>
+                        </audio>
+                    {% endif %}
 
                 </div>
             {% endfor %}
