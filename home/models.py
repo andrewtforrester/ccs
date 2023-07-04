@@ -955,6 +955,7 @@ class Course(Page):
     ]
 
     semester = RichTextField(features=[], choices=semester_options)
+
     year = models.IntegerField()
 
     def semester_and_year(self):
