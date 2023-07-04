@@ -874,8 +874,6 @@ class Event(SeoMixin, Page):
 
 # ACADEMICS
 
-
-
 class CoursesIndex(Page):
 
     header_text = models.CharField(max_length=255)
@@ -922,7 +920,7 @@ class CoursesIndex(Page):
     is_creatable = False
     subpage_types = ['home.Course']
 
-class Course(Page):
+class Course(SeoMixin, Page):
 
     instructor = models.CharField(max_length=127, blank=True)
     registration_link = models.CharField(max_length=1023, blank=True)
@@ -960,19 +958,33 @@ class Course(Page):
 
     def semester_and_year(self):
         return self.get_semester_display() + " " + str(self.year)
-
-    content_panels = Page.content_panels + [
-        FieldPanel('semester',widget=forms.Select),
-        FieldPanel('year'),
+    
+    general_info_panel = [
+        FieldPanel('type', widget=forms.Select),
+        FieldPanel('category'),
         FieldPanel('instructor'),
-        FieldPanel('registration_link'),
         FieldPanel('location'),
-        FieldPanel('meeting_pattern'),
         FieldPanel('description'),
         FieldPanel('poster'),
-        FieldPanel('category'),
-        FieldPanel('type',widget=forms.Select),
     ]
+    
+    date_and_time_panel = [
+        FieldPanel('semester',widget=forms.Select),
+        FieldPanel('year'),
+        FieldPanel('meeting_pattern'),
+    ]
+
+    registration_panel = [
+        FieldPanel('registration_link'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(general_info_panel, heading='General Information'),
+        ObjectList(date_and_time_panel, heading='Date and Time'),
+        ObjectList(registration_panel, heading='Registration'),
+        ObjectList(SeoMixin.seo_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
 
     def abridged_description(self):
         if len(self.description) > 350:
@@ -1031,7 +1043,7 @@ class ReadingGroupsIndex(Page):
     is_creatable = False
     subpage_types = ['home.ReadingGroup']
 
-class ReadingGroup(Page):
+class ReadingGroup(SeoMixin, Page):
 
     instructor = models.CharField(max_length=1023, blank=True)
     registration_link = models.CharField(max_length=1023, blank=True)
@@ -1068,17 +1080,31 @@ class ReadingGroup(Page):
 
     semester = RichTextField(features=[], choices=semester_options)
 
-    content_panels = Page.content_panels + [
-        FieldPanel('semester',widget=forms.Select),
-        FieldPanel('year'),
+    general_info_panel = [
+        FieldPanel('type', widget=forms.Select),
         FieldPanel('instructor'),
-        FieldPanel('registration_link'),
         FieldPanel('location'),
-        FieldPanel('meeting_pattern'),
         FieldPanel('description'),
         FieldPanel('poster'),
-        FieldPanel('type', widget=forms.Select),
     ]
+    
+    date_and_time_panel = [
+        FieldPanel('semester',widget=forms.Select),
+        FieldPanel('year'),
+        FieldPanel('meeting_pattern'),
+    ]
+
+    registration_panel = [
+        FieldPanel('registration_link'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(general_info_panel, heading='General Information'),
+        ObjectList(date_and_time_panel, heading='Date and Time'),
+        ObjectList(registration_panel, heading='Registration'),
+        ObjectList(SeoMixin.seo_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
 
     def abridged_description(self):
         if len(self.description) > 350:
@@ -1129,7 +1155,7 @@ class LectureIndex(Page):
     is_creatable = False
     subpage_types = ['home.Lecture']
 
-class Lecture(Page):
+class Lecture(SeoMixin, Page):
     description = RichTextField(blank=True)
     speaker = models.CharField(max_length=1023, blank=True)
     registration_link = models.CharField(max_length=1023, blank=True)
@@ -1155,17 +1181,36 @@ class Lecture(Page):
 
     type = RichTextField(features=[], choices=status)
 
-    content_panels = Page.content_panels + [
-        FieldPanel('description'),
+    general_info_panel = [
+        FieldPanel('type', widget=forms.Select),
         FieldPanel('speaker'),
-        FieldPanel('registration_link'),
-        FieldPanel('audio'),
-        FieldPanel('video_embed_link'),
         FieldPanel('location'),
+        FieldPanel('description'),
+    ]
+    
+    date_and_time_panel = [
         FieldPanel('date'),
         FieldPanel('time'),
-        FieldPanel('type', widget=forms.Select),
     ]
+
+    registration_panel = [
+        FieldPanel('registration_link'),
+    ]
+
+    archival_panel = [
+        FieldPanel('audio'),
+        FieldPanel('video_embed_link'),
+        
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(general_info_panel, heading='General Information'),
+        ObjectList(date_and_time_panel, heading='Date and Time'),
+        ObjectList(registration_panel, heading='Registration'),
+        ObjectList(archival_panel, heading='Archival'),
+        ObjectList(SeoMixin.seo_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
 
     def abridged_description(self):
         if len(self.description) > 350:
