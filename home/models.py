@@ -1018,7 +1018,7 @@ class ReadingGroupsIndex(Page):
         i = 1
 
         if not len(ReadingGroup.objects.live().filter(type='archived')) == 0:
-            for course in ReadingGroup.objects.live().filter(type='archived').specific():
+            for course in ReadingGroup.objects.live().filter(type='archived').order_by('-year','-semester','title').specific():
                 temp = temp + [course]
                 if len(temp) == 5:
                     result = result + [(temp,i)]
@@ -1167,7 +1167,6 @@ class Lecture(Page):
         FieldPanel('location'),
         FieldPanel('date'),
         FieldPanel('time'),
-        FieldPanel('featured_image'),
         FieldPanel('type', widget=forms.Select),
     ]
 
