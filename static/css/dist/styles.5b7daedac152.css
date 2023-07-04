@@ -1712,6 +1712,10 @@ select {
   height: 2rem;
 }
 
+.h-\[15rem\] {
+  height: 15rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -2953,6 +2957,10 @@ p {
     height: 10rem;
   }
 
+  .sm\:h-\[20rem\] {
+    height: 20rem;
+  }
+
   .sm\:min-h-\[60rem\] {
     min-height: 60rem;
   }
@@ -3402,6 +3410,10 @@ p {
 
   .lg\:h-auto {
     height: auto;
+  }
+
+  .lg\:h-\[30rem\] {
+    height: 30rem;
   }
 
   .lg\:w-\[25rem\] {

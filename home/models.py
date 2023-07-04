@@ -1137,6 +1137,8 @@ class Lecture(Page):
     speaker = models.CharField(max_length=1023, blank=True)
     registration_link = models.CharField(max_length=1023, blank=True)
     audio = models.FileField(blank=True, null=True)
+    video_embed_link = models.CharField(max_length=511, blank=True, null=True)
+
     location = models.CharField(max_length=1023, blank=True)
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
@@ -1161,6 +1163,7 @@ class Lecture(Page):
         FieldPanel('speaker'),
         FieldPanel('registration_link'),
         FieldPanel('audio'),
+        FieldPanel('video_embed_link'),
         FieldPanel('location'),
         FieldPanel('date'),
         FieldPanel('time'),
