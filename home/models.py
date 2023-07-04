@@ -960,6 +960,7 @@ class Course(SeoMixin, Page):
         return self.get_semester_display() + " " + str(self.year)
     
     general_info_panel = [
+        FieldPanel('title'),
         FieldPanel('type', widget=forms.Select),
         FieldPanel('category'),
         FieldPanel('instructor'),
@@ -1081,6 +1082,7 @@ class ReadingGroup(SeoMixin, Page):
     semester = RichTextField(features=[], choices=semester_options)
 
     general_info_panel = [
+        FieldPanel('title'),
         FieldPanel('type', widget=forms.Select),
         FieldPanel('instructor'),
         FieldPanel('location'),
@@ -1182,6 +1184,7 @@ class Lecture(SeoMixin, Page):
     type = RichTextField(features=[], choices=status)
 
     general_info_panel = [
+        FieldPanel('title'),
         FieldPanel('type', widget=forms.Select),
         FieldPanel('speaker'),
         FieldPanel('location'),
