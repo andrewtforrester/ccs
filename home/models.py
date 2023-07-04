@@ -190,6 +190,16 @@ class Give(BaseSetting):
 class CustomPage(SeoMixin, Page):
     is_creatable = True
 
+    header_color_options = [
+        ('navy','Navy'),
+        ('white','White'),
+    ]
+
+    header_color = RichTextField(features=[], choices=header_color_options)
+
+    def dark_background(self):
+        return self.header_color == 'white'
+
     color_options = [
         ('rose','Rose'),
         ('navy','Navy'),
@@ -205,6 +215,7 @@ class CustomPage(SeoMixin, Page):
     page_content = StreamField([
         ('article_section', blocks.StructBlock([
             ('background_color', blocks.ChoiceBlock(choices=color_options)),
+            ('title', blocks.CharBlock(required=False)),
             ('article_content', blocks.StreamBlock([
                 ('heading', blocks.CharBlock()),
                 ('paragraph', blocks.RichTextBlock()),
@@ -324,6 +335,7 @@ class CustomPage(SeoMixin, Page):
     ], collapsed=True, use_json_field=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('header_color', widget=forms.Select),
         StreamFieldPanel('page_content'),
     ]
 

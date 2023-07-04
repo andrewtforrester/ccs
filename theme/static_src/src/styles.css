@@ -14,7 +14,11 @@ p {
 @layer components {
 
     .section-wrapper {
-        @apply px-4 py-16 sm:p-10 lg:p-14;
+        @apply px-4 py-16 sm:px-10 sm:py-10 lg:px-10 lg:py-14;
+    }
+
+    .height-control {
+        @apply sm:min-h-[40rem];
     }
 
     .section-wrapper-x {
