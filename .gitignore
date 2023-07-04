@@ -6,6 +6,10 @@ ccs/settings/*
 # Database
 db.sqlite3
 
+# Media
+media/
+media/*
+
 # Other Custom
 
 .deploy
