@@ -937,12 +937,8 @@ class Course(Page):
         related_name='+'
     )
 
-    categories = [
-        ('Short Course', 'Short Course'),
-        ('Duke Course', 'Duke Course'),
-    ]
 
-    category = RichTextField(features=[], choices=categories)
+    category = models.CharField(max_length=511, blank=True, null=True)
 
     status = [
         ('future','Future'),
@@ -973,7 +969,7 @@ class Course(Page):
         FieldPanel('meeting_pattern'),
         FieldPanel('description'),
         FieldPanel('poster'),
-        FieldPanel('category',widget=forms.Select),
+        FieldPanel('category'),
         FieldPanel('type',widget=forms.Select),
     ]
 

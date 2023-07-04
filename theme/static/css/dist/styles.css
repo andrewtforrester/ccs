@@ -2921,6 +2921,10 @@ p {
     margin-top: 6rem;
   }
 
+  .sm\:mb-4 {
+    margin-bottom: 1rem;
+  }
+
   .sm\:block {
     display: block;
   }
