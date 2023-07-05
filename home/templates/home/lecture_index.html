@@ -10,7 +10,7 @@
     </div>
 {% endblock %}
 
-{% block current_offerings_header %}Upcoming Lectures{% endblock %}
+{% block current_offerings_header %}{{ page.active_header_text }}{% endblock %}
 
 {% block active_offerings_loop_fl %}
     {% for course in page.active_items %}
@@ -164,4 +164,4 @@
 
 
 
-{% block archive_header %}Lecture Archive{% endblock %}
+{% block archive_header %}{{ page.archive_header_text }}{% endblock %}

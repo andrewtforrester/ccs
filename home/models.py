@@ -1129,10 +1129,15 @@ class LectureIndex(Page):
         related_name='+'
     )
 
+    active_header_text = models.CharField(max_length=255)
+    archive_header_text = models.CharField(max_length=255)
+
     content_panels = Page.content_panels + [
         FieldPanel('header_text'),
         FieldPanel('descriptive_text'),
         FieldPanel('feature_image'),
+        FieldPanel('active_header_text'),
+        FieldPanel('archive_header_text'),
     ]
 
     def active_items(self):
