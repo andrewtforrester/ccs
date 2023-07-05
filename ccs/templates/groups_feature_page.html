@@ -37,7 +37,7 @@
         </div>
     </section>
 
-    {% if page.archived_items|length %}
+    {% if page.archived_items|length and not page.display_archive == 'no' %}
         <section class="section-wrapper">
             <div class="max-w-screen-2xl mx-auto">
                 <div class="title-2 pb-16 text-navy">

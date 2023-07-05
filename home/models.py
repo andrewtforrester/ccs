@@ -1154,12 +1154,20 @@ class LectureIndex(Page):
     active_header_text = models.CharField(max_length=255)
     archive_header_text = models.CharField(max_length=255)
 
+    binary_options = [
+        ('yes','Yes'),
+        ('no','No'),
+    ]
+
+    display_archive = RichTextField(features=[], choices=binary_options)
+
     content_panels = Page.content_panels + [
         FieldPanel('header_text'),
         FieldPanel('descriptive_text'),
         FieldPanel('feature_image'),
         FieldPanel('active_header_text'),
         FieldPanel('archive_header_text'),
+        FieldPanel('display_archive',widget=forms.Select),
     ]
 
     def active_items(self):
