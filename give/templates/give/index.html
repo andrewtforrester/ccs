@@ -74,11 +74,11 @@
 									{{ item }}
 								</div>
 							{% elif item.block_type == 'paragraph' %}
-								<div class="body-text-1">
+								<div class="body-text-1 pb-4">
 									{{ item }}
 								</div>
 							{% elif item.block_type == 'button' %}
-								<div class="flex justify-center sm:justify-start py-4">
+								<div class="flex justify-center sm:justify-start pb-4">
 									<button>
 										<a href="{{ item.value.button_reference }}">
 											<div class="navybutton">
