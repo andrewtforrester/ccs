@@ -3414,6 +3414,11 @@ p {
     margin-right: 1rem;
   }
 
+  .lg\:mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
   .lg\:mb-20 {
     margin-bottom: 5rem;
   }

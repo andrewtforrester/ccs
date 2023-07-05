@@ -67,7 +67,7 @@
 
 			<div class="lg:flex justify-center pb-16">
 				{% for card in settings.home.Give.giving_options %}
-					<div class="lg:w-[25rem] mt-6 lg:mx-4 bg-white border-4 border-rose rounded-lg relative z-[20] card-wrapper">
+					<div class="lg:w-[25rem] mt-6 lg:mx-2 bg-white border-4 border-rose rounded-lg relative z-[20] card-wrapper">
 						{% for item in card.value.content %}
 							{% if item.block_type == 'heading' %}
 								<div class="title-3 pb-4">
