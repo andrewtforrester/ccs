@@ -137,7 +137,7 @@ async function handleSubmit(e) {
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-        return_url: "http://ccsduke.org/give/success",
+        return_url: "https://ccsduke.org/give/success",
         receipt_email: emailAddress,
         },
     });
