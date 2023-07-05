@@ -15,14 +15,6 @@ def CreateCheckoutSessionView(request,dollars):
             amount=int(dollars)*100,
             currency='usd',
             payment_method_types=['card', 'cashapp','link'],
-            payment_method_options={
-                "us_bank_account": {
-                    "financial_connections": {
-                        "permissions": 
-                            ["payment_method"]
-                        }
-                },
-            },
         )
 
         return JsonResponse({
