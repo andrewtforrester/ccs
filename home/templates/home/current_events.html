@@ -5,10 +5,62 @@
 
 {% block content %}
     <div class="section-wrapper pt-32 sm:pt-40">
-        <div class="mx-auto max-w-screen-md ">
+        <div class="relative mx-auto max-w-screen-md">
             <div class="">
                 {% include 'home/_partials/events.html' %}
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        
+        document.getElementById("ugc").addEventListener("click", filterEvents);
+        document.getElementById("gsc").addEventListener("click", filterEvents);
+        document.getElementById("fcc").addEventListener("click", filterEvents);
+        document.getElementById("frc").addEventListener("click", filterEvents);
+
+        function filterEvents() {
+            var ug_checked = document.querySelector('#ugc').checked;
+            var gs_checked = document.querySelector('#gsc').checked;
+            var fc_checked = document.querySelector('#fcc').checked;
+            var fr_checked = document.querySelector('#frc').checked;
+
+            if (!(ug_checked || gs_checked || fc_checked || fr_checked)) {
+                for (var i = 0; i < document.getElementsByClassName('listed-event').length; i++) {
+                    document.getElementsByClassName('listed-event')[i].classList.remove('hidden')
+                }
+                return;
+            }
+
+            for (var i = 0; i < document.getElementsByClassName('listed-event').length; i++) {
+                document.getElementsByClassName('listed-event')[i].classList.add('hidden')
+            }
+
+            if (ug_checked) {
+                for (var i = 0; i < document.getElementsByClassName('ug').length; i++) {
+                    document.getElementsByClassName('ug')[i].classList.remove('hidden')
+                }
+            } 
+
+            if (gs_checked) {
+                for (var i = 0; i < document.getElementsByClassName('gs').length; i++) {
+                    document.getElementsByClassName('gs')[i].classList.remove('hidden')
+                }
+            } 
+
+            if (fc_checked) {
+                for (var i = 0; i < document.getElementsByClassName('fc').length; i++) {
+                    document.getElementsByClassName('fc')[i].classList.remove('hidden')
+                }
+            } 
+
+            if (fr_checked) {
+                for (var i = 0; i < document.getElementsByClassName('fr').length; i++) {
+                    document.getElementsByClassName('fr')[i].classList.remove('hidden')
+                }
+            } 
+        }
+    </script>
 {% endblock %}

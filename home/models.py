@@ -794,6 +794,10 @@ class CurrentEvents(Page):
                         "date": meeting.value['date'],
                         "start_time": meeting.value['start_time'],
                         "end_time": meeting.value['end_time'],
+                        "for_undergrads": event.for_undergrads,
+                        "for_grad_students": event.for_grad_students,
+                        "for_faculty": event.for_faculty,
+                        "for_friends": event.for_friends,
                     })]
 
         return sorted(result, key = lambda d: d['date'])
@@ -806,6 +810,16 @@ class Event(SeoMixin, Page):
     registration_link = models.CharField(max_length=1023, blank=True)
     location = models.CharField(max_length=1023, blank=True)
     leader = models.CharField(max_length=1023, blank=True)
+
+    binary_options = [
+        ('yes','Yes'),
+        ('no','No'),
+    ]
+
+    for_undergrads = RichTextField(features=[], choices=binary_options)
+    for_grad_students = RichTextField(features=[], choices=binary_options)
+    for_faculty = RichTextField(features=[], choices=binary_options)
+    for_friends = RichTextField(features=[], choices=binary_options)
 
     meetings = StreamField([
         ('meeting', blocks.StructBlock([
@@ -847,9 +861,17 @@ class Event(SeoMixin, Page):
         FieldPanel('meetings')
     ]
 
+    audience = [
+        FieldPanel('for_undergrads',widget=forms.Select),
+        FieldPanel('for_grad_students',widget=forms.Select),
+        FieldPanel('for_faculty',widget=forms.Select),
+        FieldPanel('for_friends',widget=forms.Select),
+    ]
+
     edit_handler = TabbedInterface([
         ObjectList(general, 'General Information'),
         ObjectList(mtgs, 'Meetings'),
+        ObjectList(audience, 'Audience'),
         ObjectList(SeoMixin.seo_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings'),
     ])

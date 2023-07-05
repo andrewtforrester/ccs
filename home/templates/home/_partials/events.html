@@ -3,10 +3,67 @@
 {% load wagtailcore_tags %}
 
 
-<h2 class="text-navy title-2 pb-16 pt-4">Upcoming Events</h2>
+<h2 class="text-navy title-2 pb-10 pt-4">Upcoming Events</h2>
+
+
+{% if page.events|length and page.slug == 'calendar' %}
+
+    <div class="border-rose border-2 rounded-lg py-2 px-4 bg-white mb-16 sm:max-w-[40rem]">
+        <div class="title-4 pb-2">Filter </div>
+        <form action="">
+            <div class="grid grid-cols-2 sm:grid-cols-4">
+                <div>
+                    <input class="mr-2" type="checkbox" id="ugc" name="ug" value="ug">
+                    <label class="text-md mr-4 sm:mr-0" for="ugc">Undergrads</label><br class="hidden sm:block">
+                </div>
+                <div class="whitespace-nowrap">
+                    <input class="mr-2" type="checkbox" id="gsc" name="gs" value="gs">
+                    <label class="text-md mr-4 sm:mr-0 whitespace-nowrap" for="gsc">Grad Students</label><br class="hidden sm:block">
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" id="fcc" name="fc" value="fc">
+                    <label class="text-md mr-4 sm:mr-0" for="fcc">Faculty</label><br class="hidden sm:block">
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" id="frc" name="fr" value="fr">
+                    <label class="text-md mr-4 sm:mr-0" for="frc">Staff</label><br class="hidden sm:block">
+                </div>
+            </div>
+            
+
+            
+
+            
+            
+        </form>
+    </div>
+{% endif %}
+
 {% if page.events|length %}
     {% for event in page.events %}
-        <div class="">
+        <div class="listed-event {% if event.for_undergrads == 'yes' %} ug {% endif %} {% if event.for_grad_students == 'yes' %} gs {% endif %} {% if event.for_faculty == 'yes' %} fc {% endif %} {% if event.for_friends == 'yes' %} fr {% endif %}">
+            <div class="flex flex-wrap items-center justify-start">
+                {% if event.for_undergrads == 'yes' %}
+                    <div class="border-rose border-2 px-2 py-0 rounded-full text-navy mr-2 mb-2">
+                        Undergrads
+                    </div>
+                {% endif %}
+                {% if event.for_grad_students == 'yes' %}
+                    <div class="border-rose border-2 px-2 py-0 rounded-full text-navy mr-2 mb-2">
+                        Grad Students
+                    </div>
+                {% endif %}
+                {% if event.for_faculty == 'yes' %}
+                    <div class="border-rose border-2 px-2 py-0 rounded-full text-navy mr-2 mb-2">
+                        Faculty
+                    </div>
+                {% endif %}
+                {% if event.for_friends == 'yes' %}
+                    <div class="border-rose border-2 px-2 py-0 rounded-full text-navy mr-2 mb-2">
+                        Friends
+                    </div>
+                {% endif %}
+            </div>
             <div class="sm:flex justify-between items-center sm:items-start mb-2 relative">
                 <h2 class="font-black font-serif text-2xl sm:text-2xl text-navy">{{ event.title }}</h2>
                 <h2 class="font-bold text-lg sm:text-2xl sm:font-serif text-navy opacity-[0.8] mb-2 sm:mb-0">{{ event.date|date:'D, M d' }} at {{ event.start_time }}</h2>
@@ -22,6 +79,5 @@
 {% else %}
     <div class="py-20">
         <h2 class="text-xl sm:text-2xl">We don't have any upcoming events at this time - check back soon!</h2>
-
     </div>
 {% endif %}
