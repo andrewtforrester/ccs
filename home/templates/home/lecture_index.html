@@ -17,6 +17,13 @@
         <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="carousel-cell bg-navy sm:bg-rose px-6 sm:px-0 rounded-lg mb-10 sm:mb-0 w-full">
             <div class="sm:px-20 py-6 sm:py-16">
                 <div class="pb-10">
+
+                    {% if course.date %}
+                        <div class="text-lg text-navy pb-3">
+                            {{ course.date|date:'D, M d, Y' }}{% if course.time %} at {{ course.time }}{% endif %}
+                        </div>
+                    {% endif %}
+
                     <div class="font-bold font-serif text-4xl pb-8">
                         {{ course.title }}
                     </div>
@@ -59,6 +66,12 @@
         <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="500" class="carousel-cell bg-navy sm:bg-rose px-6 sm:px-0 rounded-lg mb-10 sm:mb-0 w-full">
             <div class="sm:px-20 py-6 sm:py-16">
                 <div class="pb-10">
+
+                    {% if course.date %}
+                        <div class="text-lg text-white pb-3">
+                            {{ course.date|date:'D, M d, Y' }}{% if course.time %} at {{ course.time }}{% endif %}
+                        </div>
+                    {% endif %}
                     
                     <div class="font-bold font-serif text-4xl pb-8">
                         {{ course.title }}
@@ -66,12 +79,12 @@
 
                     {% if course.location|length %}
                         <div class="text-white sm:text-navy text-md font-semibold">
-                            {{ course.location }} 
+                            Location: {{ course.location }} 
                         </div>
                     {% endif %}
-                    {% if course.meeting_pattern|length %}
+                    {% if course.speaker|length %}
                         <div class="text-white sm:text-navy text-md font-semibold">
-                            {{ course.meeting_pattern }} 
+                            Speaker: {{ course.speaker }}
                         </div>
                     {% endif %}
                 </div>
