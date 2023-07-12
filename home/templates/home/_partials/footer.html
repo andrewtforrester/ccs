@@ -20,13 +20,28 @@
                         <div class="pt-10 pb-6 text-white md:pt-0 text-lg sm:text-xl lg:w-3/4">
                             {{ settings.home.Footer.site_description|richtext }}
                         </div>
+
+                        {% if settings.home.Footer.social_icons %}
+                            <div class="pb-6 flex flex-wrap items-center justify-start">
+                                {% for icon in settings.home.Footer.social_icons %}
+                                    {% image icon.value.image width-300 as icon_img %}
+                                    <a href="{{ icon.value.link }}">
+                                        <div class="w-10 h-10 mr-4">
+                                            <img class="w-10 h-10" src="{{ icon_img.url }}" alt="">
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        
                     </div>
 
 
 
                     <div class="hidden mb-20 md:block md:pt-10 sm:pb-0">
                         <a href="{{ settings.home.Footer.ccs_house_header_link.url }}">
-                            <div class="mb-4 font-serif text-xl font-bold text-white sm:text-2xl">{{ settings.home.Footer.ccs_house_header_text }}</div>
+                            <div class="mb-4 font-serif text-xl font-bold text-rose sm:text-2xl">{{ settings.home.Footer.ccs_house_header_text }}</div>
                         </a>
 
                         <div class="mb-2">
@@ -48,13 +63,8 @@
                     </div>
 
 
-
-
-
-
-
                 </div>
-                <div class="md:flex md:flex-col md:justify-between md:w-7/12 md:ml-10">
+                <div class="md:w-7/12 md:ml-10">
 
                     <div class="flex flex-wrap">
 
@@ -91,14 +101,24 @@
 
                     </div>
 
-                    <!-- <div class="py-10">
-                        <h2 class="pb-6 font-serif text-xl font-bold text-white sm:text-2xl">Join our email list</h2>
-                        <newsletter-signup></newsletter-signup>
-                    </div> -->
+                    {% if settings.home.Footer.mailing_list_button_text|length and settings.home.Footer.mailing_list_button_link|length %}
+                        <button>
+                            <a href="{{ settings.home.Footer.mailing_list_button_link }}">
+                                <div class="whitebutton">
+                                    {{ settings.home.Footer.mailing_list_button_text }}
+                                </div>
+                            </a>
+                        </button>
+                    {% endif %}
 
-
-
+                    
+                    
                 </div>
+
+
+
+
+                
                 <div class="pt-10 md:hidden">
                     <div class="text-sm text-white whitespace-nowrap"><a href="{{ settings.home.Footer.mailto_link }}">{{ settings.home.Footer.email_address }}</a></div>
                 </div>

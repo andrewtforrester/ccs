@@ -63,6 +63,15 @@ class Footer(BaseSetting):
         related_name='+',
     )
 
+    social_icons = StreamField([
+        ('icon', blocks.StructBlock([
+            ('image', ImageChooserBlock()),
+            ('link', blocks.CharBlock()),
+        ]))
+    ], use_json_field=True, blank=True, null=True, collapsed=True)
+
+    mailing_list_button_text = models.CharField(max_length=511, blank=True, null=True)
+    mailing_list_button_link = models.CharField(max_length=511, blank=True, null=True)
 
     footer_links = StreamField([
         ('category', blocks.StructBlock([
@@ -82,6 +91,7 @@ class Footer(BaseSetting):
 
     general_information = [
         FieldPanel('site_description'),
+        FieldPanel('social_icons'),
         MultiFieldPanel([
             FieldPanel('ccs_house_header_text'),
             PageChooserPanel('ccs_house_header_link'),
@@ -92,6 +102,12 @@ class Footer(BaseSetting):
             FieldPanel('email_address'),
             FieldPanel('mailto_link'),
         ], heading="Email Address"),
+
+        MultiFieldPanel([
+            FieldPanel('mailing_list_button_text'),
+            FieldPanel('mailing_list_button_link'),
+        ], heading="Mailing List Button"),
+        
     ]
 
     footer_navigation = [
