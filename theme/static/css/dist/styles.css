@@ -1744,6 +1744,10 @@ select {
   min-height: 100%;
 }
 
+.min-h-\[40rem\] {
+  min-height: 40rem;
+}
+
 .w-full {
   width: 100%;
 }
