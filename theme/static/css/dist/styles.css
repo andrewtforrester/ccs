@@ -1580,6 +1580,10 @@ select {
   margin-right: 0px;
 }
 
+.mt-80 {
+  margin-top: 20rem;
+}
+
 .block {
   display: block;
 }
@@ -3005,6 +3009,10 @@ p {
 
   .sm\:min-h-\[60rem\] {
     min-height: 60rem;
+  }
+
+  .sm\:min-h-\[40rem\] {
+    min-height: 40rem;
   }
 
   .sm\:w-auto {
