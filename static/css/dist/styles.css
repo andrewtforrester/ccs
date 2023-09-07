@@ -1580,6 +1580,10 @@ select {
   margin-right: 0px;
 }
 
+.mt-80 {
+  margin-top: 20rem;
+}
+
 .block {
   display: block;
 }
@@ -1744,6 +1748,10 @@ select {
   min-height: 100%;
 }
 
+.min-h-\[40rem\] {
+  min-height: 40rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -1770,6 +1778,10 @@ select {
 
 .w-16 {
   width: 4rem;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .w-\[\.4rem\] {
@@ -1806,10 +1818,6 @@ select {
 
 .w-3 {
   width: 0.75rem;
-}
-
-.w-10 {
-  width: 2.5rem;
 }
 
 .w-5 {
@@ -3003,6 +3011,10 @@ p {
     min-height: 60rem;
   }
 
+  .sm\:min-h-\[40rem\] {
+    min-height: 40rem;
+  }
+
   .sm\:w-auto {
     width: auto;
   }
@@ -3357,14 +3369,6 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .md\:flex-col {
-    flex-direction: column;
-  }
-
-  .md\:justify-between {
-    justify-content: space-between;
-  }
-
   .md\:py-14 {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
@@ -3407,11 +3411,6 @@ p {
 
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
-  }
-
-  .lg\:mx-4 {
-    margin-left: 1rem;
-    margin-right: 1rem;
   }
 
   .lg\:mx-2 {
@@ -3465,6 +3464,10 @@ p {
 
   .lg\:h-\[30rem\] {
     height: 30rem;
+  }
+
+  .lg\:min-h-\[60rem\] {
+    min-height: 60rem;
   }
 
   .lg\:w-\[25rem\] {
